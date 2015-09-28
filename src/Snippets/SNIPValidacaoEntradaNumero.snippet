@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>SNIPValidacaoEntradaNumero</Title>
+      <Author></Author>
+      <Description>Validates a number</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes />
+      <Keywords />
+      <Shortcut>SNIPValidacaoEntradaNumero</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>param</ID>
+          <Type></Type>
+          <ToolTip>Algum parâmetro</ToolTip>
+          <Default>param</Default>
+          <Function></Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Kind="method body" Delimiter="$">
+        <![CDATA[if($param$ == 0)
+		    {
+		    	throw new ArgumentNullException($param$);
+		    }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
