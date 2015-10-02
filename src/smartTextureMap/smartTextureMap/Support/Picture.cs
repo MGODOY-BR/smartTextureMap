@@ -29,6 +29,28 @@ namespace smartTextureMap.Support{
         private Image _newImage;
 
         /// <summary>
+        /// Gets the width of image
+        /// </summary>
+        public int Width
+        {
+            get
+            {
+                return this._originalImage.Width;
+            }
+        }
+
+        /// <summary>
+        /// Getsthe height of image
+        /// </summary>
+        public int Height
+        {
+            get
+            {
+                return this._originalImage.Height;
+            }
+        }
+
+        /// <summary>
         /// Creates a instance of the object
         /// </summary>
         public Picture(Image originalImage)

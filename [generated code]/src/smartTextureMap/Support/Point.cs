@@ -26,5 +26,6 @@ namespace smartTextureMap.Support{
 		/// </summary>
 		private int _y;
 
+
 	}
 }

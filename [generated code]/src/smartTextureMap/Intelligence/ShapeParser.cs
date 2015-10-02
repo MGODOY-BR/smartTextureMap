@@ -17,14 +17,9 @@ namespace smartTextureMap.Intelligence{
 		}
 
 		/// <summary>
-		/// It's the current Point A of analysis
+		/// 
 		/// </summary>
-		private Point _currentPointA;
-
-		/// <summary>
-		/// It´s the current PointB of analysis
-		/// </summary>
-		private Point _currentPointB;
+		private AxisEngine _axis;
 
 		/// <summary>
 		/// Begins the analasys
@@ -33,24 +28,6 @@ namespace smartTextureMap.Intelligence{
 		/// <param name="image"></param>
 		/// <returns></returns>
 		public HashSet<Shape> Discover(Point startPoint, Picture image) {
-			// TODO implement here
-			return null;
-		}
-
-		/// <summary>
-		/// Get the last coordinate A analysed.
-		/// </summary>
-		/// <returns></returns>
-		public Point GetLastCoordinateA() {
-			// TODO implement here
-			return null;
-		}
-
-		/// <summary>
-		/// Get the last coordinate B analysed
-		/// </summary>
-		/// <returns></returns>
-		public Point GetLastCoordinateB() {
 			// TODO implement here
 			return null;
 		}

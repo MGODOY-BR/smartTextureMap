@@ -109,5 +109,25 @@ namespace smartTextureMap.Test {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShapeParser_DiscoverTest {
+            get {
+                object obj = ResourceManager.GetObject("ShapeParser_DiscoverTest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Triangle {
+            get {
+                object obj = ResourceManager.GetObject("Triangle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -13,12 +13,12 @@ namespace smartTextureMap.Support{
         /// <summary>
         /// Absciss
         /// </summary>
-        public int X { get; private set; }
+        public int X { get; set; }
 
         /// <summary>
         /// Ordinate
         /// </summary>
-        public int Y { get; private set; }
+        public int Y { get; set; }
 
         /// <summary>
         /// Creates a instance of object

@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Intelligence\Lens\AxisEngine.cs" />
+    <Compile Include="Intelligence\Lens\Sensor.cs" />
+    <Compile Include="Intelligence\Lens\ShapeLen.cs" />
     <Compile Include="Intelligence\ShapeParser.cs" />
     <Compile Include="Intelligence\SmartTextureMap.cs" />
     <Compile Include="Program.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Support\LogicalSquare.cs" />
     <Compile Include="Support\Point.cs" />
     <Compile Include="Support\Shape.cs" />
+    <Compile Include="Support\ShapeFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
