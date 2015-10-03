@@ -68,5 +68,39 @@ namespace smartTextureMap.Intelligence.Lens{
 			// TODO implement here
 		}
 
+		/// <summary>
+		/// Checks if the current position is considered a bottom boundary.
+		/// </summary>
+		/// <returns></returns>
+		public Boolean CheckBottomBoundary() {
+			// TODO implement here
+			return null;
+		}
+
+		/// <summary>
+		/// Check if the right position is a boundary
+		/// </summary>
+		/// <returns></returns>
+		public Boolean CheckRightBoundary() {
+			// TODO implement here
+			return null;
+		}
+
+		/// <summary>
+		/// Updates the position of sensors
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		public void UpdateSensor(int x, int y) {
+			// TODO implement here
+		}
+
+		/// <summary>
+		/// Verifies whether the current position is a corner of polygon
+		/// </summary>
+		public void CheckCorner() {
+			// TODO implement here
+		}
+
 	}
 }

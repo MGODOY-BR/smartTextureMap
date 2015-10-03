@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Intelligence\Lens\SensorTest.cs" />
     <Compile Include="Intelligence\Lens\ShapeLenTest.cs" />
+    <Compile Include="Intelligence\Lens\AxisEngineTest.cs" />
     <Compile Include="Intelligence\ShapeParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">

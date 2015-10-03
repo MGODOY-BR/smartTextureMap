@@ -17,6 +17,11 @@ namespace smartTextureMap.Intelligence.Lens{
 		}
 
 		/// <summary>
+		/// It´s the image being analysed
+		/// </summary>
+		private Picture _image;
+
+		/// <summary>
 		/// It´s the current position of sensor
 		/// </summary>
 		private Point _currentPosition;

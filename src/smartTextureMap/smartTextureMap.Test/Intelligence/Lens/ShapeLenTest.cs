@@ -44,6 +44,64 @@ namespace smartTextureMap.Test.Intelligence.Lens
         }
 
         [TestMethod]
+        public void CheckRightBoundaryTest()
+        {
+            #region Scenario setup
+
+            Picture image = new Picture(Resource1.Triangle);
+
+            #endregion
+
+            #region Running the tested operation
+
+            ShapeLen shapeLen = new ShapeLen(image);
+            shapeLen.Read(323, 47);
+
+            #endregion
+
+            #region Getting the evidences
+
+            var evidence = shapeLen.CheckRightBoundary();
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidence);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckBottomBoundaryTest()
+        {
+            #region Scenario setup
+
+            Picture image = new Picture(Resource1.Triangle);
+
+            #endregion
+
+            #region Running the tested operation
+
+            ShapeLen shapeLen = new ShapeLen(image);
+            shapeLen.Read(222, 202);
+
+            #endregion
+
+            #region Getting the evidences
+
+            var evidence = shapeLen.CheckBottomBoundary();
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidence);
+
+            #endregion
+        }
+
+        [TestMethod]
         public void ReadTestNegative()
         {
             #region Scenario setup

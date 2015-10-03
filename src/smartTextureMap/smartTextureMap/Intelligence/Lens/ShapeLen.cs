@@ -14,7 +14,7 @@ namespace smartTextureMap.Intelligence.Lens{
         /// <summary>
         /// It's the distance of position of sensors
         /// </summary>
-        private const int SENSOR_DISTANCE = 1;
+        public const int SENSOR_DISTANCE = 1;
 
         /// <summary>
 		/// It's the sensor positioned in current shape
@@ -63,18 +63,18 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentException("The axis Y can't be higher then the height of image");
             }
-            if (x < 1)
+            if (x < 0)
             {
                 throw new ArgumentException("The axis X can't be lower then 0");
             }
-            if (y < 1)
+            if (y < 0)
             {
                 throw new ArgumentException("The axis Y can't be lower then 0");
             }
 
             #endregion
 
-            this.PositionSensors(x, y);
+            this.UpdateSensor(x, y);
 
             return 
                 this._currentSensor.Check() ||
@@ -111,6 +111,88 @@ namespace smartTextureMap.Intelligence.Lens{
         }
 
         /// <summary>
+        /// Checks if the current position is considered a bottom boundary.
+        /// </summary>
+        /// <returns></returns>
+        public Boolean CheckBottomBoundary()
+        {
+            #region Entries validation
+
+            if (this._bellowSensor == null)
+            {
+                throw new ArgumentNullException("this._bellowSensor");
+            }
+
+            #endregion
+
+            return this._bellowSensor.Check();
+        }
+
+        /// <summary>
+        /// Check if the right position is a boundary
+        /// </summary>
+        /// <returns></returns>
+        public Boolean CheckRightBoundary()
+        {
+            #region Entries validation
+            
+            if (this._nextSensor == null)
+            {
+                throw new ArgumentNullException("this._nextSensor");
+            }
+
+            #endregion
+
+            return this._nextSensor.Check();
+        }
+
+        /// <summary>
+        /// Verifies whether the current position is a corner of polygon
+        /// </summary>
+        public Boolean CheckCorner()
+        {
+            return this.CheckBottomBoundary() && this.CheckRightBoundary();
+        }
+
+        /// <summary>
+        /// Positions the sensors
+        /// </summary>
+        public void UpdateSensor(int x, int y)
+        {
+            #region Entries validation
+
+            if (this._nextSensor == null)
+            {
+                throw new ArgumentNullException("this._nextSensor");
+            }
+            if (this._bellowSensor == null)
+            {
+                throw new ArgumentNullException("this._bellowSensor");
+            }
+            if (this._bellowSensor == null)
+            {
+                throw new ArgumentNullException("this._bellowSensor");
+            }
+
+            #endregion
+
+            this._currentSensor.Update(x, y);
+            this._bellowSensor.Update(x, y + SENSOR_DISTANCE);
+            this._nextSensor.Update(x + SENSOR_DISTANCE, y);
+
+            this._lastPoint = new Point(x, y);
+        }
+
+        /// <summary>
+        /// Gets the last position
+        /// </summary>
+        /// <returns></returns>
+        public Point GetLastPosition()
+        {
+            return this._lastPoint;
+        }
+
+        /// <summary>
         /// Set up the sensors
         /// </summary>
         private void SetSensors(Picture image)
@@ -128,19 +210,7 @@ namespace smartTextureMap.Intelligence.Lens{
             this._bellowSensor = new Sensor(image);
             this._nextSensor = new Sensor(image);
 
-            this.PositionSensors(0, 0);
-        }
-
-        /// <summary>
-        /// Positions the sensors
-        /// </summary>
-        private void PositionSensors(int x, int y)
-        {
-            this._currentSensor.Update(x, y);
-            this._bellowSensor.Update(x, y + SENSOR_DISTANCE);
-            this._nextSensor.Update(x + SENSOR_DISTANCE, y);
-
-            this._lastPoint = new Point(x, y);
+            this.UpdateSensor(0, 0);
         }
     }
 }
