@@ -43,6 +43,16 @@ namespace smartTextureMap.Intelligence.Lens{
 		private Picture _image;
 
 		/// <summary>
+		/// It´s the sensor of top
+		/// </summary>
+		private Sensor _topSensor;
+
+		/// <summary>
+		/// It´s the left sensor
+		/// </summary>
+		private Sensor _leftSensor;
+
+		/// <summary>
 		/// Reads the point and returns a boolean informing if the point it is a boundary of a polygon
 		/// </summary>
 		/// <param name="x"></param>
@@ -98,8 +108,19 @@ namespace smartTextureMap.Intelligence.Lens{
 		/// <summary>
 		/// Verifies whether the current position is a corner of polygon
 		/// </summary>
-		public void CheckCorner() {
+		/// <returns></returns>
+		public Boolean CheckBondaryCorner() {
 			// TODO implement here
+			return null;
+		}
+
+		/// <summary>
+		/// Checks whether the point it´s considered a start corner
+		/// </summary>
+		/// <returns></returns>
+		public Boolean CheckStartCorner() {
+			// TODO implement here
+			return null;
 		}
 
 	}

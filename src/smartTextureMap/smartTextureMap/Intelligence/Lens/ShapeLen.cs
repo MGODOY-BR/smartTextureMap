@@ -31,10 +31,20 @@ namespace smartTextureMap.Intelligence.Lens{
 		/// </summary>
 		private Sensor _bellowSensor;
 
-		/// <summary>
-		/// It's the last point detected
-		/// </summary>
-		private Point _lastPoint;
+        /// <summary>
+        /// It´s the sensor of top
+        /// </summary>
+        private Sensor _topSensor;
+
+        /// <summary>
+        /// It´s the left sensor
+        /// </summary>
+        private Sensor _leftSensor;
+
+        /// <summary>
+        /// It's the last point detected
+        /// </summary>
+        private Point _lastPoint;
 
 		/// <summary>
 		/// It's the image to be analyse
@@ -76,10 +86,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             this.UpdateSensor(x, y);
 
-            return 
-                this._currentSensor.Check() ||
-                this._nextSensor.Check() ||
-                this._bellowSensor.Check();
+            return this.CheckBorder();
         }
 
         /// <summary>
@@ -149,7 +156,7 @@ namespace smartTextureMap.Intelligence.Lens{
         /// <summary>
         /// Verifies whether the current position is a corner of polygon
         /// </summary>
-        public Boolean CheckCorner()
+        public Boolean CheckBoundaryCorner()
         {
             return this.CheckBottomBoundary() && this.CheckRightBoundary();
         }
@@ -173,12 +180,22 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._bellowSensor");
             }
+            if (this._topSensor == null)
+            {
+                throw new ArgumentNullException("this._topSensor");
+            }
+            if (this._leftSensor == null)
+            {
+                throw new ArgumentNullException("this._leftSensor");
+            }
 
             #endregion
 
             this._currentSensor.Update(x, y);
             this._bellowSensor.Update(x, y + SENSOR_DISTANCE);
             this._nextSensor.Update(x + SENSOR_DISTANCE, y);
+            this._leftSensor.Update(x - SENSOR_DISTANCE, y);
+            this._topSensor.Update(x, y - SENSOR_DISTANCE);
 
             this._lastPoint = new Point(x, y);
         }
@@ -190,6 +207,35 @@ namespace smartTextureMap.Intelligence.Lens{
         public Point GetLastPosition()
         {
             return this._lastPoint;
+        }
+
+        /// <summary>
+        /// Checks whther the sensor rules identifies a border
+        /// </summary>
+        /// <returns></returns>
+        private Boolean CheckBorder()
+        {
+            #region Entries validation
+            
+            if (this._currentSensor == null)
+            {
+                throw new ArgumentNullException("this._currentSensor");
+            }
+            if (this._nextSensor == null)
+            {
+                throw new ArgumentNullException("this._nextSensor");
+            }
+            if (this._bellowSensor == null)
+            {
+                throw new ArgumentNullException("this._bellowSensor");
+            }
+
+            #endregion
+
+            return
+                this._currentSensor.Check() ||
+                this._nextSensor.Check() ||
+                this._bellowSensor.Check();
         }
 
         /// <summary>
@@ -209,6 +255,8 @@ namespace smartTextureMap.Intelligence.Lens{
             this._currentSensor = new Sensor(image);
             this._bellowSensor = new Sensor(image);
             this._nextSensor = new Sensor(image);
+            this._topSensor = new Sensor(image);
+            this._leftSensor = new Sensor(image);
 
             this.UpdateSensor(0, 0);
         }

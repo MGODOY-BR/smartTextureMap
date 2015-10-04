@@ -86,5 +86,14 @@ namespace smartTextureMap.Intelligence.Lens{
 			return null;
 		}
 
+		/// <summary>
+		/// Indica se a análise chegou ao fim do arquivo
+		/// </summary>
+		/// <returns></returns>
+		public Boolean EOF() {
+			// TODO implement here
+			return null;
+		}
+
 	}
 }

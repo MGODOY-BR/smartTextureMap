@@ -1,4 +1,5 @@
 
+using smartTextureMap.Intelligence.Lens;
 using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
@@ -35,92 +36,34 @@ namespace smartTextureMap.Intelligence{
             {
                 throw new ArgumentNullException("startPoint");
             }
-            if (image == null)
-            {
-                throw new ArgumentNullException("image");
-            }
 
             #endregion
 
-            List<Shape> shapeList = new List<Shape>();
-            Point pointA = null;
-            Point pointB = null;
-            ShapeFunction function = ShapeFunction.WaitingToBegin;
-            int resumeX = 0;
-            int resumeY = 0;
+            List<Shape> retorno = new List<Shape>();
 
-            for (int x = resumeX; x < image.Width; x++)
+            AxisEngine axisEngine = new AxisEngine(startPoint, image);
+            while (!axisEngine.EOF())
             {
-                for (int y = resumeY; y < image.Height; y++)
+                axisEngine.Run();
+
+                List<LogicalSquare> squareList = axisEngine.GetSquares();
+                if (squareList.Count == 0)
                 {
-                    if (function == ShapeFunction.SearchingToEnd)
-                    {
-                        resumeY++;
-                    }
-
-                    Point point = new Point(x, y);
-
-                    // Searching for the beginning of shape
-                    if (function == ShapeFunction.WaitingToBegin)
-                    {
-                        #region Entries validation
-
-                        if (!image.CheckBoundary(point))
-                        {
-                            continue;
-                        }
-
-                        #endregion
-
-                        pointA = new Point(x, y);
-                        function = ShapeFunction.SearchingToEnd;
-                        break;
-                    }
-                    // Seaching for the ending of shape
-                    if (function == ShapeFunction.SearchingToEnd)
-                    {
-                        #region Entries validation
-
-                        if (pointA == null)
-                        {
-                            throw new ArgumentNullException("pointA");
-                        }
-                        if (x <= pointA.X) // Ignoring previous X from the point A
-                        {
-                            continue;
-                        }
-                        if (image.CheckBoundary(point))
-                        {
-                            Point pseudoHPoint = new Point(x + 1, y);
-                            if (image.CheckBoundary(pseudoHPoint))
-                            {
-                                continue;
-                            }
-                        }
-
-                        #endregion
-
-                        pointB = new Point(x, y);
-
-                        // Closing the square
-                        LogicalSquare square = new LogicalSquare(pointA, pointB);
-                        Shape shape = new Shape(square, image);
-                        shapeList.Add(shape);
-
-                        // Preparing next searching for a new shape
-                        function = ShapeFunction.WaitingToBegin;
-                        // The beginning for the next shape is the ending of this one.
-                        resumeX = pointB.X;
-                        resumeY = pointA.Y;
-                        break;
-                    }
+                    break;
                 }
+
+                Point nextStart = squareList.LastOrDefault().PointC;
+
+                axisEngine.GoTo(
+                    nextStart.X, nextStart.Y);
             }
 
-            this._currentPointA = pointA;
-            this._currentPointB = pointB;
+            foreach (var item in axisEngine.GetSquares())
+            {
+                retorno.Add(new Shape(item, image));
+            }
 
-            return shapeList;
+            return retorno;
 		}
 
 		/// <summary>

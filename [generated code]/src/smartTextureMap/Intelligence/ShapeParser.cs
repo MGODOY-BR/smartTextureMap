@@ -17,11 +17,6 @@ namespace smartTextureMap.Intelligence{
 		}
 
 		/// <summary>
-		/// 
-		/// </summary>
-		private AxisEngine _axis;
-
-		/// <summary>
 		/// Begins the analasys
 		/// </summary>
 		/// <param name="startPoint"></param>

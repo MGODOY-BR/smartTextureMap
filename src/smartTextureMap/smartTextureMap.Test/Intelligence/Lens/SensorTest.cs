@@ -13,29 +13,30 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.ShapeMarkTest);
+            using (Picture image = new Picture(Resource1.ShapeMarkTest))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                Sensor sensor = new Sensor(image);
+                sensor.Update(8, 9);
 
-            Sensor sensor = new Sensor(image);
-            sensor.Update(8, 9);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                var evidence = sensor.GetPoint();
 
-            var evidence = sensor.GetPoint();
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.AreEqual(8, evidence.X);
+                Assert.AreEqual(9, evidence.Y);
 
-            Assert.AreEqual(8, evidence.X);
-            Assert.AreEqual(9, evidence.Y);
-
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
@@ -43,28 +44,29 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.ShapeMarkTest);
+            using (Picture image = new Picture(Resource1.ShapeMarkTest))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                Sensor sensor = new Sensor(image);
+                sensor.Update(8, 9);
 
-            Sensor sensor = new Sensor(image);
-            sensor.Update(8, 9);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                var evidence = sensor.Check();
 
-            var evidence = sensor.Check();
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.IsTrue(evidence);
 
-            Assert.IsTrue(evidence);
-
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
@@ -72,28 +74,29 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.ShapeMarkTest);
+            using (Picture image = new Picture(Resource1.ShapeMarkTest))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                Sensor sensor = new Sensor(image);
+                sensor.Update(1, 1);
 
-            Sensor sensor = new Sensor(image);
-            sensor.Update(1, 1);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                var evidence = sensor.Check();
 
-            var evidence = sensor.Check();
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.IsFalse(evidence);
 
-            Assert.IsFalse(evidence);
-
-            #endregion
+                #endregion
+            }
         }
 
     }

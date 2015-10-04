@@ -12,6 +12,11 @@ namespace smartTextureMap.Intelligence.Lens{
 	/// </summary>
 	public class AxisEngine {
 
+        /// <summary>
+        /// Indica se a análise chegou ao fim do arquivo
+        /// </summary>
+        private Boolean _eof;
+
 		/// <summary>
 		/// It's the len which detects the points in picture
 		/// </summary>
@@ -52,6 +57,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             this._len.Reset();
             this._squareList.Clear();
+            this._eof = false;
         }
 
         /// <summary>
@@ -125,6 +131,8 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             this._len.UpdateSensor(x, y);
+            this._startPoint.X = x;
+            this._startPoint.Y = y;
         }
 
 		/// <summary>
@@ -165,7 +173,7 @@ namespace smartTextureMap.Intelligence.Lens{
                             startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
                             x = startX;
                         }
-                        else if (this._len.CheckCorner())
+                        else if (this._len.CheckBoundaryCorner())
                         {
                             pointB = this._len.GetLastPosition();
 
@@ -177,6 +185,8 @@ namespace smartTextureMap.Intelligence.Lens{
                     }
                 }
             }
+
+            this._eof = true;
         }
 
 		/// <summary>
@@ -197,5 +207,14 @@ namespace smartTextureMap.Intelligence.Lens{
             return this._len.GetLastPosition();
 		}
 
-	}
+        /// <summary>
+        /// Indica se a análise chegou ao fim do arquivo
+        /// </summary>
+        /// <returns></returns>
+        public Boolean EOF()
+        {
+            return this._eof;
+        }
+
+    }
 }

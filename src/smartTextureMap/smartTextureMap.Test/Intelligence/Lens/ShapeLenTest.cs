@@ -13,34 +13,35 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.Triangle);
+            using (Picture image = new Picture(Resource1.Triangle))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                ShapeLen shapeLen = new ShapeLen(image);
+                var evidenceA = shapeLen.Read(101, 20);
+                var evidenceB = shapeLen.Read(343, 20);
+                var evidenceC = shapeLen.Read(260, 143);
+                var evidenceD = shapeLen.Read(222, 204);
+                var evidenceE = shapeLen.Read(129, 61);
 
-            ShapeLen shapeLen = new ShapeLen(image);
-            var evidenceA = shapeLen.Read(101, 20);
-            var evidenceB = shapeLen.Read(343, 20);
-            var evidenceC = shapeLen.Read(260, 143);
-            var evidenceD = shapeLen.Read(222, 204);
-            var evidenceE = shapeLen.Read(129, 61);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.IsTrue(evidenceA);
+                Assert.IsTrue(evidenceB);
+                Assert.IsTrue(evidenceC);
+                Assert.IsTrue(evidenceD);
+                Assert.IsTrue(evidenceE);
 
-            Assert.IsTrue(evidenceA);
-            Assert.IsTrue(evidenceB);
-            Assert.IsTrue(evidenceC);
-            Assert.IsTrue(evidenceD);
-            Assert.IsTrue(evidenceE);
-
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
@@ -48,28 +49,29 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.Triangle);
+            using (Picture image = new Picture(Resource1.Triangle))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                ShapeLen shapeLen = new ShapeLen(image);
+                shapeLen.Read(323, 47);
 
-            ShapeLen shapeLen = new ShapeLen(image);
-            shapeLen.Read(323, 47);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                var evidence = shapeLen.CheckRightBoundary();
 
-            var evidence = shapeLen.CheckRightBoundary();
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.IsTrue(evidence);
 
-            Assert.IsTrue(evidence);
-
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
@@ -77,28 +79,29 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.Triangle);
+            using (Picture image = new Picture(Resource1.Triangle))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                ShapeLen shapeLen = new ShapeLen(image);
+                shapeLen.Read(222, 202);
 
-            ShapeLen shapeLen = new ShapeLen(image);
-            shapeLen.Read(222, 202);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                var evidence = shapeLen.CheckBottomBoundary();
 
-            var evidence = shapeLen.CheckBottomBoundary();
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.IsTrue(evidence);
 
-            Assert.IsTrue(evidence);
-
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
@@ -106,34 +109,35 @@ namespace smartTextureMap.Test.Intelligence.Lens
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.Triangle);
+            using (Picture image = new Picture(Resource1.Triangle))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                ShapeLen shapeLen = new ShapeLen(image);
+                var evidenceA = shapeLen.Read(328, 13);
+                var evidenceB = shapeLen.Read(326, 38);
+                var evidenceC = shapeLen.Read(318, 113);
+                var evidenceD = shapeLen.Read(329, 214);
+                var evidenceE = shapeLen.Read(220, 186);
 
-            ShapeLen shapeLen = new ShapeLen(image);
-            var evidenceA = shapeLen.Read(328, 13);
-            var evidenceB = shapeLen.Read(326, 38);
-            var evidenceC = shapeLen.Read(318, 113);
-            var evidenceD = shapeLen.Read(329, 214);
-            var evidenceE = shapeLen.Read(220, 186);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.IsFalse(evidenceA);
+                Assert.IsFalse(evidenceB);
+                Assert.IsFalse(evidenceC);
+                Assert.IsFalse(evidenceD);
+                Assert.IsFalse(evidenceE);
 
-            Assert.IsFalse(evidenceA);
-            Assert.IsFalse(evidenceB);
-            Assert.IsFalse(evidenceC);
-            Assert.IsFalse(evidenceD);
-            Assert.IsFalse(evidenceE);
-
-            #endregion
+                #endregion
+            }
         }
 
     }

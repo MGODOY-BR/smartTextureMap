@@ -12,34 +12,35 @@ namespace smartTextureMap.Test.Support
         {
             #region Scenario setup
 
-            Picture picture = new Picture(Resource1.ShapeMarkTest);
+            using (Picture picture = new Picture(Resource1.ShapeMarkTest))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                Shape shape =
+                    new Shape(
+                        new LogicalSquare(
+                            new Point(10, 10),
+                            new Point(38, 25)),
+                        picture);
 
-            Shape shape =
-                new Shape(
-                    new LogicalSquare(
-                        new Point(10, 10),
-                        new Point(38, 25)),
-                    picture);
+                shape.Mark("M");
 
-            shape.Mark("M");
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                picture.SaveAs("ShapeMarkTest.result.png");
 
-            picture.SaveAs("ShapeMarkTest.result.png");
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                // This test is going to be visual
 
-            // This test is going to be visual
-
-            #endregion
+                #endregion
+            }
         }
     }
 }

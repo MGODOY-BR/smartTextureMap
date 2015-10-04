@@ -11,7 +11,7 @@ namespace smartTextureMap.Support{
 	/// <summary>
 	/// Represents a image
 	/// </summary>
-	public class Picture {
+	public class Picture : IDisposable {
         
         /// <summary>
         /// A graphic created from bitmap
@@ -182,5 +182,16 @@ namespace smartTextureMap.Support{
             return (collorMode > 61 && collorMode < 70);
         }
 
+        public void Dispose()
+        {
+            if (this._originalImage != null)
+            {
+                this._originalImage.Dispose();
+            }
+            if (this._newImage != null)
+            {
+                this._newImage.Dispose();
+            }
+        }
     }
 }

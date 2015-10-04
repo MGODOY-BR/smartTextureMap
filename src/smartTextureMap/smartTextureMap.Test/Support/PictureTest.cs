@@ -24,48 +24,51 @@ namespace smartTextureMap.Test.Support
                FontStyle.Regular,
                GraphicsUnit.Pixel);
 
-            Picture picture = new Picture(Resource1.blank);
-            picture.Mark("A", new smartTextureMap.Support.Point(1, 1), font);
+            using (Picture picture = new Picture(Resource1.blank))
+            {
+                picture.Mark("A", new smartTextureMap.Support.Point(1, 1), font);
 
-            #endregion
+                #endregion
 
-            #region Getting the evidences
+                #region Getting the evidences
 
-            picture.SaveAs("PictureTest.MarkTest.png");
+                picture.SaveAs("PictureTest.MarkTest.png");
 
-            #endregion
+                #endregion
 
-            #region Validating the evidences
+                #region Validating the evidences
 
-            // This test is going to be visual
+                // This test is going to be visual
 
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
         public void CheckBoundaryTest()
         {
-
             #region Scenario setup
 
-            #endregion
+            using (Picture picture = new Picture(Resource1.checkBoundaryStub))
+            {
+                #endregion
 
-            #region Running the tested operation
+                #region Running the tested operation
 
-            Picture picture = new Picture(Resource1.checkBoundaryStub);
-            bool evidency = picture.CheckBoundary(new smartTextureMap.Support.Point(22, 22));
+                bool evidence = picture.CheckBoundary(new smartTextureMap.Support.Point(22, 22));
 
-            #endregion
+                #endregion
 
-            #region Getting the evidences
+                #region Getting the evidences
 
-            #endregion
+                #endregion
 
-            #region Validating the evidences
+                #region Validating the evidences
 
-            Assert.IsTrue(evidency);
+                Assert.IsTrue(evidence);
 
-            #endregion
+                #endregion
+            }
         }
 
         [TestMethod]
@@ -74,24 +77,26 @@ namespace smartTextureMap.Test.Support
 
             #region Scenario setup
 
-            #endregion
+            using (Picture picture = new Picture(Resource1.checkBoundaryStub))
+            {
+                #endregion
 
-            #region Running the tested operation
+                #region Running the tested operation
 
-            Picture picture = new Picture(Resource1.checkBoundaryStub);
-            bool evidency = picture.CheckBoundary(new smartTextureMap.Support.Point(5, 5));
+                bool evidency = picture.CheckBoundary(new smartTextureMap.Support.Point(5, 5));
 
-            #endregion
+                #endregion
 
-            #region Getting the evidences
+                #region Getting the evidences
 
-            #endregion
+                #endregion
 
-            #region Validating the evidences
+                #region Validating the evidences
 
-            Assert.IsFalse(evidency);
+                Assert.IsFalse(evidency);
 
-            #endregion
+                #endregion
+            }
         }
 
     }

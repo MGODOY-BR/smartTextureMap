@@ -14,26 +14,27 @@ namespace smartTextureMap.Test.Intelligence
         {
             #region Scenario setup
 
-            Picture image = new Picture(Resource1.ShapeParser_DiscoverTest);
+            using (Picture image = new Picture(Resource1.ShapeParser_DiscoverTest))
+            {
+                #endregion
 
-            #endregion
+                #region Running the tested operation
 
-            #region Running the tested operation
+                ShapeParser parser = new ShapeParser();
+                List<Shape> evidenceList = parser.Discover(new Point(0, 0), image);
 
-            ShapeParser parser = new ShapeParser();
-            List<Shape> evidenceList = parser.Discover(new Point(0, 0), image);
+                #endregion
 
-            #endregion
+                #region Getting the evidences
 
-            #region Getting the evidences
+                #endregion
 
-            #endregion
+                #region Validating the evidences
 
-            #region Validating the evidences
+                Assert.AreEqual(5, evidenceList.Count);
 
-            Assert.AreEqual(5, evidenceList.Count);
-
-            #endregion
+                #endregion
+            }
         }
     }
 }
