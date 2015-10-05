@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Intelligence\Lens\AxisDirectionEnum.cs" />
     <Compile Include="Intelligence\Lens\AxisEngine.cs" />
     <Compile Include="Intelligence\Lens\Sensor.cs" />
     <Compile Include="Intelligence\Lens\ShapeLen.cs" />

@@ -154,35 +154,61 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             Support.Point pointA = null;
-            Support.Point pointB = null;
 
             int startX = this._startPoint.X;
             int startY = this._startPoint.Y;
+            AxisDirectionEnum directionEnum = AxisDirectionEnum.Forward;
 
             for (int y = startY; y < this._image.Height - 1; y += ShapeLen.SENSOR_DISTANCE)
             {
-                for (int x = startX; x < this._image.Width - 1; x += ShapeLen.SENSOR_DISTANCE)
-                {
-                    bool bondary = this._len.Read(x, y);
+                Support.Point lastRightBoundary = null;
 
-                    if (bondary)
+                for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
+                {
+                    if (pointA != null && lastRightBoundary != null && this._len.CheckBottomBoundary())
+                    {
+                        this._squareList.Add(
+                            new LogicalSquare(pointA, lastRightBoundary));
+
+                        return;
+                    }
+
+                    #region Boundary treatment
+
+                    if (this._len.Read(x, y))
                     {
                         if (pointA == null)
                         {
                             pointA = this._len.GetLastPosition();
-                            startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
-                            x = startX;
+                            x += ShapeLen.SENSOR_DISTANCE;
                         }
-                        else if (this._len.CheckBoundaryCorner())
+                        else
                         {
-                            pointB = this._len.GetLastPosition();
+                            #region Axis scan direction
 
-                            this._squareList.Add(
-                                new LogicalSquare(pointA, pointB));
+                            switch (directionEnum)
+                            {
+                                case AxisDirectionEnum.Backward:
+                                    directionEnum = AxisDirectionEnum.Forward;
+                                    break;
 
-                            return;
+                                case AxisDirectionEnum.Forward:
+                                    lastRightBoundary = this._len.GetLastPosition();
+                                    directionEnum = AxisDirectionEnum.Backward;
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                            #endregion
                         }
+
+                        // Resume next line
+                        y += ShapeLen.SENSOR_DISTANCE;
                     }
+
+                    #endregion
                 }
             }
 

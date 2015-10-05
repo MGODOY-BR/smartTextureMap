@@ -115,10 +115,10 @@ namespace smartTextureMap.Intelligence.Lens{
 		}
 
 		/// <summary>
-		/// Checks whether the point it´s considered a start corner
+		/// Checks whether the left boundary has detected at current sensor position.
 		/// </summary>
 		/// <returns></returns>
-		public Boolean CheckStartCorner() {
+		public Boolean CheckLeftBoundary() {
 			// TODO implement here
 			return null;
 		}

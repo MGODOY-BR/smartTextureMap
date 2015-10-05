@@ -129,10 +129,14 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._bellowSensor");
             }
+            if (this._currentSensor == null)
+            {
+                throw new ArgumentNullException("this._currentSensor");
+            }
 
             #endregion
 
-            return this._bellowSensor.Check();
+            return this._currentSensor.Check() && !this._bellowSensor.Check();
         }
 
         /// <summary>
@@ -151,6 +155,24 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             return this._nextSensor.Check();
+        }
+
+        /// <summary>
+        /// Checks whether the left boundary has detected at current sensor position.
+        /// </summary>
+        /// <returns></returns>
+        public Boolean CheckLeftBoundary()
+        {
+            #region Entries validation
+            
+            if (this._leftSensor == null)
+            {
+                throw new ArgumentNullException("this._leftSensor");
+            }
+
+            #endregion
+
+            return this._leftSensor.Check();
         }
 
         /// <summary>
@@ -210,7 +232,7 @@ namespace smartTextureMap.Intelligence.Lens{
         }
 
         /// <summary>
-        /// Checks whther the sensor rules identifies a border
+        /// Checks whether the sensor rules identifies a border
         /// </summary>
         /// <returns></returns>
         private Boolean CheckBorder()
@@ -221,21 +243,11 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._currentSensor");
             }
-            if (this._nextSensor == null)
-            {
-                throw new ArgumentNullException("this._nextSensor");
-            }
-            if (this._bellowSensor == null)
-            {
-                throw new ArgumentNullException("this._bellowSensor");
-            }
 
             #endregion
 
             return
-                this._currentSensor.Check() ||
-                this._nextSensor.Check() ||
-                this._bellowSensor.Check();
+                this._currentSensor.Check();
         }
 
         /// <summary>
