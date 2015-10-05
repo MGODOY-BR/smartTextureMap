@@ -38,6 +38,11 @@ namespace smartTextureMap.Intelligence.Lens{
 		private Picture _image;
 
         /// <summary>
+        /// Returns the amount of squares detected in last execution of Run()
+        /// </summary>
+        public int DetectedSquare{ get; private set; }
+
+        /// <summary>
         /// Resets the position of len
         /// </summary>
         public void Reset()
@@ -154,6 +159,7 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             Support.Point pointA = null;
+            this.DetectedSquare = 0;
 
             int startX = this._startPoint.X;
             int startY = this._startPoint.Y;
@@ -165,13 +171,27 @@ namespace smartTextureMap.Intelligence.Lens{
 
                 for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
                 {
+                    #region Square validation/creation logic
+
                     if (pointA != null && lastRightBoundary != null && this._len.CheckBottomBoundary())
                     {
-                        this._squareList.Add(
-                            new LogicalSquare(pointA, lastRightBoundary));
+                        var logicalSquare = new LogicalSquare(pointA, lastRightBoundary);
 
+                        if (logicalSquare.Validate())
+                        {
+                            this._squareList.Add(
+                                new LogicalSquare(pointA, lastRightBoundary));
+
+                            this.DetectedSquare++;
+                        }
                         return;
                     }
+                    if (x < 0)
+                    {
+                        return;
+                    }
+
+                    #endregion
 
                     #region Boundary treatment
 
@@ -180,6 +200,7 @@ namespace smartTextureMap.Intelligence.Lens{
                         if (pointA == null)
                         {
                             pointA = this._len.GetLastPosition();
+                            startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
                             x += ShapeLen.SENSOR_DISTANCE;
                         }
                         else

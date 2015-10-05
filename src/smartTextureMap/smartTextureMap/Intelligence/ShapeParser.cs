@@ -46,13 +46,8 @@ namespace smartTextureMap.Intelligence{
             {
                 axisEngine.Run();
 
-                List<LogicalSquare> squareList = axisEngine.GetSquares();
-                if (squareList.Count == 0)
-                {
-                    break;
-                }
-
-                Point nextStart = squareList.LastOrDefault().PointC;
+                Point nextStart = 
+                    GetNextPoint(axisEngine);
 
                 axisEngine.GoTo(
                     nextStart.X, nextStart.Y);
@@ -66,11 +61,11 @@ namespace smartTextureMap.Intelligence{
             return retorno;
 		}
 
-		/// <summary>
-		/// Get the last coordinate A analysed.
-		/// </summary>
-		/// <returns></returns>
-		public Point GetLastCoordinateA() {
+        /// <summary>
+        /// Get the last coordinate A analysed.
+        /// </summary>
+        /// <returns></returns>
+        public Point GetLastCoordinateA() {
             return this._currentPointA;
         }
 
@@ -82,5 +77,35 @@ namespace smartTextureMap.Intelligence{
             return this._currentPointB;
 		}
 
-	}
+        /// <summary>
+        /// Returns the next point
+        /// </summary>
+        /// <param name="axisEngine"></param>
+        /// <returns></returns>
+        private static Point GetNextPoint(AxisEngine axisEngine)
+        {
+            #region Entries validation
+
+            if (axisEngine == null)
+            {
+                throw new ArgumentNullException("axisEngine");
+            }
+
+            #endregion
+
+            Point nextStart;
+            if (axisEngine.DetectedSquare > 0)
+            {
+                nextStart =
+                    axisEngine.GetSquares().LastOrDefault().PointC;
+            }
+            else
+            {
+                nextStart =
+                    axisEngine.GetLenPosition();
+            }
+
+            return nextStart;
+        }
+    }
 }

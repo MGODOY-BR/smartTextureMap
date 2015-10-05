@@ -139,6 +139,24 @@ namespace smartTextureMap.Support{
         }
 
         /// <summary>
+        /// Validates whether the square have valid parameters
+        /// </summary>
+        /// <returns></returns>
+        public Boolean Validate()
+        {
+            if (this._pointB.X < this._pointA.X + 50)
+            {
+                return false;
+            }
+            if (this._pointB.Y < this._pointA.Y + 50)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Creates a instance of object using the points to forms a hypotenuse
         /// </summary>
         /// <param name="pointA"></param>
