@@ -162,89 +162,12 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            Support.Point pointA = null;
             this.DetectedSquare = 0;
 
-            int startX = this._startPoint.X;
-            int startY = this._startPoint.Y;
-            AxisDirectionEnum directionEnum = AxisDirectionEnum.Forward;
-            AxisDirectionEnum lastDirectionEnum = AxisDirectionEnum.NotDefined;
-
-            int y = startY;
-
-            Support.Point lastRightBoundary = null;
-
-            for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
+            var localSquare = this.ScanSquare(this._len, this._startPoint.X, this._startPoint.Y);
+            if (localSquare != null && localSquare.Validate())
             {
-                #region Square validation/creation logic
-
-                if (pointA != null && lastRightBoundary != null && this._len.CheckBottomBoundary())
-                {
-                    var logicalSquare = new LogicalSquare(pointA, lastRightBoundary);
-
-                    if (logicalSquare.Validate())
-                    {
-                        this._squareList.Add(
-                            new LogicalSquare(pointA, lastRightBoundary));
-
-                        this.DetectedSquare++;
-                    }
-                    return;
-                }
-                if (x < 0)
-                {
-                    throw new InvalidOperationException("X axis can't be less then 0.");
-                }
-
-                #endregion
-
-                #region Boundary treatment
-
-                if (this._len.Read(x, y))
-                {
-                    if (pointA == null)
-                    {
-                        pointA = this._len.GetLastPosition();
-                        startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
-                        x += ShapeLen.SENSOR_DISTANCE;
-                        y += ShapeLen.SENSOR_DISTANCE;
-                    }
-                    else
-                    {
-                        #region Axis scan direction
-
-                        lastDirectionEnum = directionEnum;
-
-                        switch (directionEnum)
-                        {
-                            case AxisDirectionEnum.Backward:
-                                directionEnum = AxisDirectionEnum.Forward;
-                                break;
-
-                            case AxisDirectionEnum.Forward:
-                                if (this._len.CheckRightBoundary())
-                                {
-                                    lastRightBoundary = this._len.GetLastPosition();
-                                }
-                                directionEnum = AxisDirectionEnum.Backward;
-                                break;
-
-                            default:
-                                break;
-                        }
-
-                        #endregion
-                    }
-                }
-
-                #endregion
-
-                if (lastDirectionEnum != directionEnum || pointA == null)
-                {
-                    // Resume next line
-                    y += ShapeLen.SENSOR_DISTANCE;
-                    lastDirectionEnum = directionEnum;
-                }
+                this._squareList.Add(localSquare);
             }
 
             this._eof = true;
@@ -275,6 +198,95 @@ namespace smartTextureMap.Intelligence.Lens{
         public Boolean EOF()
         {
             return this._eof;
+        }
+
+        /// <summary>
+        /// Gets a logical square from picture
+        /// </summary>
+        private LogicalSquare ScanSquare(ShapeLen len, int startX, int startY)
+        {
+            #region Entries validation
+            
+            if (len == null)
+            {
+                throw new ArgumentNullException("len");
+            }
+
+            #endregion
+
+            AxisDirectionEnum directionEnum = AxisDirectionEnum.Forward;
+            AxisDirectionEnum lastDirectionEnum = AxisDirectionEnum.NotDefined;
+
+            int y = startY;
+            Support.Point pointA = null;
+
+            Support.Point lastRightBoundary = null;
+
+            for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
+            {
+                #region Square validation/creation logic
+
+                if (pointA != null && lastRightBoundary != null && len.CheckBottomBoundary())
+                {
+                    return new LogicalSquare(pointA, lastRightBoundary);
+                }
+                if (x < 0)
+                {
+                    throw new InvalidOperationException("X axis can't be less then 0.");
+                }
+
+                #endregion
+
+                #region Boundary treatment
+
+                if (len.Read(x, y))
+                {
+                    if (pointA == null)
+                    {
+                        pointA = len.GetLastPosition();
+                        startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
+                        x += ShapeLen.SENSOR_DISTANCE;
+                        y += ShapeLen.SENSOR_DISTANCE;
+                    }
+                    else
+                    {
+                        #region Axis scan direction
+
+                        lastDirectionEnum = directionEnum;
+
+                        switch (directionEnum)
+                        {
+                            case AxisDirectionEnum.Backward:
+                                directionEnum = AxisDirectionEnum.Forward;
+                                break;
+
+                            case AxisDirectionEnum.Forward:
+                                if (len.CheckRightBoundary())
+                                {
+                                    lastRightBoundary = len.GetLastPosition();
+                                }
+                                directionEnum = AxisDirectionEnum.Backward;
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        #endregion
+                    }
+                }
+
+                #endregion
+
+                if (lastDirectionEnum != directionEnum || pointA == null)
+                {
+                    // Resume next line
+                    y += ShapeLen.SENSOR_DISTANCE;
+                    lastDirectionEnum = directionEnum;
+                }
+            }
+
+            return null;
         }
     }
 }
