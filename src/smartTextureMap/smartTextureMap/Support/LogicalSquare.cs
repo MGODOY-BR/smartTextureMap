@@ -144,15 +144,7 @@ namespace smartTextureMap.Support{
         /// <returns></returns>
         public Boolean Validate()
         {
-            if (this._pointB.X < this._pointA.X + 50)
-            {
-                return false;
-            }
-            if (this._pointB.Y < this._pointA.Y + 50)
-            {
-                return false;
-            }
-
+            // HACK: Temporaly inactived. Reserved for polygon validation.          
             return true;
         }
 

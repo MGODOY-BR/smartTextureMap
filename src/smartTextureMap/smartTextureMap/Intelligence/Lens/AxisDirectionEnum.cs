@@ -4,6 +4,7 @@ namespace smartTextureMap.Intelligence.Lens{
 	/// Relates the different direction of axis.
 	/// </summary>
 	public enum AxisDirectionEnum : int{
+        NotDefined = 0,
         Backward = -1,
         Forward = 1,
 	}

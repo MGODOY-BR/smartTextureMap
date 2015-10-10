@@ -168,6 +168,7 @@ namespace smartTextureMap.Intelligence.Lens{
             int startX = this._startPoint.X;
             int startY = this._startPoint.Y;
             AxisDirectionEnum directionEnum = AxisDirectionEnum.Forward;
+            AxisDirectionEnum lastDirectionEnum = AxisDirectionEnum.NotDefined;
 
             int y = startY;
 
@@ -192,7 +193,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
                 if (x < 0)
                 {
-                    return;
+                    throw new InvalidOperationException("X axis can't be less then 0.");
                 }
 
                 #endregion
@@ -206,10 +207,13 @@ namespace smartTextureMap.Intelligence.Lens{
                         pointA = this._len.GetLastPosition();
                         startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
                         x += ShapeLen.SENSOR_DISTANCE;
+                        y += ShapeLen.SENSOR_DISTANCE;
                     }
                     else
                     {
                         #region Axis scan direction
+
+                        lastDirectionEnum = directionEnum;
 
                         switch (directionEnum)
                         {
@@ -218,7 +222,10 @@ namespace smartTextureMap.Intelligence.Lens{
                                 break;
 
                             case AxisDirectionEnum.Forward:
-                                lastRightBoundary = this._len.GetLastPosition();
+                                if (this._len.CheckRightBoundary())
+                                {
+                                    lastRightBoundary = this._len.GetLastPosition();
+                                }
                                 directionEnum = AxisDirectionEnum.Backward;
                                 break;
 
@@ -232,16 +239,11 @@ namespace smartTextureMap.Intelligence.Lens{
 
                 #endregion
 
-                // Resume next line
-                if (pointA == null)
+                if (lastDirectionEnum != directionEnum || pointA == null)
                 {
-                    // Until we get arrived in Point A, the progression is 1 x 1
+                    // Resume next line
                     y += ShapeLen.SENSOR_DISTANCE;
-                }
-                else
-                {
-                    // After we get arrived in Point A, the progression will be proportional
-                    y = x * this.GetProportionalRate(pointA, this._image);
+                    lastDirectionEnum = directionEnum;
                 }
             }
 
@@ -273,31 +275,6 @@ namespace smartTextureMap.Intelligence.Lens{
         public Boolean EOF()
         {
             return this._eof;
-        }
-
-        /// <summary>
-        /// Gets the theorical proportional rate
-        /// </summary>
-        /// <returns></returns>
-        private int GetProportionalRate(Support.Point pointA, Picture image)
-        {
-            #region Entries validation
-            
-            if (pointA == null)
-            {
-                throw new ArgumentNullException("pointA");
-            }
-            if (image == null)
-            {
-                throw new ArgumentNullException("image");
-            }
-
-            #endregion
-
-            int width = image.Width - pointA.X;
-            int height = image.Height - pointA.Y;
-
-            return width / height;
         }
     }
 }
