@@ -147,6 +147,10 @@ namespace smartTextureMap.Intelligence.Lens{
         {
             #region Entries validation
             
+            if (this._currentSensor == null)
+            {
+                throw new ArgumentNullException("this._currentSensor");
+            }
             if (this._nextSensor == null)
             {
                 throw new ArgumentNullException("this._nextSensor");
@@ -154,7 +158,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return this._nextSensor.Check();
+            return this._currentSensor.Check() && !this._nextSensor.Check();
         }
 
         /// <summary>
@@ -164,7 +168,11 @@ namespace smartTextureMap.Intelligence.Lens{
         public Boolean CheckLeftBoundary()
         {
             #region Entries validation
-            
+
+            if (this._currentSensor == null)
+            {
+                throw new ArgumentNullException("this._currentSensor");
+            }
             if (this._leftSensor == null)
             {
                 throw new ArgumentNullException("this._leftSensor");
@@ -172,7 +180,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return this._leftSensor.Check();
+            return this._currentSensor.Check() && !this._leftSensor.Check();
         }
 
         /// <summary>

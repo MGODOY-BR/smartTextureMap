@@ -43,5 +43,14 @@ namespace smartTextureMap.Support{
 			// TODO implement here
 		}
 
+		/// <summary>
+		/// Returns a propertion beetwen width and height.
+		/// </summary>
+		/// <returns></returns>
+		public float GetProportionRate() {
+			// TODO implement here
+			return 0.0F;
+		}
+
 	}
 }

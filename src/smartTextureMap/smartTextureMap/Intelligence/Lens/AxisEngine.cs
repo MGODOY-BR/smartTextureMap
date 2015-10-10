@@ -155,6 +155,10 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._len");
             }
+            if (this._image == null)
+            {
+                throw new ArgumentNullException("this._image");
+            }
 
             #endregion
 
@@ -165,71 +169,79 @@ namespace smartTextureMap.Intelligence.Lens{
             int startY = this._startPoint.Y;
             AxisDirectionEnum directionEnum = AxisDirectionEnum.Forward;
 
-            for (int y = startY; y < this._image.Height - 1; y += ShapeLen.SENSOR_DISTANCE)
+            int y = startY;
+
+            Support.Point lastRightBoundary = null;
+
+            for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
             {
-                Support.Point lastRightBoundary = null;
+                #region Square validation/creation logic
 
-                for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
+                if (pointA != null && lastRightBoundary != null && this._len.CheckBottomBoundary())
                 {
-                    #region Square validation/creation logic
+                    var logicalSquare = new LogicalSquare(pointA, lastRightBoundary);
 
-                    if (pointA != null && lastRightBoundary != null && this._len.CheckBottomBoundary())
+                    if (logicalSquare.Validate())
                     {
-                        var logicalSquare = new LogicalSquare(pointA, lastRightBoundary);
+                        this._squareList.Add(
+                            new LogicalSquare(pointA, lastRightBoundary));
 
-                        if (logicalSquare.Validate())
-                        {
-                            this._squareList.Add(
-                                new LogicalSquare(pointA, lastRightBoundary));
-
-                            this.DetectedSquare++;
-                        }
-                        return;
+                        this.DetectedSquare++;
                     }
-                    if (x < 0)
+                    return;
+                }
+                if (x < 0)
+                {
+                    return;
+                }
+
+                #endregion
+
+                #region Boundary treatment
+
+                if (this._len.Read(x, y))
+                {
+                    if (pointA == null)
                     {
-                        return;
+                        pointA = this._len.GetLastPosition();
+                        startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
+                        x += ShapeLen.SENSOR_DISTANCE;
                     }
-
-                    #endregion
-
-                    #region Boundary treatment
-
-                    if (this._len.Read(x, y))
+                    else
                     {
-                        if (pointA == null)
+                        #region Axis scan direction
+
+                        switch (directionEnum)
                         {
-                            pointA = this._len.GetLastPosition();
-                            startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
-                            x += ShapeLen.SENSOR_DISTANCE;
-                        }
-                        else
-                        {
-                            #region Axis scan direction
+                            case AxisDirectionEnum.Backward:
+                                directionEnum = AxisDirectionEnum.Forward;
+                                break;
 
-                            switch (directionEnum)
-                            {
-                                case AxisDirectionEnum.Backward:
-                                    directionEnum = AxisDirectionEnum.Forward;
-                                    break;
+                            case AxisDirectionEnum.Forward:
+                                lastRightBoundary = this._len.GetLastPosition();
+                                directionEnum = AxisDirectionEnum.Backward;
+                                break;
 
-                                case AxisDirectionEnum.Forward:
-                                    lastRightBoundary = this._len.GetLastPosition();
-                                    directionEnum = AxisDirectionEnum.Backward;
-                                    break;
-
-                                default:
-                                    break;
-                            }
-
-                            #endregion
+                            default:
+                                break;
                         }
 
-                        // Resume next line
-                        y += ShapeLen.SENSOR_DISTANCE;
+                        #endregion
                     }
+                }
 
-                    #endregion
+                #endregion
+
+                // Resume next line
+                if (pointA == null)
+                {
+                    // Until we get arrived in Point A, the progression is 1 x 1
+                    y += ShapeLen.SENSOR_DISTANCE;
+                }
+                else
+                {
+                    // After we get arrived in Point A, the progression will be proportional
+                    y = x * this.GetProportionalRate(pointA, this._image);
                 }
             }
 
@@ -263,5 +275,29 @@ namespace smartTextureMap.Intelligence.Lens{
             return this._eof;
         }
 
+        /// <summary>
+        /// Gets the theorical proportional rate
+        /// </summary>
+        /// <returns></returns>
+        private int GetProportionalRate(Support.Point pointA, Picture image)
+        {
+            #region Entries validation
+            
+            if (pointA == null)
+            {
+                throw new ArgumentNullException("pointA");
+            }
+            if (image == null)
+            {
+                throw new ArgumentNullException("image");
+            }
+
+            #endregion
+
+            int width = image.Width - pointA.X;
+            int height = image.Height - pointA.Y;
+
+            return width / height;
+        }
     }
 }

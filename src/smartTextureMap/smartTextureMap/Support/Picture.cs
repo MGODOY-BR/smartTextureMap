@@ -182,6 +182,24 @@ namespace smartTextureMap.Support{
             return (collorMode > 61 && collorMode < 70);
         }
 
+        /// <summary>
+        /// Returns a propertion beetwen width and height.
+        /// </summary>
+        /// <returns></returns>
+        public float GetProportionRate()
+        {
+            #region Entries validation
+            
+            if (this._originalImage == null)
+            {
+                throw new ArgumentNullException("this._originalImage");
+            }
+
+            #endregion
+
+            return this._originalImage.Width / this._originalImage.Height;
+        }
+
         public void Dispose()
         {
             if (this._originalImage != null)
