@@ -164,20 +164,72 @@ namespace smartTextureMap.Intelligence.Lens{
 
             this.DetectedSquare = 0;
 
-            var localSquare = this.ScanSquare(this._len, this._startPoint.X, this._startPoint.Y);
-            if (localSquare != null && localSquare.Validate())
+            int y = this._startPoint.Y;
+
+            for (int x = this._startPoint.X; x < this._image.Width; x+= ShapeLen.SENSOR_DISTANCE)
             {
-                this._squareList.Add(localSquare);
+                var newSquare = 
+                    this.ScanSquare(this._len, x, y);
+
+                #region Entries validation
+
+                if (newSquare == null)
+                {
+                    continue;
+                }
+                if (x == this._image.Width)
+                {
+                    y += ShapeLen.SENSOR_DISTANCE;
+                    x = this._startPoint.X;
+                }
+                if (y == this._image.Height)
+                {
+                    break;
+                }
+
+                #endregion
+
+                bool intersected =
+                    this.CheckIntersection(newSquare, this._squareList);
+
+                Support.Point pointARef;
+                if (intersected)
+                {
+                    pointARef = newSquare.PointC;
+                }
+                else
+                {
+                    this._squareList.Add(newSquare);
+                    this.DetectedSquare++;
+
+                    pointARef = this._squareList.FirstOrDefault().PointC;
+                }
+
+                if (x == this._image.Width)
+                {
+                    y = this.GetFewestYBiggerThanReference(pointARef, this._squareList);
+                    x = this.GetMostXForY(y, this._squareList);
+                }
+                else
+                {
+                    x = pointARef.X;
+                    y = pointARef.Y;
+                }
+
+                if (y == this._image.Height)
+                {
+                    break;
+                }
             }
 
             this._eof = true;
         }
 
-		/// <summary>
-		/// Gets lastest len position
-		/// </summary>
-		/// <returns></returns>
-		public Support.Point GetLenPosition()
+        /// <summary>
+        /// Gets lastest len position
+        /// </summary>
+        /// <returns></returns>
+        public Support.Point GetLenPosition()
         {
             #region Entries validation
             
@@ -198,6 +250,48 @@ namespace smartTextureMap.Intelligence.Lens{
         public Boolean EOF()
         {
             return this._eof;
+        }
+
+        /// <summary>
+        /// Checks whether the square are intersected in square list
+        /// </summary>
+        private bool CheckIntersection(LogicalSquare square, List<LogicalSquare> squareList)
+        {
+            #region Entries validation
+            
+            if (square == null)
+            {
+                throw new ArgumentNullException("square");
+            }
+            if (squareList == null)
+            {
+                throw new ArgumentNullException("squareList");
+            }
+            if (squareList.Count == 0)
+            {
+                return false;
+            }
+
+            #endregion
+
+            foreach (var item in squareList)
+            {
+                #region Entries validation
+
+                if (item == null)
+                {
+                    continue;
+                }
+
+                #endregion
+
+                if (square.CheckIntersection(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -288,5 +382,72 @@ namespace smartTextureMap.Intelligence.Lens{
 
             return null;
         }
+
+        /// <summary>
+        /// Returns the fewest Y bigger then the referencial point
+        /// </summary>
+        private int GetFewestYBiggerThanReference(Support.Point referencialPoint, List<LogicalSquare> squareList)
+        {
+            #region Entries validation
+            
+            if (referencialPoint == null)
+            {
+                throw new ArgumentNullException("referencialPoint");
+            }
+            if (squareList == null)
+            {
+                throw new ArgumentNullException("squareList");
+            }
+
+            #endregion
+
+            LogicalSquare[] squareArray = new LogicalSquare[squareList.Count];
+            squareList.CopyTo(squareArray);
+            List<LogicalSquare> squareList2 = new List<LogicalSquare>(squareArray);
+
+            squareList2.Sort(
+                delegate (LogicalSquare item, LogicalSquare compareTo)
+                {
+                    return item.PointA.Y.CompareTo(compareTo.PointA.Y);
+                });
+
+            var squareCandidateList = from item in squareList2
+                                      where item.PointA.Y > referencialPoint.Y
+                                      select item;
+
+            return squareCandidateList.FirstOrDefault().PointA.Y;
+        }
+
+        /// <summary>
+        /// Returns the most X for Y informed
+        /// </summary>
+        private int GetMostXForY(int y, List<LogicalSquare> squareList)
+        {
+            #region Entries validation
+            
+            if (squareList == null)
+            {
+                throw new ArgumentNullException("squareList");
+            }
+
+            #endregion
+
+            LogicalSquare[] squareArray = new LogicalSquare[squareList.Count];
+            squareList.CopyTo(squareArray);
+            List<LogicalSquare> squareList2 = new List<LogicalSquare>(squareArray);
+
+            squareList2.Sort(
+                delegate (LogicalSquare item, LogicalSquare compareTo)
+                {
+                    return item.PointA.Y.CompareTo(compareTo.PointA.Y);
+                });
+
+            var squareCandidateList = from item in squareList2
+                                      where item.PointC.Y == y
+                                      select item;
+
+            return squareCandidateList.LastOrDefault().PointC.X;
+        }
+
     }
 }
