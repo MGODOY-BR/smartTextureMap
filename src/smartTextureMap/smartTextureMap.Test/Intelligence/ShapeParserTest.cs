@@ -27,6 +27,13 @@ namespace smartTextureMap.Test.Intelligence
 
                 #region Getting the evidences
 
+                foreach (var item in evidenceList)
+                {
+                    item.Mark("A");
+                }
+                // Print image
+                image.SaveAs("Teste.png");
+
                 #endregion
 
                 #region Validating the evidences

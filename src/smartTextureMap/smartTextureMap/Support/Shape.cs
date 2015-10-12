@@ -40,15 +40,10 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            // Discovering the best position for the letter
-            Point point = new Point(
-                (this._logicalSquare.PointB.X - this._logicalSquare.PointA.X) / 4,
-                (this._logicalSquare.PointB.Y - this._logicalSquare.PointA.Y) / 4);
-
             // Getting the font
             Font font = this.GetFont(letter, this._logicalSquare);
 
-            this._image.Mark(letter.ToUpper().Trim(), point, font);
+            this._image.Mark(letter.ToUpper().ToLower(), this._logicalSquare.PointA, font);
         }
 
         /// <summary>
@@ -96,7 +91,7 @@ namespace smartTextureMap.Support{
 
             float size = logicalSquare.PointB.X - logicalSquare.PointA.X;
 
-            FontFamily fontFamily = new FontFamily("Arial");
+            FontFamily fontFamily = new FontFamily("Verdana");
             Font font = new Font(
                fontFamily,
                size,
