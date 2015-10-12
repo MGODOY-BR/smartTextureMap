@@ -191,5 +191,128 @@ namespace smartTextureMap.Support{
             this._pointD = new Point(pointA.X, pointB.Y);
         }
 
+        /// <summary>
+        /// Checks whether the square have some intersect with the current
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        public Boolean CheckIntersection(LogicalSquare square)
+        {
+            #region Entries validation
+            
+            if (square == null)
+            {
+                throw new ArgumentNullException("square");
+            }
+            if (this._pointA == null)
+            {
+                throw new ArgumentNullException("this._pointA");
+            }
+            if (this._pointB == null)
+            {
+                throw new ArgumentNullException("this._pointB");
+            }
+            if (this._pointC == null)
+            {
+                throw new ArgumentNullException("this._pointC");
+            }
+            if (this._pointD == null)
+            {
+                throw new ArgumentNullException("this._pointD");
+            }
+            if (square.PointA == null)
+            {
+                throw new ArgumentNullException("square.PointA");
+            }
+            if (square.PointB == null)
+            {
+                throw new ArgumentNullException("square.PointB");
+            }
+            if (square.PointC == null)
+            {
+                throw new ArgumentNullException("square.PointC");
+            }
+            if (square.PointD == null)
+            {
+                throw new ArgumentNullException("square.PointD");
+            }
+
+            #endregion
+
+            LogicalSquare squareA =
+                this.GetSquareByZOrder(this, square, ZOrderEnum.Bottom);
+
+            LogicalSquare squareB =
+                this.GetSquareByZOrder(this, square, ZOrderEnum.Top);
+
+            // It's the comparison for Point A of square
+            bool innerComparisonA =
+                (squareB.PointA.X < squareA.PointC.X && squareB.PointA.Y >= squareA.PointC.Y) &&
+                (squareB.PointA.X > squareA.PointA.X && squareB.PointA.Y <= squareA.PointB.Y);
+
+            // It's the comparison for Point D of square
+            bool innerComparisonD =
+                (squareB.PointD.X < squareA.PointB.X && squareB.PointD.Y >= squareA.PointC.Y) &&
+                (squareB.PointD.X > squareA.PointD.X && squareB.PointD.Y <= squareA.PointB.Y);
+
+            return innerComparisonA || innerComparisonD;
+        }
+
+        /// <summary>
+        /// Determines which of squares represents the ZOrder assigned.
+        /// </summary>
+        private LogicalSquare GetSquareByZOrder(LogicalSquare squareA, LogicalSquare squareB, ZOrderEnum zorderEnum)
+        {
+            #region Entries validation
+            
+            if (squareA == null)
+            {
+                throw new ArgumentNullException("squareA");
+            }
+            if (squareB == null)
+            {
+                throw new ArgumentNullException("squareB");
+            }
+            if (squareA.PointA == null)
+            {
+                throw new ArgumentNullException("squareA.PointA");
+            }
+            if (squareB.PointA == null)
+            {
+                throw new ArgumentNullException("squareB.PointA");
+            }
+
+            #endregion
+
+            int compareX = squareA.PointA.X.CompareTo(squareB.PointA.X);
+
+            switch (zorderEnum)
+            {
+                case ZOrderEnum.Bottom:
+
+                    if (compareX <= 0)
+                    {
+                        return squareA;
+                    }
+                    else
+                    {
+                        return squareB;
+                    }
+
+                case ZOrderEnum.Top:
+
+                    if (compareX <= 0)
+                    {
+                        return squareB;
+                    }
+                    else
+                    {
+                        return squareA;
+                    }
+
+                default:
+                    throw new NotSupportedException();
+            }
+        }
     }
 }

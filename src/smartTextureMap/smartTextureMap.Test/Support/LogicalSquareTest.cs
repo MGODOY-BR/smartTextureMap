@@ -68,5 +68,150 @@ namespace smartTextureMap.Test.Support
 
             #endregion
         }
+
+        [TestMethod]
+        public void CheckIntersectionTestA()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                    new Point(10, 10),
+                    new Point(100, 100));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                    new Point(80, 10),
+                    new Point(180, 100));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckIntersection(squareB);
+            var evidenceB = squareB.CheckIntersection(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidenceA);
+            Assert.IsTrue(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckIntersectionTestB()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                    new Point(10, 10),
+                    new Point(100, 180));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                    new Point(80, 80),
+                    new Point(180, 180));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckIntersection(squareB);
+            var evidenceB = squareB.CheckIntersection(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidenceA);
+            Assert.IsTrue(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckIntersectionTestC()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                    new Point(10, 10),
+                    new Point(100, 180));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                    new Point(20, 20),
+                    new Point(80, 80));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckIntersection(squareB);
+            var evidenceB = squareB.CheckIntersection(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidenceA);
+            Assert.IsTrue(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckIntersectionTestNegative()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                    new Point(10, 10),
+                    new Point(100, 180));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                    new Point(200, 200),
+                    new Point(300, 400));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckIntersection(squareB);
+            var evidenceB = squareB.CheckIntersection(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsFalse(evidenceA);
+            Assert.IsFalse(evidenceB);
+
+            #endregion
+        }
+
     }
 }

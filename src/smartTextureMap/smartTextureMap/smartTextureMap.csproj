@@ -58,6 +58,7 @@
     <Compile Include="Support\Point.cs" />
     <Compile Include="Support\Shape.cs" />
     <Compile Include="Support\ShapeFunction.cs" />
+    <Compile Include="Support\ZOrderEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

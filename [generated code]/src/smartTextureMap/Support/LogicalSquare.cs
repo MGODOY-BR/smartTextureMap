@@ -55,5 +55,15 @@ namespace smartTextureMap.Support{
 			// TODO implement here
 		}
 
+		/// <summary>
+		/// Checks whether the square have some intersect with the current
+		/// </summary>
+		/// <param name="square"></param>
+		/// <returns></returns>
+		public Boolean CheckIntersection(LogicalSquare square) {
+			// TODO implement here
+			return null;
+		}
+
 	}
 }

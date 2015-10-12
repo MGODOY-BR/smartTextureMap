@@ -95,5 +95,17 @@ namespace smartTextureMap.Intelligence.Lens{
 			return null;
 		}
 
+		/// <summary>
+		/// Gets a logical square from picture
+		/// </summary>
+		/// <param name="len"></param>
+		/// <param name="startX"></param>
+		/// <param name="startY"></param>
+		/// <returns></returns>
+		private LogicalSquare ScanSquare(ShapeLen len, int startX, int startY) {
+			// TODO implement here
+			return null;
+		}
+
 	}
 }
