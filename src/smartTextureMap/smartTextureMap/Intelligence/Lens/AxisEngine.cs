@@ -213,19 +213,6 @@ namespace smartTextureMap.Intelligence.Lens{
                 x = pointARef.X;
                 y = pointARef.Y;
 
-                /*
-                if (x == this._image.Width)
-                {
-                    y = this.GetFewestYBiggerThanReference(pointARef, this._squareList);
-                    x = this.GetMostXForY(y, this._squareList);
-                }
-                else
-                {
-                    x = pointARef.X;
-                    y = pointARef.Y;
-                }
-                */
-
                 if (y == this._image.Height)
                 {
                     if (x == this._image.Width)

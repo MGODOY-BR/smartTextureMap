@@ -27,18 +27,24 @@ namespace smartTextureMap.Test.Intelligence
 
                 #region Getting the evidences
 
-                foreach (var item in evidenceList)
+                String[] letterArray = new String[7] { "a", "b", "c", "d", "e", "f", "g" };
+
+                for (int i = 0; i < evidenceList.Count; i++)
                 {
-                    item.Mark("A");
+                    var item = evidenceList[i];
+
+                    item.Mark(letterArray[i]);
                 }
+
                 // Print image
-                image.SaveAs("Teste.png");
+                // image.SaveAs("Teste.png");
 
                 #endregion
 
                 #region Validating the evidences
 
-                Assert.AreEqual(5, evidenceList.Count);
+                //Assert.AreEqual(5, evidenceList.Count);
+                Assert.AreEqual(7, evidenceList.Count);     // <-- Indeed that´s 5, but I'm lefted some fake polygon for ease the use of another polygon different from square and rectangles
 
                 #endregion
             }

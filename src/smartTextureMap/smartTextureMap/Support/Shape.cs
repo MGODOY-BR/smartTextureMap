@@ -55,7 +55,7 @@ namespace smartTextureMap.Support{
             this._image.Mark(letter.ToUpper().ToLower(), letterPoint, font);
 
             // HACK: Turn it on to support to debug
-            this._image.DrawSquare(this._logicalSquare);
+            // this._image.DrawSquare(this._logicalSquare);
         }
 
         /// <summary>

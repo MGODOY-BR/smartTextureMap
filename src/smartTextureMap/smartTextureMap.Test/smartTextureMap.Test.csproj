@@ -86,16 +86,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\blank.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\blank.png" />
     <None Include="Resources\Triangle.png" />
     <None Include="Resources\ShapeParser_DiscoverTest.bmp" />
     <None Include="Resources\ShapeMarkTest.png" />
     <None Include="Resources\checkBoundaryStub.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

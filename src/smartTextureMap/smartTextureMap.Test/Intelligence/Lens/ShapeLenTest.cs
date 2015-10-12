@@ -22,7 +22,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
                 ShapeLen shapeLen = new ShapeLen(image);
                 var evidenceA = shapeLen.Read(101, 20);
                 var evidenceB = shapeLen.Read(343, 20);
-                var evidenceC = shapeLen.Read(260, 143);
+                var evidenceC = shapeLen.Read(264, 144);
                 var evidenceD = shapeLen.Read(222, 204);
                 var evidenceE = shapeLen.Read(129, 61);
 
@@ -56,7 +56,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
                 #region Running the tested operation
 
                 ShapeLen shapeLen = new ShapeLen(image);
-                shapeLen.Read(323, 47);
+                shapeLen.Read(328, 48);
 
                 #endregion
 
@@ -86,7 +86,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
                 #region Running the tested operation
 
                 ShapeLen shapeLen = new ShapeLen(image);
-                shapeLen.Read(222, 202);
+                shapeLen.Read(222, 209);
 
                 #endregion
 
