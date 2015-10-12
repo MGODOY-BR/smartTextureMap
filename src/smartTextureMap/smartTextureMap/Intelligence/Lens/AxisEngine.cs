@@ -316,8 +316,15 @@ namespace smartTextureMap.Intelligence.Lens{
 
             Support.Point lastRightBoundary = null;
 
-            for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
+            //for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
+            int x = startX;
+            while (x < this._image.Width - 1)
             {
+                if (pointA != null)
+                {
+                    x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
+                }
+
                 #region Square validation/creation logic
 
                 if (pointA != null && lastRightBoundary != null && len.CheckBottomBoundary())
@@ -327,6 +334,16 @@ namespace smartTextureMap.Intelligence.Lens{
                 if (x < 0)
                 {
                     throw new InvalidOperationException("X axis can't be less then 0.");
+                }
+                if (x == 0)
+                {
+                    x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
+                    continue;
+                }
+                if (y == 0)
+                {
+                    y += ShapeLen.SENSOR_DISTANCE;
+                    continue;
                 }
 
                 #endregion
@@ -377,6 +394,19 @@ namespace smartTextureMap.Intelligence.Lens{
                     // Resume next line
                     y += ShapeLen.SENSOR_DISTANCE;
                     lastDirectionEnum = directionEnum;
+                }
+
+                if (y >= this._image.Height)
+                {
+                    if (x < this._image.Width)
+                    {
+                        x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
+                        y = startY;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 

@@ -33,7 +33,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
                 #region Validating the evidences
 
                 Assert.AreEqual(1, evidence.Count);
-                Assert.AreEqual(9, evidence[0].PointA.X);
+                Assert.AreEqual(8, evidence[0].PointA.X);
                 Assert.AreEqual(9, evidence[0].PointA.Y);
 
                 Assert.AreEqual(39, evidence[0].PointB.X);
