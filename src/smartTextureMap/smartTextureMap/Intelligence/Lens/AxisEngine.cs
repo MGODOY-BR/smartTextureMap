@@ -166,8 +166,16 @@ namespace smartTextureMap.Intelligence.Lens{
 
             int y = this._startPoint.Y;
 
-            for (int x = this._startPoint.X; x < this._image.Width; x+= ShapeLen.SENSOR_DISTANCE)
+            //for (int x = this._startPoint.X; x < this._image.Width; x+= ShapeLen.SENSOR_DISTANCE)
+            int x = this._startPoint.X;
+            while (x < this._image.Width)
             {
+                y += ShapeLen.SENSOR_DISTANCE;
+                if (x == 0)
+                {
+                    x += ShapeLen.SENSOR_DISTANCE;
+                }
+
                 var newSquare = 
                     this.ScanSquare(this._len, x, y);
 
@@ -175,6 +183,8 @@ namespace smartTextureMap.Intelligence.Lens{
 
                 if (newSquare == null)
                 {
+                    x += ShapeLen.SENSOR_DISTANCE;
+                    y = this._startPoint.Y;
                     continue;
                 }
                 if (x == this._image.Width)
@@ -192,19 +202,18 @@ namespace smartTextureMap.Intelligence.Lens{
                 bool intersected =
                     this.CheckIntersection(newSquare, this._squareList);
 
-                Support.Point pointARef;
-                if (intersected)
-                {
-                    pointARef = newSquare.PointC;
-                }
-                else
+                if (!intersected)
                 {
                     this._squareList.Add(newSquare);
                     this.DetectedSquare++;
-
-                    pointARef = this._squareList.FirstOrDefault().PointC;
                 }
+                Support.Point pointARef =
+                    new Support.Point(x, newSquare.PointD.Y);
 
+                x = pointARef.X;
+                y = pointARef.Y;
+
+                /*
                 if (x == this._image.Width)
                 {
                     y = this.GetFewestYBiggerThanReference(pointARef, this._squareList);
@@ -215,10 +224,18 @@ namespace smartTextureMap.Intelligence.Lens{
                     x = pointARef.X;
                     y = pointARef.Y;
                 }
+                */
 
                 if (y == this._image.Height)
                 {
-                    break;
+                    if (x == this._image.Width)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        x += ShapeLen.SENSOR_DISTANCE;
+                    }
                 }
             }
 
@@ -333,7 +350,8 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
                 if (x < 0)
                 {
-                    throw new InvalidOperationException("X axis can't be less then 0.");
+                    // This isn't a polygon
+                    return null;
                 }
                 if (x == 0)
                 {

@@ -247,13 +247,13 @@ namespace smartTextureMap.Support{
 
             // It's the comparison for Point A of square
             bool innerComparisonA =
-                (squareB.PointA.X < squareA.PointC.X && squareB.PointA.Y >= squareA.PointC.Y) &&
-                (squareB.PointA.X > squareA.PointA.X && squareB.PointA.Y <= squareA.PointB.Y);
+                (squareB.PointA.X <= squareA.PointC.X && squareB.PointA.Y >= squareA.PointC.Y) &&
+                (squareB.PointA.X >= squareA.PointA.X && squareB.PointA.Y <= squareA.PointB.Y);
 
             // It's the comparison for Point D of square
             bool innerComparisonD =
-                (squareB.PointD.X < squareA.PointB.X && squareB.PointD.Y >= squareA.PointC.Y) &&
-                (squareB.PointD.X > squareA.PointD.X && squareB.PointD.Y <= squareA.PointB.Y);
+                (squareB.PointD.X <= squareA.PointB.X && squareB.PointD.Y >= squareA.PointC.Y) &&
+                (squareB.PointD.X >= squareA.PointD.X && squareB.PointD.Y <= squareA.PointB.Y);
 
             // It's the comparison for sabe point
             bool samePoint =

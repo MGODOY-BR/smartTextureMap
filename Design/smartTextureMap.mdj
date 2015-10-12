@@ -18088,6 +18088,53 @@
 											},
 											"showProperty": true,
 											"showType": true
+										},
+										{
+											"_type": "UMLNoteView",
+											"_id": "AAAAAAFQXOrZadtBJMU=",
+											"_parent": {
+												"$ref": "AAAAAAFQVxWgybdoV4g="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 696,
+											"top": 488,
+											"width": 137,
+											"height": 116,
+											"autoResize": false,
+											"text": "pointARef should have been always startX and D.Y (the calcularion of it isn't correct)",
+											"wordWrap": true
+										},
+										{
+											"_type": "UMLNoteLinkView",
+											"_id": "AAAAAAFQXOu9jttF3aQ=",
+											"_parent": {
+												"$ref": "AAAAAAFQVxWgybdoV4g="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"head": {
+												"$ref": "AAAAAAFQV0hzlrx11ng="
+											},
+											"tail": {
+												"$ref": "AAAAAAFQXOrZadtBJMU="
+											},
+											"lineStyle": 1,
+											"points": "695:541;649:538"
 										}
 									],
 									"showSequenceNumber": true,
