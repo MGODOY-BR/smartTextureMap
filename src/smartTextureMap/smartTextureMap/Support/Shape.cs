@@ -42,8 +42,20 @@ namespace smartTextureMap.Support{
 
             // Getting the font
             Font font = this.GetFont(letter, this._logicalSquare);
+            int fontSize = (int)font.SizeInPoints;
 
-            this._image.Mark(letter.ToUpper().ToLower(), this._logicalSquare.PointA, font);
+            int sizeX = this._logicalSquare.PointC.X - this._logicalSquare.PointA.X;
+            int sizeY = this._logicalSquare.PointD.Y - this._logicalSquare.PointA.Y;
+
+            Point letterPoint =
+                new Point(
+                    this._logicalSquare.PointA.X + (sizeX / 2) - fontSize / 2,
+                    this._logicalSquare.PointA.Y + (sizeY / 2) - fontSize / 2);
+
+            this._image.Mark(letter.ToUpper().ToLower(), letterPoint, font);
+
+            // HACK: Turn it on to debug
+            this._image.DrawSquare(this._logicalSquare);
         }
 
         /// <summary>
@@ -89,7 +101,10 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            float size = logicalSquare.PointB.X - logicalSquare.PointA.X;
+            float horizontalSize = logicalSquare.PointC.X - logicalSquare.PointA.X;
+            float verticalSize = logicalSquare.PointB.Y - logicalSquare.PointC.Y;
+
+            float size = (horizontalSize < verticalSize) ? horizontalSize : verticalSize;
 
             FontFamily fontFamily = new FontFamily("Verdana");
             Font font = new Font(

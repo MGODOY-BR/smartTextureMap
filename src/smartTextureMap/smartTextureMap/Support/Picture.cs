@@ -101,13 +101,42 @@ namespace smartTextureMap.Support{
 
             // Create point for upper-left corner of drawing.
             float x = point.X;
-            float y = point.Y;
+            float y = point.Y - font.SizeInPoints / 2;
 
             // Set format of string.
             StringFormat drawFormat = new StringFormat();
 
             // Draw string to screen.
             this._graphics.DrawString(letter, font, drawBrush, x, y, drawFormat);
+        }
+
+        /// <summary>
+        /// Draws a square
+        /// </summary>
+        /// <param name="square"></param>
+        /// <remarks>This operation it is available for debug reason and normally isn't used</remarks>
+        public void DrawSquare(LogicalSquare square)
+        {
+            #region Entries validation
+
+            if (square == null)
+            {
+                throw new ArgumentNullException("square");
+            }
+            if (this._graphics == null)
+            {
+                throw new ArgumentNullException("this._graphics");
+            }
+
+            #endregion
+
+            this._graphics.DrawRectangle(
+                Pens.Aquamarine,
+                square.PointA.X,
+                square.PointA.Y,
+                square.PointC.X - square.PointA.X,
+                square.PointB.Y - square.PointC.Y); 
+                
         }
 
 		/// <summary>
