@@ -198,8 +198,15 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            this._graphics.DrawImage(this._newImage, 0, 0);
-            this._newImage.Save(fileName);
+            try
+            {
+                this._graphics.DrawImage(this._newImage, 0, 0);
+                this._newImage.Save(fileName);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error to save [" + fileName + "]. Try to choice a diferent file from the original as destination.", ex);
+            }
         }
 
         /// <summary>
