@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -54,8 +55,17 @@ namespace smartTextureMap.Support{
 
             this._image.Mark(letter.ToUpper().ToLower(), letterPoint, font);
 
-            // HACK: Turn it on to support to debug
-            // this._image.DrawSquare(this._logicalSquare);
+            object showShapeDiscoveredConfig = ConfigurationManager.AppSettings["showShapeDiscovered"];
+            bool showShapeDiscovered;
+            if (!bool.TryParse(showShapeDiscoveredConfig.ToString(), out showShapeDiscovered))
+            {
+                throw new ApplicationException("Bad showShapeDiscovered configuration.");
+            }
+
+            if (showShapeDiscovered)
+            {
+                this._image.DrawSquare(this._logicalSquare);
+            }
         }
 
         /// <summary>

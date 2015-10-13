@@ -7,3 +7,4 @@ C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\smartTextureMap.pdb
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Debug\smartTextureMap.Test.dll
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Debug\smartTextureMap.Test.pdb
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\smartTextureMap.Test.dll.config

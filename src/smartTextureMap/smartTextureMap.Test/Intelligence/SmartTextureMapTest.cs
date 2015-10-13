@@ -13,7 +13,7 @@ namespace smartTextureMap.Test.Intelligence
             #region Scenario setup
 
             String fileName = "SmartTextureMapTest.GenerateTest.png";
-            String fileNameGenerated = "SmartTextureMapTest.GenerateTest.revisted.png";
+            String fileNameGenerated = "SmartTextureMapTest.GenerateTest.smartMap.png";
             Resource1.ShapeParser_DiscoverTest.Save(fileName);
             
             SmartTextureMap smartTextureMap = new SmartTextureMap();

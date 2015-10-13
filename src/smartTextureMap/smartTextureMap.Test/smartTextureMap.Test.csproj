@@ -75,6 +75,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Resources\EstacaoA_Terreo.png" />
   </ItemGroup>
   <ItemGroup>

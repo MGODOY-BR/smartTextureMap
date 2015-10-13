@@ -1,0 +1,19 @@
+smartTextureMap
+----------------
+Maps the faces in texture map generated from Blender with letters to allows identify them in 3D image and agile the texture process.
+
+Sintax
+------
+
+smartTextureMap <<fileName>>
+
+List of Arguments
+-----------------
+fileName	-	When informed, generates a smart texture map from the original.
+
+	Ex.:
+	smartTextureMap test.png
+
+	Generates: test.smartMap.png
+
+no arguments -	Opens the graphic interface.
