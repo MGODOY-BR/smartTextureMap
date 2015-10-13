@@ -42,16 +42,7 @@ namespace smartTextureMap.Intelligence{
             List<Shape> retorno = new List<Shape>();
 
             AxisEngine axisEngine = new AxisEngine(startPoint, image);
-            while (!axisEngine.EOF())
-            {
-                axisEngine.Run();
-
-                Point nextStart = 
-                    GetNextPoint(axisEngine);
-
-                axisEngine.GoTo(
-                    nextStart.X, nextStart.Y);
-            }
+            axisEngine.Run();
 
             foreach (var item in axisEngine.GetSquares())
             {

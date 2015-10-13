@@ -43,8 +43,12 @@ namespace smartTextureMap.Support{
 
             // Getting the font
             Font font = this.GetFont(letter, this._logicalSquare);
+            if (font == null)
+            {
+                return;
+            }
             int fontSize = (int)font.SizeInPoints;
-
+            
             int sizeX = this._logicalSquare.PointC.X - this._logicalSquare.PointA.X;
             int sizeY = this._logicalSquare.PointD.Y - this._logicalSquare.PointA.Y;
 
@@ -56,15 +60,18 @@ namespace smartTextureMap.Support{
             this._image.Mark(letter.ToUpper().ToLower(), letterPoint, font);
 
             object showShapeDiscoveredConfig = ConfigurationManager.AppSettings["showShapeDiscovered"];
-            bool showShapeDiscovered;
-            if (!bool.TryParse(showShapeDiscoveredConfig.ToString(), out showShapeDiscovered))
+            if (showShapeDiscoveredConfig != null)
             {
-                throw new ApplicationException("Bad showShapeDiscovered configuration.");
-            }
+                bool showShapeDiscovered;
+                if (!bool.TryParse(showShapeDiscoveredConfig.ToString(), out showShapeDiscovered))
+                {
+                    throw new ApplicationException("Bad showShapeDiscovered configuration.");
+                }
 
-            if (showShapeDiscovered)
-            {
-                this._image.DrawSquare(this._logicalSquare);
+                if (showShapeDiscovered)
+                {
+                    this._image.DrawSquare(this._logicalSquare);
+                }
             }
         }
 
@@ -115,6 +122,11 @@ namespace smartTextureMap.Support{
             float verticalSize = logicalSquare.PointB.Y - logicalSquare.PointC.Y;
 
             float size = (horizontalSize < verticalSize) ? horizontalSize : verticalSize;
+
+            if (size <= 0)
+            {
+                return null;
+            }
 
             FontFamily fontFamily = new FontFamily("Verdana");
             Font font = new Font(

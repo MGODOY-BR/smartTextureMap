@@ -27,8 +27,8 @@ namespace smartTextureMap.Intelligence
         /// <summary>
         /// Marks the form
         /// </summary>
-		/// <param name="shapeList">Mark all the forms</param>
-		private void MarkAllTheForms(List<Shape> shapeList)
+        /// <param name="shapeList">Mark all the forms</param>
+        private void MarkAllTheForms(List<Shape> shapeList)
         {
             #region Entries validation
             
@@ -51,6 +51,17 @@ namespace smartTextureMap.Intelligence
                     char.ConvertFromUtf32(charCode));
 
                 charCode++;
+            }
+        }
+
+        /// <summary>
+        /// Returns the shapes discovered
+        /// </summary>
+        public List<Shape> FormList
+        {
+            get
+            {
+                return _formList;
             }
         }
 

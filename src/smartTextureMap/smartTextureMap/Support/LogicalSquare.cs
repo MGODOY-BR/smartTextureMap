@@ -144,8 +144,31 @@ namespace smartTextureMap.Support{
         /// <returns></returns>
         public Boolean Validate()
         {
-            // HACK: Temporaly inactived. Reserved for polygon validation.          
-            return true;
+            #region Entries validation
+            
+            if (this._pointA == null)
+            {
+                throw new ArgumentNullException("this._pointA");
+            }
+            if (this._pointB == null)
+            {
+                throw new ArgumentNullException("this._pointB");
+            }
+
+            #endregion
+
+            if (this._pointB.Y < this._pointA.Y)
+            {
+                return false;
+            }
+            else if (this._pointB.X < this._pointA.X)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -170,6 +193,7 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentNullException("pointB");
             }
+            /*
             if(pointB.X < pointA.X)
             {
                 throw new ArgumentException("The coordinate X of point B cannot be lower than the point A");
@@ -178,6 +202,7 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentException("The coordinate Y of point B cannot be lower than the point A");
             }
+            */
 
             #endregion
 

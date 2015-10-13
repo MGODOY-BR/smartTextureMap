@@ -3,6 +3,7 @@ using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -36,6 +37,11 @@ namespace smartTextureMap.Intelligence.Lens{
 		/// It's the image beying analysed
 		/// </summary>
 		private Picture _image;
+
+        /// <summary>
+        /// It´s the last percentage identified
+        /// </summary>
+        private int _lastPercentage;
 
         /// <summary>
         /// Returns the amount of squares detected in last execution of Run()
@@ -163,6 +169,7 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             this.DetectedSquare = 0;
+            this._lastPercentage = 0;
 
             int y = this._startPoint.Y;
 
@@ -176,21 +183,20 @@ namespace smartTextureMap.Intelligence.Lens{
                     x += ShapeLen.SENSOR_DISTANCE;
                 }
 
-                var newSquare = 
+                // Register current percentage
+                int currentPercentage = x / this._image.Width * 100;
+
+                var newSquare =
                     this.ScanSquare(this._len, x, y);
 
                 #region Entries validation
 
-                if (newSquare == null)
+                if (newSquare == null || !newSquare.Validate())
                 {
                     x += ShapeLen.SENSOR_DISTANCE;
                     y = this._startPoint.Y;
+                    this.PrintProgress(currentPercentage);
                     continue;
-                }
-                if (x == this._image.Width)
-                {
-                    y += ShapeLen.SENSOR_DISTANCE;
-                    x = this._startPoint.X;
                 }
                 if (y == this._image.Height)
                 {
@@ -210,10 +216,9 @@ namespace smartTextureMap.Intelligence.Lens{
                 Support.Point pointARef =
                     new Support.Point(x, newSquare.PointD.Y);
 
-                x = pointARef.X;
                 y = pointARef.Y;
 
-                if (y == this._image.Height)
+                if (y >= this._image.Height)
                 {
                     if (x == this._image.Width)
                     {
@@ -224,6 +229,8 @@ namespace smartTextureMap.Intelligence.Lens{
                         x += ShapeLen.SENSOR_DISTANCE;
                     }
                 }
+
+                this.PrintProgress(currentPercentage);
             }
 
             this._eof = true;
@@ -349,6 +356,10 @@ namespace smartTextureMap.Intelligence.Lens{
                 {
                     y += ShapeLen.SENSOR_DISTANCE;
                     continue;
+                }
+                if (y >= this._image.Height)
+                {
+                    break;
                 }
 
                 #endregion
@@ -484,5 +495,31 @@ namespace smartTextureMap.Intelligence.Lens{
             return squareCandidateList.LastOrDefault().PointC.X;
         }
 
+        /// <summary>
+        /// Print the progress of scan
+        /// </summary>
+        private void PrintProgress(int currentPercentage)
+        {
+            if (currentPercentage != this._lastPercentage)
+            {
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("Analysing...");
+                    Console.WriteLine(
+                        currentPercentage.ToString() + "%");
+                }
+                catch (IOException)
+                {
+                    // Error of this kind ocurred cause the Console object
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+
+            this._lastPercentage = currentPercentage;
+        }
     }
 }

@@ -12,17 +12,38 @@ namespace smartTextureMap
     {
         static void Main(string[] args)
         {
-            if (args.Length == 1)
+            try
             {
-                string fileName = args[0];
-                string newFileName =
-                    Path.Combine(
-                        Path.GetPathRoot(fileName),
-                        Path.GetFileNameWithoutExtension(fileName) + ".smartMap" + Path.GetExtension(fileName));
+                if (args.Length == 1)
+                {
+                    DateTime dateTime = DateTime.Now;
+                    Console.WriteLine("Wait, processing...");
 
-                SmartTextureMap smartTextureMap = new SmartTextureMap();
-                smartTextureMap.Load(fileName);
-                smartTextureMap.Generate(newFileName);
+                    string fileName = args[0];
+                    string newFileName =
+                        Path.Combine(
+                            Path.GetPathRoot(fileName),
+                            Path.GetFileNameWithoutExtension(fileName) + ".smartMap" + Path.GetExtension(fileName));
+
+                    SmartTextureMap smartTextureMap = new SmartTextureMap();
+                    smartTextureMap.Load(fileName);
+                    smartTextureMap.Generate(newFileName);
+
+                    Console.WriteLine();
+                    Console.WriteLine("Discovered " + smartTextureMap.FormList.Count + " shapes");
+                    Console.WriteLine();
+                    Console.WriteLine("File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    Console.Write(" - " + ex.InnerException.Message);
+                }
+                Console.WriteLine();
+                //Console.WriteLine(ex.ToString());
             }
         }
     }
