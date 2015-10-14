@@ -1,6 +1,5 @@
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\bin\Debug\smartTextureMap.exe.config
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\bin\Debug\smartTextureMap.exe
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\bin\Debug\smartTextureMap.pdb
-C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.csprojResolveAssemblyReference.cache
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.exe
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.pdb

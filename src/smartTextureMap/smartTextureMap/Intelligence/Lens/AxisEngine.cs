@@ -39,9 +39,9 @@ namespace smartTextureMap.Intelligence.Lens{
 		private Picture _image;
 
         /// <summary>
-        /// It´s the last percentage identified
+        /// It´s a progressCounter of Run operation.
         /// </summary>
-        private int _lastPercentage;
+        private ProgressCounter _runProgressCounter = new ProgressCounter();
 
         /// <summary>
         /// Returns the amount of squares detected in last execution of Run()
@@ -68,6 +68,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             this._len.Reset();
             this._squareList.Clear();
+            this._runProgressCounter.Reset();
             this._eof = false;
         }
 
@@ -169,7 +170,7 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             this.DetectedSquare = 0;
-            this._lastPercentage = 0;
+            this._runProgressCounter.Reset();
 
             int y = this._startPoint.Y;
 
@@ -183,54 +184,50 @@ namespace smartTextureMap.Intelligence.Lens{
                     x += ShapeLen.SENSOR_DISTANCE;
                 }
 
-                // Register current percentage
-                int currentPercentage = x / this._image.Width * 100;
-
-                var newSquare =
-                    this.ScanSquare(this._len, x, y);
-
-                #region Entries validation
-
-                if (newSquare == null || !newSquare.Validate())
-                {
-                    x += ShapeLen.SENSOR_DISTANCE;
-                    y = this._startPoint.Y;
-                    this.PrintProgress(currentPercentage);
-                    continue;
-                }
-                if (y == this._image.Height)
-                {
-                    break;
-                }
-
-                #endregion
-
-                bool intersected =
-                    this.CheckIntersection(newSquare, this._squareList);
-
-                if (!intersected)
-                {
-                    this._squareList.Add(newSquare);
-                    this.DetectedSquare++;
-                }
-                Support.Point pointARef =
-                    new Support.Point(x, newSquare.PointD.Y);
-
-                y = pointARef.Y;
+                #region Iterator control
 
                 if (y >= this._image.Height)
                 {
                     if (x == this._image.Width)
                     {
+                        // EOF
                         break;
                     }
                     else
                     {
+                        // End of column. Try next
                         x += ShapeLen.SENSOR_DISTANCE;
+                        y = this._startPoint.Y;
                     }
                 }
 
-                this.PrintProgress(currentPercentage);
+                this._runProgressCounter.Update(x, this._image.Width);
+
+                #endregion
+
+                //if (this._len.Read(x, y))
+                {
+                    var newSquare =
+                        this.ScanSquare(this._len, x, y);
+
+                    // There is nothing to do in column
+                    if (newSquare == null || !newSquare.Validate())
+                    {
+                        x += ShapeLen.SENSOR_DISTANCE;
+                        y = this._startPoint.Y;
+                        continue;
+                    }
+                    else if (!this.CheckIntersection(newSquare, this._squareList))
+                    {
+                        this._squareList.Add(newSquare);
+                        this.DetectedSquare++;
+                    }
+
+                    if (newSquare != null)
+                    {
+                        y = newSquare.PointD.Y;
+                    }
+                }
             }
 
             this._eof = true;
@@ -493,33 +490,6 @@ namespace smartTextureMap.Intelligence.Lens{
                                       select item;
 
             return squareCandidateList.LastOrDefault().PointC.X;
-        }
-
-        /// <summary>
-        /// Print the progress of scan
-        /// </summary>
-        private void PrintProgress(int currentPercentage)
-        {
-            if (currentPercentage != this._lastPercentage)
-            {
-                try
-                {
-                    Console.Clear();
-                    Console.WriteLine("Analysing...");
-                    Console.WriteLine(
-                        currentPercentage.ToString() + "%");
-                }
-                catch (IOException)
-                {
-                    // Error of this kind ocurred cause the Console object
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-
-            this._lastPercentage = currentPercentage;
         }
     }
 }

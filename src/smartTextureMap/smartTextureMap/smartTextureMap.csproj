@@ -57,6 +57,7 @@
     <Compile Include="Support\Picture.cs" />
     <Compile Include="Support\LogicalSquare.cs" />
     <Compile Include="Support\Point.cs" />
+    <Compile Include="Support\ProgressCounter.cs" />
     <Compile Include="Support\Shape.cs" />
     <Compile Include="Support\ShapeFunction.cs" />
     <Compile Include="Support\ZOrderEnum.cs" />

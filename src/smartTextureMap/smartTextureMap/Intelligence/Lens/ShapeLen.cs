@@ -158,7 +158,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return this._currentSensor.Check() && !this._nextSensor.Check();
+            return (this._currentSensor.Check() && (!this._nextSensor.Check() || !this._leftSensor.Check()));
         }
 
         /// <summary>

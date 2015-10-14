@@ -165,6 +165,10 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
+            if (point.X >= this._originalImage.Width)
+            {
+                return false;
+            }
             if (point.Y == 0)
             {
                 return false;
@@ -228,7 +232,9 @@ namespace smartTextureMap.Support{
         /// <returns></returns>
         private bool CheckBoundaryCollorRange(byte collorMode)
         {
-            return (collorMode > 61 && collorMode < 70);
+            return 
+                (collorMode > 50 && collorMode < 70) ||
+                (collorMode > 90 && collorMode < 130);
         }
 
         /// <summary>
