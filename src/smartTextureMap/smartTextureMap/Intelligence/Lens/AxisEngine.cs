@@ -206,6 +206,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 #endregion
 
                 //if (this._len.Read(x, y))
+                if(!this.CheckContained(x, y))
                 {
                     var newSquare =
                         this.ScanSquare(this._len, x, y);
@@ -490,6 +491,34 @@ namespace smartTextureMap.Intelligence.Lens{
                                       select item;
 
             return squareCandidateList.LastOrDefault().PointC.X;
+        }
+
+        /// <summary>
+        /// Checks if the point is contained in a square in thes list
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        private bool CheckContained(int x, int y)
+        {
+            #region Entries validation
+
+            if (this._squareList == null)
+            {
+                throw new ArgumentNullException("this._squareList");
+            }
+
+            #endregion
+
+            foreach (var square in this._squareList)
+            {
+                if (square.CheckInside(new Support.Point(x, y)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

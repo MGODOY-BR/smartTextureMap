@@ -232,9 +232,16 @@ namespace smartTextureMap.Support{
         /// <returns></returns>
         private bool CheckBoundaryCollorRange(byte collorMode)
         {
-            return 
-                (collorMode > 50 && collorMode < 70) ||
-                (collorMode > 90 && collorMode < 130);
+            #region Entries validation
+
+            if (collorMode == 0) // PNG empty spaces
+            {
+                return false;
+            }
+
+            #endregion
+            return collorMode < 200;
+            //return collorMode < 230;
         }
 
         /// <summary>
