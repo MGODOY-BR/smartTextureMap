@@ -241,7 +241,6 @@ namespace smartTextureMap.Support{
 
             #endregion
             return collorMode < 200;
-            //return collorMode < 230;
         }
 
         /// <summary>

@@ -169,6 +169,14 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
+            else if (this._pointD.X * this._pointA.X < 20)
+            {
+                return false;
+            }
+            else if (this._pointD.Y * this._pointA.Y < 20)
+            {
+                return false;
+            }
             else
             {
                 return true;
@@ -268,28 +276,19 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            LogicalSquare squareA =
-                this.GetSquareByZOrder(this, square, ZOrderEnum.Bottom);
+            // Checking common points
+            bool commonPoint = false;
 
-            LogicalSquare squareB =
-                this.GetSquareByZOrder(this, square, ZOrderEnum.Top);
+            for (int x = square.PointA.X; x < square.PointB.X; x++)
+            {
+                for (int y = square.PointA.Y; y < square.PointB.Y; y++)
+                {
+                    commonPoint |= this.CheckInside(new Point(x, y));
+                }
+            }
 
-            // It's the comparison for Point A of square
-            bool innerComparisonA =
-                (squareB.PointA.X <= squareA.PointC.X && squareB.PointA.Y >= squareA.PointC.Y) &&
-                (squareB.PointA.X >= squareA.PointA.X && squareB.PointA.Y <= squareA.PointB.Y);
+            return commonPoint;
 
-            // It's the comparison for Point D of square
-            bool innerComparisonD =
-                (squareB.PointD.X <= squareA.PointB.X && squareB.PointD.Y >= squareA.PointC.Y) &&
-                (squareB.PointD.X >= squareA.PointD.X && squareB.PointD.Y <= squareA.PointB.Y);
-
-            // It's the comparison for sabe point
-            bool samePoint =
-                (squareA.PointA.X == squareB.PointA.X && squareA.PointA.Y == squareB.PointA.Y) &&
-                (squareA.PointB.X == squareB.PointB.X && squareA.PointB.Y == squareB.PointB.Y);
-
-            return innerComparisonA || innerComparisonD || samePoint;
         }
 
         /// <summary>
