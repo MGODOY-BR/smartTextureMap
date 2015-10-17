@@ -249,5 +249,148 @@ namespace smartTextureMap.Test.Support
             #endregion
         }
 
+        [TestMethod]
+        public void CheckVerticalAdjacentTest()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                        new Point(14, 14),
+                        new Point(170, 125));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                        new Point(14, 125),
+                        new Point(170, 220));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckVerticalAdjacent(squareB);
+            var evidenceB = squareB.CheckVerticalAdjacent(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidenceA);
+            Assert.IsTrue(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckVerticalAdjacentTest2()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                        new Point(40, 14),
+                        new Point(170, 125));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                        new Point(14, 125),
+                        new Point(170, 220));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckVerticalAdjacent(squareB);
+            var evidenceB = squareB.CheckVerticalAdjacent(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidenceA);
+            Assert.IsTrue(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckVerticalAdjacentTest3()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                        new Point(14, 14),
+                        new Point(170, 125));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                        new Point(40, 125),
+                        new Point(170, 220));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckVerticalAdjacent(squareB);
+            var evidenceB = squareB.CheckVerticalAdjacent(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsTrue(evidenceA);
+            Assert.IsTrue(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CheckVerticalAdjacentTestNegative()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                        new Point(14, 14),
+                        new Point(170, 125));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                        new Point(40, 140),
+                        new Point(170, 220));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckVerticalAdjacent(squareB);
+            var evidenceB = squareB.CheckVerticalAdjacent(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsFalse(evidenceA);
+            Assert.IsFalse(evidenceB);
+
+            #endregion
+        }
     }
 }

@@ -1,2 +1,0 @@
-JavaDocToXmlComment src
-pause

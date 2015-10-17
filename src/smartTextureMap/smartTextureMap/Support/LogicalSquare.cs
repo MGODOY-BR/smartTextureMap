@@ -292,6 +292,60 @@ namespace smartTextureMap.Support{
         }
 
         /// <summary>
+        /// Checks if the other is vertically adjacent to this.
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        public Boolean CheckVerticalAdjacent(LogicalSquare square)
+        {
+            #region Entries validation
+            
+            if (square == null)
+            {
+                throw new ArgumentNullException("square");
+            }
+            if (
+                !(
+                (this._pointB.Y == square._pointA.Y) ||
+                (this._pointA.Y == square._pointB.Y))
+                )
+            {
+                return false;
+            }
+
+            #endregion
+
+            var leftPoint =
+                Point.GetTheMost(
+                    this._pointA, this._pointD, ZOrderEnum.AtLeft);
+
+            var rightPoint =
+                Point.GetTheMost(
+                    this._pointC, this._pointB, ZOrderEnum.AtRight);
+
+            var leftPointSquare =
+                Point.GetTheMost(
+                    square._pointA, square._pointD, ZOrderEnum.AtLeft);
+
+            var rightPointSquare =
+                Point.GetTheMost(
+                    square._pointC, square._pointB, ZOrderEnum.AtRight);
+
+            if (leftPoint.X <= leftPointSquare.X && rightPoint.X >= rightPointSquare.X)
+            {
+                return true;
+            }
+            else if (leftPointSquare.X <= leftPoint.X && rightPointSquare.X >= rightPoint.X)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Determines which of squares represents the ZOrder assigned.
         /// </summary>
         private LogicalSquare GetSquareByZOrder(LogicalSquare squareA, LogicalSquare squareB, ZOrderEnum zorderEnum)
@@ -317,13 +371,11 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            int compareX = squareA.PointA.X.CompareTo(squareB.PointA.X);
-
             switch (zorderEnum)
             {
                 case ZOrderEnum.Bottom:
 
-                    if (compareX <= 0)
+                    if (squareA.PointA.Y > squareB.PointA.Y)
                     {
                         return squareA;
                     }
@@ -334,7 +386,28 @@ namespace smartTextureMap.Support{
 
                 case ZOrderEnum.Top:
 
-                    if (compareX <= 0)
+                    if (squareA.PointA.Y < squareB.PointA.Y)
+                    {
+                        return squareB;
+                    }
+                    else
+                    {
+                        return squareA;
+                    }
+                case ZOrderEnum.AtLeft:
+
+                    if (squareA.PointA.X < squareB.PointA.X)
+                    {
+                        return squareA;
+                    }
+                    else
+                    {
+                        return squareB;
+                    }
+
+                case ZOrderEnum.AtRight:
+
+                    if (squareA.PointA.X > squareB.PointA.X)
                     {
                         return squareB;
                     }

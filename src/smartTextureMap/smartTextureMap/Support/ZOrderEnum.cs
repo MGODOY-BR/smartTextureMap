@@ -4,7 +4,9 @@ namespace smartTextureMap.Support{
 	/// Relates the order of pseudo-layers that the shapes can be.
 	/// </summary>
 	public enum ZOrderEnum {
-		Bottom,
-		Top
-	}
+		Top,
+        Bottom,
+        AtRight,
+        AtLeft,
+    }
 }
