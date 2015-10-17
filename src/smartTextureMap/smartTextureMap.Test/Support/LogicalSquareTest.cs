@@ -250,6 +250,42 @@ namespace smartTextureMap.Test.Support
         }
 
         [TestMethod]
+        public void CheckIntersectionTestNegative2()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                    new Point(10, 10),
+                    new Point(100, 180));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                    new Point(400, 180),
+                    new Point(800, 1000));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidenceA = squareA.CheckIntersection(squareB);
+            var evidenceB = squareB.CheckIntersection(squareA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.IsFalse(evidenceA);
+            Assert.IsFalse(evidenceB);
+
+            #endregion
+        }
+
+        [TestMethod]
         public void CheckVerticalAdjacentTest()
         {
             #region Scenario setup
