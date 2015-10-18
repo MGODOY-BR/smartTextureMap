@@ -542,8 +542,6 @@ namespace smartTextureMap.Intelligence.Lens{
             // Relating all the adjacencies
             foreach (var item in squareList)
             {
-                adjacentSquareList.Add(item, new List<LogicalSquare>());
-
                 foreach (var compareTo in squareList)
                 {
                     // Ignoring the self-compating
@@ -553,10 +551,17 @@ namespace smartTextureMap.Intelligence.Lens{
                     }
                     if (item.CheckVerticalAdjacent(compareTo))
                     {
+                        if (!adjacentSquareList.ContainsKey(item))
+                        {
+                            adjacentSquareList.Add(item, new List<LogicalSquare>());
+                            adjacentSquareList[item].Add(item);
+                        }
                         adjacentSquareList[item].Add(compareTo);
                     }
                 }
             }
+
+            Console.WriteLine("Discovered " + adjacentSquareList.Count + " adjacent groups.");
 
             // Replacing all the trapezes for rectangles
             foreach (var group in adjacentSquareList.Keys)
@@ -585,6 +590,12 @@ namespace smartTextureMap.Intelligence.Lens{
                 for (int i = 0; i < items.Count; i += 2)
                 {
                     LogicalSquare squareA = items[i];
+
+                    if (i == items.Count - 1)
+                    {
+                        break;
+                    }
+
                     LogicalSquare squareB = items[i + 1];
 
                     var hypotenuse = squareA.CalculateExternalHypotenuse(squareB);
@@ -607,6 +618,12 @@ namespace smartTextureMap.Intelligence.Lens{
                     }
                 }
 
+                if (mostCommonPattern == null || mostCommonPattern.Count < 2)
+                {
+                    // Ignore few coincidences
+                    continue;
+                }
+
                 // Getting the most Point from adjacencies
                 Support.Point newPointA = group.PointA;
                 Support.Point newPointB = group.PointB;
@@ -620,10 +637,13 @@ namespace smartTextureMap.Intelligence.Lens{
                 LogicalSquare substitutive = new LogicalSquare(newPointA, newPointB);
 
                 // Removing the pattern items
-                squareList.RemoveAll(delegate (LogicalSquare item)
-                {
-                    return mostCommonPattern.Contains(item);
-                });
+                int removedQuantity =
+                    squareList.RemoveAll(delegate (LogicalSquare item)
+                    {
+                        return mostCommonPattern.Contains(item);
+                    });
+
+                Console.WriteLine(removedQuantity + " echoes removed.");
 
                 // Finally, including the substitutive square
                 squareList.Add(substitutive);

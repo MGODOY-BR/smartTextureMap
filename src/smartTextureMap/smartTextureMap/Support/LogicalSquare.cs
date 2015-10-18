@@ -374,11 +374,6 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentNullException("square._pointC");
             }
-            if (
-                !(this._pointD.Equals(square.PointC) || this._pointB.Equals(square.PointA)))
-            {
-                throw new ArgumentException("There squares don't form an triangle");
-            }
 
             #endregion
 
@@ -399,6 +394,41 @@ namespace smartTextureMap.Support{
            return (int)Math.Truncate(
                 Math.Sqrt(
                 (selfCathetus * selfCathetus) + (otherCathetus + otherCathetus)));
+        }
+
+        public override string ToString()
+        {
+            #region Entries validation
+
+            if (this._pointA == null)
+            {
+                return "LogicalSquare with Point A missed";
+            }
+            if (this._pointB == null)
+            {
+                return "LogicalSquare with Point B missed";
+            }
+            if (this._pointC == null)
+            {
+                return "LogicalSquare with Point C missed";
+            }
+            if (this._pointD == null)
+            {
+                return "LogicalSquare with Point D missed";
+            }
+
+            #endregion
+
+            return String.Format(
+                "Square A[x = {0}, y = {1}], B[x = {2}, y = {3}], C[x = {4}, y = {5}], D[x = {6}, y = {7}]",
+                this._pointA.X,
+                this._pointA.Y,
+                this._pointB.X,
+                this._pointB.Y,
+                this._pointC.X,
+                this._pointC.Y,
+                this._pointD.X,
+                this._pointD.Y);
         }
 
         /// <summary>
