@@ -8,7 +8,7 @@ namespace smartTextureMap.Support{
 	/// <summary>
 	/// Represents a cartesyan coordinate.
 	/// </summary>
-	public class Point {
+	public class Point : IEquatable<Point> {
 
         /// <summary>
         /// Absciss
@@ -73,6 +73,20 @@ namespace smartTextureMap.Support{
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        public bool Equals(Point other)
+        {
+            #region Entries validation
+            
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            return this.X == other.X && this.Y == other.Y;
         }
     }
 }

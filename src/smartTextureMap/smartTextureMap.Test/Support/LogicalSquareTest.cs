@@ -428,5 +428,76 @@ namespace smartTextureMap.Test.Support
 
             #endregion
         }
+
+        [TestMethod]
+        public void CalculateExternalHypotenuseTest()
+        {
+            #region Scenario setup
+            LogicalSquare squareA =
+                new LogicalSquare(
+                        new Point(56, 12),
+                        new Point(220, 139));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                        new Point(220, 139),
+                        new Point(372, 230));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidence = squareA.CalculateExternalHypotenuse(squareB);
+
+            #endregion
+
+            #region Getting the evidences
+
+            Console.WriteLine(evidence);
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.AreEqual(evidence, 128);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void CalculateExternalHypotenuseTest2()
+        {
+            #region Scenario setup
+
+            LogicalSquare squareA =
+                new LogicalSquare(
+                        new Point(56, 12),
+                        new Point(220, 139));
+
+            LogicalSquare squareB =
+                new LogicalSquare(
+                        new Point(0, 139),
+                        new Point(56, 230));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidence = squareA.CalculateExternalHypotenuse(squareB);
+
+            #endregion
+
+            #region Getting the evidences
+
+            Console.WriteLine(evidence);
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.AreEqual(evidence, 127);
+
+            #endregion
+        }
     }
 }

@@ -346,6 +346,62 @@ namespace smartTextureMap.Support{
         }
 
         /// <summary>
+        /// Calculates the hypotenuse between Point A of 2 the current and another adjacent logical square
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        public int CalculateExternalHypotenuse(LogicalSquare square)
+        {
+            #region Entries validation
+            
+            if (square == null)
+            {
+                throw new ArgumentNullException("square");
+            }
+            if (this._pointA == null)
+            {
+                throw new ArgumentNullException("this._pointA");
+            }
+            if (this._pointD == null)
+            {
+                throw new ArgumentNullException("this._pointD");
+            }
+            if (square._pointA == null)
+            {
+                throw new ArgumentNullException("square._pointA");
+            }
+            if (square._pointC == null)
+            {
+                throw new ArgumentNullException("square._pointC");
+            }
+            if (
+                !(this._pointD.Equals(square.PointC) || this._pointB.Equals(square.PointA)))
+            {
+                throw new ArgumentException("There squares don't form an triangle");
+            }
+
+            #endregion
+
+            int selfCathetus = 0;
+            int otherCathetus = 0;
+
+            if (this._pointD.Equals(square.PointC))
+            {
+                selfCathetus = this._pointD.Y - this._pointA.Y;
+                otherCathetus = square._pointC.X - square._pointA.X;
+            }
+            else if (this._pointB.Equals(square.PointA))
+            {
+                selfCathetus = this._pointB.Y - this._pointC.Y;
+                otherCathetus = square._pointC.X - square._pointA.X;
+            }
+
+           return (int)Math.Truncate(
+                Math.Sqrt(
+                (selfCathetus * selfCathetus) + (otherCathetus + otherCathetus)));
+        }
+
+        /// <summary>
         /// Determines which of squares represents the ZOrder assigned.
         /// </summary>
         private LogicalSquare GetSquareByZOrder(LogicalSquare squareA, LogicalSquare squareB, ZOrderEnum zorderEnum)
