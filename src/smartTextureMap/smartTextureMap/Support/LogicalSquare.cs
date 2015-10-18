@@ -317,19 +317,19 @@ namespace smartTextureMap.Support{
 
             var leftPoint =
                 Point.GetTheMost(
-                    this._pointA, this._pointD, ZOrderEnum.AtLeft);
+                    this._pointA, this._pointD, OrderEnum.AtLeft);
 
             var rightPoint =
                 Point.GetTheMost(
-                    this._pointC, this._pointB, ZOrderEnum.AtRight);
+                    this._pointC, this._pointB, OrderEnum.AtRight);
 
             var leftPointSquare =
                 Point.GetTheMost(
-                    square._pointA, square._pointD, ZOrderEnum.AtLeft);
+                    square._pointA, square._pointD, OrderEnum.AtLeft);
 
             var rightPointSquare =
                 Point.GetTheMost(
-                    square._pointC, square._pointB, ZOrderEnum.AtRight);
+                    square._pointC, square._pointB, OrderEnum.AtRight);
 
             if (leftPoint.X <= leftPointSquare.X && rightPoint.X >= rightPointSquare.X)
             {
@@ -404,7 +404,7 @@ namespace smartTextureMap.Support{
         /// <summary>
         /// Determines which of squares represents the ZOrder assigned.
         /// </summary>
-        private LogicalSquare GetSquareByZOrder(LogicalSquare squareA, LogicalSquare squareB, ZOrderEnum zorderEnum)
+        private LogicalSquare GetSquareByOrder(LogicalSquare squareA, LogicalSquare squareB, OrderEnum zorderEnum)
         {
             #region Entries validation
             
@@ -429,7 +429,7 @@ namespace smartTextureMap.Support{
 
             switch (zorderEnum)
             {
-                case ZOrderEnum.Bottom:
+                case OrderEnum.Bottom:
 
                     if (squareA.PointA.Y > squareB.PointA.Y)
                     {
@@ -440,7 +440,7 @@ namespace smartTextureMap.Support{
                         return squareB;
                     }
 
-                case ZOrderEnum.Top:
+                case OrderEnum.Top:
 
                     if (squareA.PointA.Y < squareB.PointA.Y)
                     {
@@ -450,7 +450,7 @@ namespace smartTextureMap.Support{
                     {
                         return squareA;
                     }
-                case ZOrderEnum.AtLeft:
+                case OrderEnum.AtLeft:
 
                     if (squareA.PointA.X < squareB.PointA.X)
                     {
@@ -461,7 +461,7 @@ namespace smartTextureMap.Support{
                         return squareB;
                     }
 
-                case ZOrderEnum.AtRight:
+                case OrderEnum.AtRight:
 
                     if (squareA.PointA.X > squareB.PointA.X)
                     {

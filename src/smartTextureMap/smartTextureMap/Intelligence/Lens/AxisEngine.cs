@@ -231,6 +231,8 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
             }
 
+            this.refineSquares(this._squareList);
+
             this._eof = true;
         }
 
@@ -520,5 +522,113 @@ namespace smartTextureMap.Intelligence.Lens{
 
             return false;
         }
+
+        /// <summary>
+        /// Refines the square list, fixing the "trapeze echoes" and etc.
+        /// </summary>
+        private void refineSquares(List<LogicalSquare> squareList)
+        {
+            #region Entries validation
+            
+            if (squareList == null)
+            {
+                throw new ArgumentNullException("squareList");
+            }
+
+            #endregion
+
+            var adjacentSquareList = new Dictionary<LogicalSquare, List<LogicalSquare>>();
+
+            // Relating all the adjacencies
+            foreach (var item in squareList)
+            {
+                adjacentSquareList.Add(item, new List<LogicalSquare>());
+
+                foreach (var compareTo in squareList)
+                {
+                    // Ignoring the self-compating
+                    if (item == compareTo)
+                    {
+                        continue;
+                    }
+                    if (item.CheckVerticalAdjacent(compareTo))
+                    {
+                        adjacentSquareList[item].Add(compareTo);
+                    }
+                }
+            }
+
+            // Replacing all the trapezes for rectangles
+            foreach (var group in adjacentSquareList.Keys)
+            {
+                var items = adjacentSquareList[group];
+                if (items.Count == 0)
+                {
+                    continue;
+                }
+
+                // Sorting for the Point A
+                items.Sort(delegate (LogicalSquare square, LogicalSquare compareTo)
+                {
+                    if (square.PointA.Y < compareTo.PointA.Y)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        return square.PointA.X.CompareTo(compareTo.PointA.X);
+                    }
+                });
+
+                // Calculating the patterns between the angles
+                var patternList = new Dictionary<int, List<LogicalSquare>>();
+                for (int i = 0; i < items.Count; i += 2)
+                {
+                    LogicalSquare squareA = items[i];
+                    LogicalSquare squareB = items[i + 1];
+
+                    var hypotenuse = squareA.CalculateExternalHypotenuse(squareB);
+
+                    if (!patternList.ContainsKey(hypotenuse))
+                    {
+                        patternList.Add(hypotenuse, new List<LogicalSquare>());
+                    }
+                    patternList[hypotenuse].Add(squareA);
+                    patternList[hypotenuse].Add(squareB);
+                }
+
+                // Getting the most common pattern
+                List<LogicalSquare> mostCommonPattern = null;
+                foreach (var pattern in patternList)
+                {
+                    if (mostCommonPattern == null || pattern.Value.Count > mostCommonPattern.Count)
+                    {
+                        mostCommonPattern = pattern.Value;
+                    }
+                }
+
+                // Getting the most Point from adjacencies
+                Support.Point newPointA = group.PointA;
+                Support.Point newPointB = group.PointB;
+                foreach (var item in items)
+                {
+                    newPointA = Support.Point.GetTheMost(newPointA, item.PointA, OrderEnum.AtLeft);
+                    newPointB = Support.Point.GetTheMost(newPointB, item.PointA, OrderEnum.AtRight);
+                }
+                newPointA.Y = group.PointA.Y;
+                newPointB.Y = group.PointB.Y;
+                LogicalSquare substitutive = new LogicalSquare(newPointA, newPointB);
+
+                // Removing the pattern items
+                squareList.RemoveAll(delegate (LogicalSquare item)
+                {
+                    return mostCommonPattern.Contains(item);
+                });
+
+                // Finally, including the substitutive square
+                squareList.Add(substitutive);
+            }
+        }
+
     }
 }

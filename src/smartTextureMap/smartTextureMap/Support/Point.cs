@@ -34,41 +34,38 @@ namespace smartTextureMap.Support{
         /// <summary>
         /// Gets the most relative point
         /// </summary>
-        /// <param name="pointA"></param>
-        /// <param name="pointB"></param>
-        /// <param name="zOrderEnum"></param>
-        public static Point GetTheMost(Point pointA, Point pointB, ZOrderEnum zOrderEnum)
+        public static Point GetTheMost(Point point1, Point point2, OrderEnum orderEnum)
         {
             #region Entries validation
 
-            if (pointA == null)
+            if (point1 == null)
             {
-                throw new ArgumentNullException("pointA");
+                throw new ArgumentNullException("point1");
             }
-            if (pointB == null)
+            if (point2 == null)
             {
-                throw new ArgumentNullException("pointB");
+                throw new ArgumentNullException("point2");
             }
 
             #endregion
 
-            switch (zOrderEnum)
+            switch (orderEnum)
             {
-                case ZOrderEnum.Top:
+                case OrderEnum.Top:
 
-                    return (pointA.Y < pointB.Y) ? pointA : pointB;
+                    return (point1.Y < point2.Y) ? point1 : point2;
 
-                case ZOrderEnum.Bottom:
+                case OrderEnum.Bottom:
 
-                    return (pointA.Y > pointB.Y) ? pointA : pointB;
+                    return (point1.Y > point2.Y) ? point1 : point2;
 
-                case ZOrderEnum.AtRight:
+                case OrderEnum.AtRight:
 
-                    return (pointA.X > pointB.X) ? pointA : pointB;
+                    return (point1.X > point2.X) ? point1 : point2;
 
-                case ZOrderEnum.AtLeft:
+                case OrderEnum.AtLeft:
 
-                    return (pointA.X < pointB.X) ? pointA : pointB;
+                    return (point1.X < point2.X) ? point1 : point2;
 
                 default:
                     throw new NotSupportedException();

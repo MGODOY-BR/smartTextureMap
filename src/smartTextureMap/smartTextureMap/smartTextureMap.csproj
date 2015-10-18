@@ -60,7 +60,7 @@
     <Compile Include="Support\ProgressCounter.cs" />
     <Compile Include="Support\Shape.cs" />
     <Compile Include="Support\ShapeFunction.cs" />
-    <Compile Include="Support\ZOrderEnum.cs" />
+    <Compile Include="Support\OrderEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
