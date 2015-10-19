@@ -459,7 +459,7 @@ namespace smartTextureMap.Test.Support
 
             #region Validating the evidences
 
-            Assert.AreEqual(evidence, 128);
+            Assert.AreEqual(198, evidence);
 
             #endregion
         }
@@ -495,7 +495,7 @@ namespace smartTextureMap.Test.Support
 
             #region Validating the evidences
 
-            Assert.AreEqual(evidence, 127);
+            Assert.AreEqual(139, evidence);
 
             #endregion
         }

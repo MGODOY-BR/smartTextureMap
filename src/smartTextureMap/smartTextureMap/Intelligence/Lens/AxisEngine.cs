@@ -539,7 +539,8 @@ namespace smartTextureMap.Intelligence.Lens{
 
             var adjacentSquareList = new Dictionary<LogicalSquare, List<LogicalSquare>>();
 
-            // Relating all the adjacencies
+            #region Relating all the adjacencies
+
             foreach (var item in squareList)
             {
                 foreach (var compareTo in squareList)
@@ -563,7 +564,11 @@ namespace smartTextureMap.Intelligence.Lens{
 
             Console.WriteLine("Discovered " + adjacentSquareList.Count + " adjacent groups.");
 
-            // Replacing all the trapezes for rectangles
+            #endregion
+
+            #region Replacing all the echoes for a single square
+
+            var patternList = new Dictionary<String, List<LogicalSquare>>();
             foreach (var group in adjacentSquareList.Keys)
             {
                 var items = adjacentSquareList[group];
@@ -572,22 +577,9 @@ namespace smartTextureMap.Intelligence.Lens{
                     continue;
                 }
 
-                // Sorting for the Point A
-                items.Sort(delegate (LogicalSquare square, LogicalSquare compareTo)
-                {
-                    if (square.PointA.Y < compareTo.PointA.Y)
-                    {
-                        return -1;
-                    }
-                    else
-                    {
-                        return square.PointA.X.CompareTo(compareTo.PointA.X);
-                    }
-                });
+                #region Calculating the patterns between the angles
 
-                // Calculating the patterns between the angles
-                var patternList = new Dictionary<int, List<LogicalSquare>>();
-                for (int i = 0; i < items.Count; i += 2)
+                for (int i = 0; i < items.Count; i++)
                 {
                     LogicalSquare squareA = items[i];
 
@@ -599,56 +591,72 @@ namespace smartTextureMap.Intelligence.Lens{
                     LogicalSquare squareB = items[i + 1];
 
                     var hypotenuse = squareA.CalculateExternalHypotenuse(squareB);
-
-                    if (!patternList.ContainsKey(hypotenuse))
+                    if (hypotenuse == 0)
                     {
-                        patternList.Add(hypotenuse, new List<LogicalSquare>());
+                        continue;
                     }
-                    patternList[hypotenuse].Add(squareA);
-                    patternList[hypotenuse].Add(squareB);
-                }
-
-                // Getting the most common pattern
-                List<LogicalSquare> mostCommonPattern = null;
-                foreach (var pattern in patternList)
-                {
-                    if (mostCommonPattern == null || pattern.Value.Count > mostCommonPattern.Count)
+                    String hypotenuseKey = this.GetHypotenuseKey(hypotenuse);
+                    if (!patternList.ContainsKey(hypotenuseKey))
                     {
-                        mostCommonPattern = pattern.Value;
+                        Console.WriteLine("hypotenuse value: " + hypotenuseKey);
+                        patternList.Add(hypotenuseKey, new List<LogicalSquare>());
                     }
+                    patternList[hypotenuseKey].Add(squareA);   // <-- Main square
+                    patternList[hypotenuseKey].Add(squareB);
                 }
 
-                if (mostCommonPattern == null || mostCommonPattern.Count < 2)
-                {
-                    // Ignore few coincidences
-                    continue;
-                }
-
-                // Getting the most Point from adjacencies
-                Support.Point newPointA = group.PointA;
-                Support.Point newPointB = group.PointB;
-                foreach (var item in items)
-                {
-                    newPointA = Support.Point.GetTheMost(newPointA, item.PointA, OrderEnum.AtLeft);
-                    newPointB = Support.Point.GetTheMost(newPointB, item.PointA, OrderEnum.AtRight);
-                }
-                newPointA.Y = group.PointA.Y;
-                newPointB.Y = group.PointB.Y;
-                LogicalSquare substitutive = new LogicalSquare(newPointA, newPointB);
-
-                // Removing the pattern items
-                int removedQuantity =
-                    squareList.RemoveAll(delegate (LogicalSquare item)
-                    {
-                        return mostCommonPattern.Contains(item);
-                    });
-
-                Console.WriteLine(removedQuantity + " echoes removed.");
-
-                // Finally, including the substitutive square
-                squareList.Add(substitutive);
+                #endregion
             }
+
+            #region Removing the echoes
+
+            int removedQuantity =
+                squareList.RemoveAll(delegate (LogicalSquare other)
+                {
+                    foreach (var item in patternList.Keys)
+                    {
+                        // TODO: This line bellow proves it the group aren´t done correctly. Every single pattern had just one pair
+                        /*
+                        if (patternList[item].Count == 2)
+                        {
+                            return false;
+                        }
+                        */
+                        if (patternList[item].Contains(other))
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                });
+
+            if (removedQuantity > 0)
+                Console.WriteLine(removedQuantity + " echoes removed");
+
+            #endregion
+
+            #endregion
         }
 
+        /// <summary>
+        /// Get a key based on a hypotenuse
+        /// </summary>
+        private string GetHypotenuseKey(int hypotenuse)
+        {
+            String hypString = hypotenuse.ToString();
+            int lastDigit = int.Parse(hypString[hypString.Length - 1].ToString());
+            String newDigit;
+            if (lastDigit > 5)
+            {
+                newDigit = "9";
+            }
+            else
+            {
+                newDigit = "0";
+            }
+
+            return hypString.Substring(0, hypString.Length - 1) + newDigit;
+        }
     }
 }

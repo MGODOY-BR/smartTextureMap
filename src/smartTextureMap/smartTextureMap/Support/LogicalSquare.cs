@@ -305,10 +305,7 @@ namespace smartTextureMap.Support{
                 throw new ArgumentNullException("square");
             }
             if (
-                !(
-                (this._pointB.Y == square._pointA.Y) ||
-                (this._pointA.Y == square._pointB.Y))
-                )
+                !(this._pointB.LooksLikeByY(square._pointA) || this._pointA.LooksLikeByY(square._pointB)))
             {
                 return false;
             }
@@ -380,20 +377,30 @@ namespace smartTextureMap.Support{
             int selfCathetus = 0;
             int otherCathetus = 0;
 
-            if (this._pointD.Equals(square.PointC))
+            if (this._pointD.LooksLike(square.PointC))
             {
                 selfCathetus = this._pointD.Y - this._pointA.Y;
                 otherCathetus = square._pointC.X - square._pointA.X;
             }
-            else if (this._pointB.Equals(square.PointA))
+            else if (this._pointB.LooksLike(square.PointA))
+            {
+                selfCathetus = this._pointB.Y - this._pointC.Y;
+                otherCathetus = square._pointC.X - square._pointA.X;
+            }
+            else if (this._pointC.LooksLike(square.PointD))
+            {
+                selfCathetus = this._pointD.Y - this._pointA.Y;
+                otherCathetus = square._pointC.X - square._pointA.X;
+            }
+            else if (this._pointA.LooksLike(square.PointB))
             {
                 selfCathetus = this._pointB.Y - this._pointC.Y;
                 otherCathetus = square._pointC.X - square._pointA.X;
             }
 
-           return (int)Math.Truncate(
+            return (int)Math.Round(
                 Math.Sqrt(
-                (selfCathetus * selfCathetus) + (otherCathetus + otherCathetus)));
+                (selfCathetus * selfCathetus) + (otherCathetus * otherCathetus)));
         }
 
         public override string ToString()

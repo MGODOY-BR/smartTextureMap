@@ -132,7 +132,7 @@ namespace smartTextureMap.Support{
             #endregion
 
             this._graphics.DrawRectangle(
-                Pens.Aquamarine,
+                Pens.Red,
                 square.PointA.X,
                 square.PointA.Y,
                 square.PointC.X - square.PointA.X,

@@ -11,6 +11,11 @@ namespace smartTextureMap.Support{
 	public class Point : IEquatable<Point> {
 
         /// <summary>
+        /// It's the tolerance between the point recognize.
+        /// </summary>
+        private const int TOLERANCE = 5;
+
+        /// <summary>
         /// Absciss
         /// </summary>
         public int X { get; set; }
@@ -84,6 +89,64 @@ namespace smartTextureMap.Support{
             #endregion
 
             return this.X == other.X && this.Y == other.Y;
+        }
+
+        /// <summary>
+        /// Gets an indicator informing whether the points are almost similar.
+        /// </summary>
+        public bool LooksLike(Point other)
+        {
+            #region Entries validation
+
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            if (this.Equals(other))
+            {
+                return true;
+            }
+
+            #endregion
+
+            int minX = other.X - TOLERANCE;
+            int maxX = other.X + TOLERANCE;
+
+            bool result = true;
+
+            if (this.X >= minX && this.X <= maxX)
+            {
+                result &= true;
+            }
+            else
+            {
+                result &= false;
+            }
+
+            result &= LooksLikeByY(other);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets an indicator informing whether the points are almost similar by Y.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool LooksLikeByY(Point other)
+        {
+            #region Entries validation
+
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            int minY = other.Y - TOLERANCE;
+            int maxY = other.Y + TOLERANCE;
+            return (this.Y >= minY && this.Y <= maxY);
         }
     }
 }
