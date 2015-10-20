@@ -36,6 +36,7 @@ namespace smartTextureMap.Support{
 		/// </summary>
 		private Point _pointB;
 
+
 		/// <summary>
 		/// Verifies whether the point is inside of the logical square
 		/// </summary>
@@ -73,16 +74,6 @@ namespace smartTextureMap.Support{
 		public Boolean CheckVerticalAdjacent(LogicalSquare square) {
 			// TODO implement here
 			return null;
-		}
-
-		/// <summary>
-		/// Calculates the hypotenuse between Point A of 2 the current and another adjacent logical square
-		/// </summary>
-		/// <param name="square"></param>
-		/// <returns></returns>
-		public int CalculateExternalHypotenuse(LogicalSquare square) {
-			// TODO implement here
-			return 0;
 		}
 
 	}
