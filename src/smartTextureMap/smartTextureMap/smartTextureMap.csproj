@@ -54,6 +54,10 @@
     <Compile Include="Intelligence\SmartTextureMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\Mathematics\AdjacentCatheti.cs" />
+    <Compile Include="Support\Mathematics\AngleStrategyEnum.cs" />
+    <Compile Include="Support\Mathematics\Cathetus.cs" />
+    <Compile Include="Support\Mathematics\CathetusParser.cs" />
     <Compile Include="Support\Picture.cs" />
     <Compile Include="Support\LogicalSquare.cs" />
     <Compile Include="Support\Point.cs" />

@@ -64,6 +64,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="Support\Mathematics\CathetusTest.cs" />
+    <Compile Include="Support\Mathematics\AdjacentCathetiTest.cs" />
     <Compile Include="Support\PictureTest.cs" />
     <Compile Include="Support\LogicalSquareTest.cs" />
     <Compile Include="Support\ShapeTest.cs" />

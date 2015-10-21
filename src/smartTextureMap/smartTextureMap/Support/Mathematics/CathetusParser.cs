@@ -24,7 +24,7 @@ namespace smartTextureMap.Support.Mathematics{
 
 		/// <param name="mainSquare"></param>
 		/// <param name="adjacentSquare"></param>
-		public void CathetusParser(LogicalSquare mainSquare, LogicalSquare adjacentSquare) {
+		public CathetusParser(LogicalSquare mainSquare, LogicalSquare adjacentSquare) {
 			// TODO implement here
 		}
 
