@@ -36,6 +36,7 @@ namespace smartTextureMap.Support{
 		/// </summary>
 		private Point _pointB;
 
+
 		/// <summary>
 		/// Verifies whether the point is inside of the logical square
 		/// </summary>
