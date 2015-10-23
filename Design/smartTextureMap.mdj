@@ -31951,6 +31951,7 @@
 																"$ref": "AAAAAAFQgvbjUmIiwxc="
 															},
 															"name": "GetAdjacentCatheti",
+															"documentation": "Gets the adjacent catheti",
 															"visibility": "public",
 															"isStatic": false,
 															"isLeaf": false,
