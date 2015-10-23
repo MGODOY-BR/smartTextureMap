@@ -1,4 +1,5 @@
 
+using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,6 @@ namespace smartTextureMap.Intelligence{
 	/// Represents a stack of squares used to reduce redundances
 	/// </summary>
 	public class AdjacentSquareStack {
-
-		/// <summary>
-		/// Represents a stack of squares used to reduce redundances
-		/// </summary>
-		public AdjacentSquareStack() {
-		}
 
 		/// <summary>
 		/// It´s the angle key which all the squares have in common in adjacence.
@@ -44,7 +39,7 @@ namespace smartTextureMap.Intelligence{
 		/// <returns></returns>
 		public bool TryCollect(LogicalSquare square) {
 			// TODO implement here
-			return False;
+			return false;
 		}
 
 		/// <summary>
@@ -78,7 +73,7 @@ namespace smartTextureMap.Intelligence{
 		/// <returns></returns>
 		public bool CheckForSomeSquareAccepted() {
 			// TODO implement here
-			return False;
+			return false;
 		}
 
 	}

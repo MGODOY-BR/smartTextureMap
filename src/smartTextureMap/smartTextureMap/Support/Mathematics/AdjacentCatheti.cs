@@ -42,7 +42,7 @@ namespace smartTextureMap.Support.Mathematics{
         }
 
 		/// <summary>
-		/// Calculates the angle formed between adjacent cathetus
+		/// Calculates the angle in degrees formed between adjacent cathetus
 		/// </summary>
 		/// <returns></returns>
 		public double CalculateAngle()
@@ -61,7 +61,9 @@ namespace smartTextureMap.Support.Mathematics{
             #endregion
 
             double tangent = this._oposite.GetSize() / this._adjacent.GetSize();
-            return Math.Atan(tangent);
+            double radianAngle = Math.Atan(tangent);
+            double degreeAngle = radianAngle * 180 / Math.PI;
+            return degreeAngle;
         }
 	}
 }

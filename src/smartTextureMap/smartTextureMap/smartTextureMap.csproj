@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Intelligence\AdjacentSquareParser.cs" />
+    <Compile Include="Intelligence\AdjacentSquareStack.cs" />
     <Compile Include="Intelligence\Lens\AxisDirectionEnum.cs" />
     <Compile Include="Intelligence\Lens\AxisEngine.cs" />
     <Compile Include="Intelligence\Lens\Sensor.cs" />

@@ -959,9 +959,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 219,
+									"left": 217,
 									"top": 163,
-									"width": 57.7890625,
+									"width": 61,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -1026,9 +1026,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 265,
+									"left": 263,
 									"top": 159,
-									"width": 19.5126953125,
+									"width": 22,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -1831,7 +1831,7 @@
 									"containerExtending": false,
 									"left": 488,
 									"top": 206,
-									"width": 90.33349609375,
+									"width": 90,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.3853511988220033,
@@ -1896,9 +1896,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 543,
+									"left": 542,
 									"top": 250,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -2585,9 +2585,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 854,
+									"left": 852,
 									"top": 528,
-									"width": 48.419921875,
+									"width": 53,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -2652,9 +2652,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 871,
+									"left": 870,
 									"top": 501,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -2999,9 +2999,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 797,
+									"left": 795,
 									"top": 416,
-									"width": 48.419921875,
+									"width": 53,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -3066,9 +3066,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 790,
+									"left": 789,
 									"top": 420,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -3215,9 +3215,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 420,
+									"left": 421,
 									"top": 331,
-									"width": 76.24169921875,
+									"width": 74,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -3356,9 +3356,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 284,
+									"left": 285,
 									"top": 489,
-									"width": 76.24169921875,
+									"width": 74,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -4233,9 +4233,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 947,
+									"left": 946,
 									"top": 224,
-									"width": 89.603515625,
+									"width": 91,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -4300,9 +4300,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 1015,
+									"left": 1014,
 									"top": 220,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -4763,9 +4763,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 94,
+									"left": 95,
 									"top": 329,
-									"width": 35.0517578125,
+									"width": 33,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -5983,9 +5983,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 699,
+									"left": 698,
 									"top": 537,
-									"width": 61.419921875,
+									"width": 63,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -6195,7 +6195,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 85.39453125,
+									"left": 83,
 									"top": 749,
 									"width": 172.72607421875,
 									"height": 13,
@@ -6222,7 +6222,7 @@
 									"containerExtending": false,
 									"left": 53,
 									"top": 749,
-									"width": 23.39453125,
+									"width": 21,
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
@@ -6889,9 +6889,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 464,
+									"left": 462,
 									"top": 624,
-									"width": 28.9072265625,
+									"width": 32,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -7403,7 +7403,7 @@
 									"containerExtending": false,
 									"left": 758,
 									"top": 554,
-									"width": 66.47265625,
+									"width": 67,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -7816,7 +7816,7 @@
 									"containerExtending": false,
 									"left": 483,
 									"top": 300,
-									"width": 71.5380859375,
+									"width": 71,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -7881,9 +7881,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 513,
+									"left": 511,
 									"top": 327,
-									"width": 19.5126953125,
+									"width": 22,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -8228,9 +8228,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 1128,
+									"left": 1127,
 									"top": 144,
-									"width": 46.96630859375,
+									"width": 48,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -8641,9 +8641,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 968,
+									"left": 967,
 									"top": 224,
-									"width": 46.96630859375,
+									"width": 48,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -9900,9 +9900,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 144.421875,
+									"left": 147.5,
 									"top": 702.5,
-									"width": 75.15625,
+									"width": 69,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 2.356194490192345,
@@ -10030,9 +10030,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 48.175048828125,
+									"left": 52,
 									"top": 635.5,
-									"width": 81.64990234375,
+									"width": 74,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 2.356194490192345,
@@ -10160,9 +10160,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 312.119140625,
+									"left": 315,
 									"top": 601.5,
-									"width": 65.76171875,
+									"width": 60,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 2.356194490192345,
@@ -10287,7 +10287,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 437.39453125,
+									"left": 435,
 									"top": 669,
 									"width": 172.72607421875,
 									"height": 13,
@@ -10314,7 +10314,7 @@
 									"containerExtending": false,
 									"left": 405,
 									"top": 669,
-									"width": 23.39453125,
+									"width": 21,
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
@@ -11570,9 +11570,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 256,
+									"left": 258,
 									"top": 715,
-									"width": 93.208984375,
+									"width": 89,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5743049643210711,
@@ -11637,9 +11637,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 311,
+									"left": 310,
 									"top": 750,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -11984,9 +11984,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 513,
+									"left": 514,
 									"top": 680,
-									"width": 77.32080078125,
+									"width": 75,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5232785497245751,
@@ -12051,9 +12051,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 520,
+									"left": 519,
 									"top": 684,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -12400,7 +12400,7 @@
 									"containerExtending": false,
 									"left": 403,
 									"top": 680,
-									"width": 89.603515625,
+									"width": 88,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5232785392716135,
@@ -12465,9 +12465,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 416,
+									"left": 415,
 									"top": 684,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -13156,7 +13156,7 @@
 									"containerExtending": false,
 									"left": 542,
 									"top": 904,
-									"width": 98.26806640625,
+									"width": 98,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -13221,9 +13221,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 560,
+									"left": 559,
 									"top": 908,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -13568,9 +13568,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 480,
+									"left": 479,
 									"top": 958,
-									"width": 61.419921875,
+									"width": 63,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -13981,9 +13981,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 275,
+									"left": 276,
 									"top": 763,
-									"width": 70.82080078125,
+									"width": 69,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -14394,9 +14394,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 275,
+									"left": 276,
 									"top": 803,
-									"width": 70.0908203125,
+									"width": 69,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -14656,9 +14656,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 75.97900390625,
+													"left": 75,
 													"top": 5,
-													"width": 253.205078125,
+													"width": 249,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -14683,7 +14683,7 @@
 													"containerExtending": false,
 													"left": 10,
 													"top": 5,
-													"width": 60.97900390625,
+													"width": 60,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -15139,7 +15139,7 @@
 													"containerExtending": false,
 													"left": 240,
 													"top": 112,
-													"width": 50.57177734375,
+													"width": 51,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -15301,9 +15301,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 163.578125,
+													"left": 164,
 													"top": 141,
-													"width": 81.208984375,
+													"width": 79,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -15328,7 +15328,7 @@
 													"containerExtending": false,
 													"left": 133,
 													"top": 141,
-													"width": 25.578125,
+													"width": 26,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -15468,9 +15468,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 309,
+													"left": 315,
 													"top": 171,
-													"width": 360.953125,
+													"width": 349,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -15635,9 +15635,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 456,
+													"left": 462,
 													"top": 264,
-													"width": 339.26953125,
+													"width": 326,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.4711266842048227,
@@ -15802,9 +15802,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 614,
+													"left": 613,
 													"top": 308,
-													"width": 18.0654296875,
+													"width": 20,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -15989,9 +15989,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 195.578125,
+													"left": 196,
 													"top": 253,
-													"width": 204.05517578125,
+													"width": 193,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -16016,7 +16016,7 @@
 													"containerExtending": false,
 													"left": 165,
 													"top": 253,
-													"width": 25.578125,
+													"width": 26,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -16351,9 +16351,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 200.72998046875,
+													"left": 201,
 													"top": 381,
-													"width": 107.22802734375,
+													"width": 100,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -16378,7 +16378,7 @@
 													"containerExtending": false,
 													"left": 181,
 													"top": 381,
-													"width": 14.72998046875,
+													"width": 15,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -16518,9 +16518,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 415,
+													"left": 416,
 													"top": 392,
-													"width": 156.8125,
+													"width": 154,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 2.7069211446315644,
@@ -16687,7 +16687,7 @@
 													"containerExtending": false,
 													"left": 238,
 													"top": 636,
-													"width": 52.025390625,
+													"width": 52,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -17881,9 +17881,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 360,
+									"left": 361,
 									"top": 607,
-									"width": 35.0517578125,
+									"width": 33,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 1.5707963267948966,
@@ -25351,11 +25351,11 @@
 											"containerExtending": false,
 											"left": 192,
 											"top": 0,
-											"width": 101.12451171875,
+											"width": 104.0380859375,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Diagramas)",
+											"text": "(from Intelligence)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -26132,7 +26132,7 @@
 									"containerExtending": false,
 									"left": 165.39453125,
 									"top": 541,
-									"width": 135.12890625,
+									"width": 138,
 									"height": 13,
 									"autoResize": false,
 									"underline": false,
@@ -26177,7 +26177,7 @@
 							"containerExtending": false,
 							"left": 128,
 							"top": 536,
-							"width": 178.5234375,
+							"width": 181.39453125,
 							"height": 23,
 							"autoResize": false,
 							"nameLabel": {
@@ -28118,193 +28118,6 @@
 							}
 						}
 					]
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAFQjUuxAk9X82Q=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "AdjacentSquareParser",
-					"ownedElements": [
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAFQjVSsK1XL74c=",
-							"_parent": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"source": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"target": {
-								"$ref": "AAAAAAFQgvbjUmIiwxc="
-							},
-							"visibility": "public"
-						}
-					],
-					"documentation": "Tries to fit a square in an adjacent square in stack",
-					"visibility": "public",
-					"operations": [
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFQjU44QVEdUdU=",
-							"_parent": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"name": "GetList",
-							"documentation": "Gets a list of adjacent square stack discovered.",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFQjU5yclFCkpo=",
-									"_parent": {
-										"$ref": "AAAAAAFQjU44QVEdUdU="
-									},
-									"visibility": "public",
-									"isStatic": false,
-									"isLeaf": false,
-									"type": {
-										"$ref": "AAAAAAFQjRd61EuVuKU="
-									},
-									"multiplicity": "0..*",
-									"isReadOnly": false,
-									"isOrdered": false,
-									"isUnique": false,
-									"direction": "return"
-								}
-							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFQjU9TjlHdyZs=",
-							"_parent": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"name": "Parse",
-							"documentation": "Parses a square  try fit it in a adjaente square parser",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFQjU/AJFIC/mg=",
-									"_parent": {
-										"$ref": "AAAAAAFQjU9TjlHdyZs="
-									},
-									"name": "square",
-									"visibility": "public",
-									"isStatic": false,
-									"isLeaf": false,
-									"type": {
-										"$ref": "AAAAAAFQDBFRIfUrI+U="
-									},
-									"isReadOnly": false,
-									"isOrdered": false,
-									"isUnique": false,
-									"direction": "in"
-								}
-							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFQjU/oNFIoiHk=",
-							"_parent": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"name": "Clear",
-							"documentation": "Cleans all the adjacente square stack list",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFQjVEgS1KwHR0=",
-							"_parent": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"name": "GetEquivalentSquares",
-							"documentation": "Gets a list of equivalent square replaced in adjacent square stack",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFQjVF4/lLVLoM=",
-									"_parent": {
-										"$ref": "AAAAAAFQjVEgS1KwHR0="
-									},
-									"visibility": "public",
-									"isStatic": false,
-									"isLeaf": false,
-									"type": {
-										"$ref": "AAAAAAFQDBFRIfUrI+U="
-									},
-									"multiplicity": "0..*",
-									"isReadOnly": false,
-									"isOrdered": false,
-									"isUnique": false,
-									"direction": "return"
-								}
-							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFQjVJLJVMa/ds=",
-							"_parent": {
-								"$ref": "AAAAAAFQjUuxAk9X82Q="
-							},
-							"name": "GetAcceptedSquareList",
-							"documentation": "Gets a list of accepted square list from adjacente square stacks.",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFQjVLKrFM/3uw=",
-									"_parent": {
-										"$ref": "AAAAAAFQjVJLJVMa/ds="
-									},
-									"visibility": "public",
-									"isStatic": false,
-									"isLeaf": false,
-									"type": {
-										"$ref": "AAAAAAFQDBFRIfUrI+U="
-									},
-									"multiplicity": "0..*",
-									"isReadOnly": false,
-									"isOrdered": false,
-									"isUnique": false,
-									"direction": "return"
-								}
-							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						}
-					],
-					"isAbstract": false,
-					"isFinalSpecialization": false,
-					"isLeaf": false,
-					"isActive": false
 				},
 				{
 					"_type": "Hyperlink",
@@ -30451,6 +30264,193 @@
 											"isFinalSpecialization": false,
 											"isLeaf": false,
 											"isActive": false
+										},
+										{
+											"_type": "UMLClass",
+											"_id": "AAAAAAFQjUuxAk9X82Q=",
+											"_parent": {
+												"$ref": "AAAAAAFQC/ci/fLyXY4="
+											},
+											"name": "AdjacentSquareParser",
+											"ownedElements": [
+												{
+													"_type": "UMLDependency",
+													"_id": "AAAAAAFQjVSsK1XL74c=",
+													"_parent": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"source": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"target": {
+														"$ref": "AAAAAAFQgvbjUmIiwxc="
+													},
+													"visibility": "public"
+												}
+											],
+											"documentation": "Tries to fit a square in an adjacent square in stack",
+											"visibility": "public",
+											"operations": [
+												{
+													"_type": "UMLOperation",
+													"_id": "AAAAAAFQjU44QVEdUdU=",
+													"_parent": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"name": "GetList",
+													"documentation": "Gets a list of adjacent square stack discovered.",
+													"visibility": "public",
+													"isStatic": false,
+													"isLeaf": false,
+													"parameters": [
+														{
+															"_type": "UMLParameter",
+															"_id": "AAAAAAFQjU5yclFCkpo=",
+															"_parent": {
+																"$ref": "AAAAAAFQjU44QVEdUdU="
+															},
+															"visibility": "public",
+															"isStatic": false,
+															"isLeaf": false,
+															"type": {
+																"$ref": "AAAAAAFQjRd61EuVuKU="
+															},
+															"multiplicity": "0..*",
+															"isReadOnly": false,
+															"isOrdered": false,
+															"isUnique": false,
+															"direction": "return"
+														}
+													],
+													"concurrency": "sequential",
+													"isQuery": false,
+													"isAbstract": false
+												},
+												{
+													"_type": "UMLOperation",
+													"_id": "AAAAAAFQjU9TjlHdyZs=",
+													"_parent": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"name": "Parse",
+													"documentation": "Parses a square  try fit it in a adjaente square parser",
+													"visibility": "public",
+													"isStatic": false,
+													"isLeaf": false,
+													"parameters": [
+														{
+															"_type": "UMLParameter",
+															"_id": "AAAAAAFQjU/AJFIC/mg=",
+															"_parent": {
+																"$ref": "AAAAAAFQjU9TjlHdyZs="
+															},
+															"name": "square",
+															"visibility": "public",
+															"isStatic": false,
+															"isLeaf": false,
+															"type": {
+																"$ref": "AAAAAAFQDBFRIfUrI+U="
+															},
+															"isReadOnly": false,
+															"isOrdered": false,
+															"isUnique": false,
+															"direction": "in"
+														}
+													],
+													"concurrency": "sequential",
+													"isQuery": false,
+													"isAbstract": false
+												},
+												{
+													"_type": "UMLOperation",
+													"_id": "AAAAAAFQjU/oNFIoiHk=",
+													"_parent": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"name": "Clear",
+													"documentation": "Cleans all the adjacente square stack list",
+													"visibility": "public",
+													"isStatic": false,
+													"isLeaf": false,
+													"concurrency": "sequential",
+													"isQuery": false,
+													"isAbstract": false
+												},
+												{
+													"_type": "UMLOperation",
+													"_id": "AAAAAAFQjVEgS1KwHR0=",
+													"_parent": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"name": "GetEquivalentSquares",
+													"documentation": "Gets a list of equivalent square replaced in adjacent square stack",
+													"visibility": "public",
+													"isStatic": false,
+													"isLeaf": false,
+													"parameters": [
+														{
+															"_type": "UMLParameter",
+															"_id": "AAAAAAFQjVF4/lLVLoM=",
+															"_parent": {
+																"$ref": "AAAAAAFQjVEgS1KwHR0="
+															},
+															"visibility": "public",
+															"isStatic": false,
+															"isLeaf": false,
+															"type": {
+																"$ref": "AAAAAAFQDBFRIfUrI+U="
+															},
+															"multiplicity": "0..*",
+															"isReadOnly": false,
+															"isOrdered": false,
+															"isUnique": false,
+															"direction": "return"
+														}
+													],
+													"concurrency": "sequential",
+													"isQuery": false,
+													"isAbstract": false
+												},
+												{
+													"_type": "UMLOperation",
+													"_id": "AAAAAAFQjVJLJVMa/ds=",
+													"_parent": {
+														"$ref": "AAAAAAFQjUuxAk9X82Q="
+													},
+													"name": "GetAcceptedSquareList",
+													"documentation": "Gets a list of accepted square list from adjacente square stacks.",
+													"visibility": "public",
+													"isStatic": false,
+													"isLeaf": false,
+													"parameters": [
+														{
+															"_type": "UMLParameter",
+															"_id": "AAAAAAFQjVLKrFM/3uw=",
+															"_parent": {
+																"$ref": "AAAAAAFQjVJLJVMa/ds="
+															},
+															"visibility": "public",
+															"isStatic": false,
+															"isLeaf": false,
+															"type": {
+																"$ref": "AAAAAAFQDBFRIfUrI+U="
+															},
+															"multiplicity": "0..*",
+															"isReadOnly": false,
+															"isOrdered": false,
+															"isUnique": false,
+															"direction": "return"
+														}
+													],
+													"concurrency": "sequential",
+													"isQuery": false,
+													"isAbstract": false
+												}
+											],
+											"isAbstract": false,
+											"isFinalSpecialization": false,
+											"isLeaf": false,
+											"isActive": false
 										}
 									],
 									"visibility": "public"
@@ -31726,7 +31726,7 @@
 																"$ref": "AAAAAAFQgtmJw1C1P/w="
 															},
 															"name": "CalculateAngle",
-															"documentation": "Calculates the angle formed between adjacent cathetus",
+															"documentation": "Calculates the angle in degrees formed between adjacent cathetus",
 															"visibility": "public",
 															"isStatic": false,
 															"isLeaf": false,
