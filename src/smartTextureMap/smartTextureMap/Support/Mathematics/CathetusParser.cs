@@ -100,5 +100,77 @@ namespace smartTextureMap.Support.Mathematics{
             }
         }
 
-	}
+        /// <summary>
+        /// Creates a cathetus between the points, ensuring that they end until the intersection point
+        /// </summary>
+        /// <param name="startPoint"></param>
+        /// <param name="endPoint"></param>
+        /// <param name="intersectionPoint"></param>
+        /// <returns></returns>
+        private Cathetus CreateCathetus(Point startPoint, Point endPoint, Point intersectionPoint)
+        {
+            #region Entries validation
+
+            if (startPoint == null)
+            {
+                throw new ArgumentNullException("startPoint");
+            }
+            if (endPoint == null)
+            {
+                throw new ArgumentNullException("endPoint");
+            }
+            if (intersectionPoint == null)
+            {
+                throw new ArgumentNullException("intersectionPoint");
+            }
+
+            #endregion
+
+            // Warranting the new instance of endPoint
+            endPoint = (Point)endPoint.Clone();
+
+            if (intersectionPoint.X < endPoint.X)
+            {
+                endPoint.X = intersectionPoint.X;
+            }
+            if (intersectionPoint.Y < endPoint.Y)
+            {
+                endPoint.Y = intersectionPoint.Y;
+            }
+
+            return new Cathetus(startPoint, endPoint);
+        }
+
+        /// <summary>
+        /// Gets an intersection point between points.
+        /// </summary>
+        private Point GetIntersectionPoint(Point startPointA, Point endPointA, Point startPointB, Point endPointB)
+        {
+            #region Entries validation
+            
+            if (startPointA == null)
+            {
+                throw new ArgumentNullException("startPointA");
+            }
+            if (startPointB == null)
+            {
+                throw new ArgumentNullException("startPointB");
+            }
+            if (endPointA == null)
+            {
+                throw new ArgumentNullException("endPointA");
+            }
+            if (endPointB == null)
+            {
+                throw new ArgumentNullException("endPointB");
+            }
+
+            #endregion
+
+            Cathetus vectorA = new Cathetus(startPointA, endPointA);
+            Cathetus vectorB = new Cathetus(startPointB, endPointB);
+
+            return null;
+        }
+    }
 }

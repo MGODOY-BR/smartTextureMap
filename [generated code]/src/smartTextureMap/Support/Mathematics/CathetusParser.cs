@@ -28,9 +28,33 @@ namespace smartTextureMap.Support.Mathematics{
 			// TODO implement here
 		}
 
+		/// <summary>
+		/// Gets the adjacent catheti
+		/// </summary>
 		/// <param name="angleStrategyEnum"></param>
 		/// <returns></returns>
 		public AdjacentCatheti GetAdjacentCatheti(AngleStrategyEnum angleStrategyEnum) {
+			// TODO implement here
+			return null;
+		}
+
+		/// <summary>
+		/// Gets the intersection point between the informed catheti
+		/// </summary>
+		/// <returns></returns>
+		private Point GetIntersectionPoint() {
+			// TODO implement here
+			return null;
+		}
+
+		/// <summary>
+		/// Creates a cathetus between the points, ensuring that they end until the intersection point
+		/// </summary>
+		/// <param name="startPoint"></param>
+		/// <param name="endPoint"></param>
+		/// <param name="intersectionPoint"></param>
+		/// <returns></returns>
+		private Cathetus CreateCathetus(Point startPoint, Point endPoint, Point intersectionPoint) {
 			// TODO implement here
 			return null;
 		}

@@ -33,7 +33,7 @@ namespace smartTextureMap.Support.Mathematics{
 		}
 
 		/// <summary>
-		/// Calculates the angle formed between adjacent cathetus
+		/// Calculates the angle in degrees formed between adjacent cathetus
 		/// </summary>
 		/// <returns></returns>
 		public double CalculateAngle() {

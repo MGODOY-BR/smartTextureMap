@@ -35,5 +35,77 @@ namespace smartTextureMap.Test.Support.Mathematics
 
             #endregion
         }
+
+        [TestMethod]
+        public void GetPerpendicularInterceptionPointTestByY()
+        {
+            #region Scenario setup
+
+            Cathetus cathetusA =
+                new Cathetus(
+                    new smartTextureMap.Support.Point(20, 4),
+                    new smartTextureMap.Support.Point(20, 20));
+
+            Cathetus cathetusB =
+                new Cathetus(
+                    new smartTextureMap.Support.Point(11, 11),
+                    new smartTextureMap.Support.Point(30, 11));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidence =
+                cathetusA.GetPerpendicularInterceptionPoint(cathetusB);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.AreEqual(20, evidence.X);
+            Assert.AreEqual(11, evidence.Y);
+
+            #endregion
+        }
+
+        [TestMethod]
+        public void GetPerpendicularInterceptionPointTestByX()
+        {
+            #region Scenario setup
+
+            Cathetus cathetusA =
+                new Cathetus(
+                    new smartTextureMap.Support.Point(20, 4),
+                    new smartTextureMap.Support.Point(20, 20));
+
+            Cathetus cathetusB =
+                new Cathetus(
+                    new smartTextureMap.Support.Point(11, 11),
+                    new smartTextureMap.Support.Point(30, 11));
+
+            #endregion
+
+            #region Running the tested operation
+
+            var evidence =
+                cathetusB.GetPerpendicularInterceptionPoint(cathetusA);
+
+            #endregion
+
+            #region Getting the evidences
+
+            #endregion
+
+            #region Validating the evidences
+
+            Assert.AreEqual(20, evidence.X);
+            Assert.AreEqual(11, evidence.Y);
+
+            #endregion
+        }
     }
 }

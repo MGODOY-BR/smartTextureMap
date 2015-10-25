@@ -8,7 +8,7 @@ namespace smartTextureMap.Support{
 	/// <summary>
 	/// Represents a cartesyan coordinate.
 	/// </summary>
-	public class Point : IEquatable<Point> {
+	public class Point : IEquatable<Point>, ICloneable {
 
         /// <summary>
         /// It's the tolerance between the point recognize.
@@ -147,6 +147,32 @@ namespace smartTextureMap.Support{
             int minY = other.Y - TOLERANCE;
             int maxY = other.Y + TOLERANCE;
             return (this.Y >= minY && this.Y <= maxY);
+        }
+
+        /// <summary>
+        /// Gets an indicator informing whether the points are almost similar by X.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool LooksLikeByX(Point other)
+        {
+            #region Entries validation
+
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            int minX = other.X - TOLERANCE;
+            int maxX = other.X + TOLERANCE;
+            return (this.X >= minX && this.X <= maxX);
+        }
+
+        public object Clone()
+        {
+            return new Point(this.X, this.Y);
         }
     }
 }
