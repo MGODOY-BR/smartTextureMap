@@ -39,15 +39,6 @@ namespace smartTextureMap.Support.Mathematics{
 		}
 
 		/// <summary>
-		/// Gets the intersection point between the informed catheti
-		/// </summary>
-		/// <returns></returns>
-		private Point GetIntersectionPoint() {
-			// TODO implement here
-			return null;
-		}
-
-		/// <summary>
 		/// Creates a cathetus between the points, ensuring that they end until the intersection point
 		/// </summary>
 		/// <param name="startPoint"></param>

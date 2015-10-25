@@ -19,13 +19,35 @@ namespace smartTextureMap.Support.Mathematics{
 		/// It´s the end point
 		/// </summary>
 		private Point _endPoint;
-        
-		/// <summary>
-		/// Creates an instance of an object
-		/// </summary>
-		/// <param name="startPoint"></param>
-		/// <param name="endPoint"></param>
-		public Cathetus(Point startPoint, Point endPoint)
+
+        /// <summary>
+        /// Returns the end point
+        /// </summary>
+        public Point EndPoint
+        {
+            get
+            {
+                return _endPoint;
+            }
+        }
+
+        /// <summary>
+        /// Returns de start of point
+        /// </summary>
+        public Point StartPoint
+        {
+            get
+            {
+                return _startPoint;
+            }
+        }
+
+        /// <summary>
+        /// Creates an instance of an object
+        /// </summary>
+        /// <param name="startPoint"></param>
+        /// <param name="endPoint"></param>
+        public Cathetus(Point startPoint, Point endPoint)
         {
             #region Entries validation
             

@@ -46,5 +46,15 @@ namespace smartTextureMap.Support.Mathematics{
 			return 0.0D;
 		}
 
+		/// <summary>
+		/// Gets the perpendicular interception point between the cathetus
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public Point GetPerpendicularInterceptionPoint(Cathetus other) {
+			// TODO implement here
+			return null;
+		}
+
 	}
 }

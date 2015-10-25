@@ -59,41 +59,23 @@ namespace smartTextureMap.Support.Mathematics{
 
             #endregion
 
-            // TODO: Review whether the strategies are correct
+            Cathetus AC = new Cathetus(this._adjacentSquare.PointA, this._adjacentSquare.PointC);
 
             switch (angleStrategyEnum)
             {
-                case AngleStrategyEnum.A:
+                case AngleStrategyEnum.AAAD:
 
-                    return new AdjacentCatheti(
-                        new Cathetus(
-                            this._mainSquare.PointA, this._mainSquare.PointC),
-                        new Cathetus(
-                            this._adjacentSquare.PointB, this._adjacentSquare.PointC));
+                    Cathetus AD = new Cathetus(this._mainSquare.PointA, this._mainSquare.PointD);
+                    Cathetus AA = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(AD));
 
-                case AngleStrategyEnum.B:
+                    return new AdjacentCatheti(AA, AD);
 
-                    return new AdjacentCatheti(
-                        new Cathetus(
-                            this._mainSquare.PointC, this._mainSquare.PointB),
-                        new Cathetus(
-                            this._adjacentSquare.PointA, this._adjacentSquare.PointC));
+                case AngleStrategyEnum.CBCC:
 
-                case AngleStrategyEnum.C:
+                    Cathetus CB = new Cathetus(this._mainSquare.PointC, this._mainSquare.PointB);
+                    Cathetus CC = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(CB));
 
-                    return new AdjacentCatheti(
-                        new Cathetus(
-                            this._mainSquare.PointA, this._mainSquare.PointC),
-                        new Cathetus(
-                            this._adjacentSquare.PointA, this._adjacentSquare.PointD));
-
-                case AngleStrategyEnum.D:
-
-                    return new AdjacentCatheti(
-                        new Cathetus(
-                            this._mainSquare.PointA, this._mainSquare.PointD),
-                        new Cathetus(
-                            this._adjacentSquare.PointD, this._adjacentSquare.PointB));
+                    return new AdjacentCatheti(CB, CC);
 
                 default:
                     throw new NotSupportedException("Angle strategy not supported");
@@ -101,23 +83,15 @@ namespace smartTextureMap.Support.Mathematics{
         }
 
         /// <summary>
-        /// Creates a cathetus between the points, ensuring that they end until the intersection point
+        /// Returns a piece of cathetus
         /// </summary>
-        /// <param name="startPoint"></param>
-        /// <param name="endPoint"></param>
-        /// <param name="intersectionPoint"></param>
-        /// <returns></returns>
-        private Cathetus CreateCathetus(Point startPoint, Point endPoint, Point intersectionPoint)
+        private Cathetus Cut(Cathetus cathetus, Point intersectionPoint)
         {
             #region Entries validation
-
-            if (startPoint == null)
+            
+            if (cathetus == null)
             {
-                throw new ArgumentNullException("startPoint");
-            }
-            if (endPoint == null)
-            {
-                throw new ArgumentNullException("endPoint");
+                throw new ArgumentNullException("cathetus");
             }
             if (intersectionPoint == null)
             {
@@ -127,7 +101,7 @@ namespace smartTextureMap.Support.Mathematics{
             #endregion
 
             // Warranting the new instance of endPoint
-            endPoint = (Point)endPoint.Clone();
+            Point endPoint = (Point)cathetus.EndPoint.Clone();
 
             if (intersectionPoint.X < endPoint.X)
             {
@@ -138,39 +112,7 @@ namespace smartTextureMap.Support.Mathematics{
                 endPoint.Y = intersectionPoint.Y;
             }
 
-            return new Cathetus(startPoint, endPoint);
-        }
-
-        /// <summary>
-        /// Gets an intersection point between points.
-        /// </summary>
-        private Point GetIntersectionPoint(Point startPointA, Point endPointA, Point startPointB, Point endPointB)
-        {
-            #region Entries validation
-            
-            if (startPointA == null)
-            {
-                throw new ArgumentNullException("startPointA");
-            }
-            if (startPointB == null)
-            {
-                throw new ArgumentNullException("startPointB");
-            }
-            if (endPointA == null)
-            {
-                throw new ArgumentNullException("endPointA");
-            }
-            if (endPointB == null)
-            {
-                throw new ArgumentNullException("endPointB");
-            }
-
-            #endregion
-
-            Cathetus vectorA = new Cathetus(startPointA, endPointA);
-            Cathetus vectorB = new Cathetus(startPointB, endPointB);
-
-            return null;
+            return new Cathetus(cathetus.StartPoint, endPoint);
         }
     }
 }

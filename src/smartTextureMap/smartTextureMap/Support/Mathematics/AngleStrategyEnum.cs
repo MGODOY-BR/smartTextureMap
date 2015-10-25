@@ -4,9 +4,7 @@ namespace smartTextureMap.Support.Mathematics{
 	/// Relates the angle strategy, based on points of square
 	/// </summary>
 	public enum AngleStrategyEnum {
-		A,
-		B,
-		C,
-		D
-	}
+        AAAD,
+        CBCC
+    }
 }
