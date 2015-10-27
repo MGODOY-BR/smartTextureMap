@@ -58,6 +58,7 @@
     <Compile Include="Intelligence\Lens\AxisEngineTest.cs" />
     <Compile Include="Intelligence\ShapeParserTest.cs" />
     <Compile Include="Intelligence\SmartTextureMapTest.cs" />
+    <Compile Include="Intelligence\AdjacentSquareStackTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>

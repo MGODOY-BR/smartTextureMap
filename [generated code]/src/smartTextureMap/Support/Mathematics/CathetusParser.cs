@@ -39,13 +39,12 @@ namespace smartTextureMap.Support.Mathematics{
 		}
 
 		/// <summary>
-		/// Creates a cathetus between the points, ensuring that they end until the intersection point
+		/// Returns a piece of cathetus
 		/// </summary>
-		/// <param name="startPoint"></param>
-		/// <param name="endPoint"></param>
+		/// <param name="cathetus"> </param>
 		/// <param name="intersectionPoint"></param>
 		/// <returns></returns>
-		private Cathetus CreateCathetus(Point startPoint, Point endPoint, Point intersectionPoint) {
+		private Cathetus Cut(Cathetus cathetus , Point intersectionPoint) {
 			// TODO implement here
 			return null;
 		}

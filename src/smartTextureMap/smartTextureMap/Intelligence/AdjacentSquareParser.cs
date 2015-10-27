@@ -14,37 +14,38 @@ namespace smartTextureMap.Intelligence{
 		/// <summary>
 		/// It´s a list of adjacent square stacks
 		/// </summary>
-		private HashSet<AdjacentSquareStack> _adjacentSquareStackList;
+		private List<AdjacentSquareStack> _adjacentSquareStackList = new List<AdjacentSquareStack>();
 
 		/// <summary>
 		/// Gets a list of adjacent square stack discovered.
 		/// </summary>
 		/// <returns></returns>
-		public HashSet<AdjacentSquareStack> GetList() {
-			// TODO implement here
-			return null;
+		public List<AdjacentSquareStack> GetList()
+        {
+			return this._adjacentSquareStackList;
 		}
 
-		/// <summary>
-		/// Parses a square  try fit it in a adjaente square parser
-		/// </summary>
-		/// <param name="square"></param>
-		public void Parse(LogicalSquare square) {
+        /// <summary>
+        /// Parses a square and tries fit it in a adjacente square parser
+        /// </summary>
+        /// <param name="square"></param>
+        public void Parse(LogicalSquare square) {
 			// TODO implement here
 		}
 
 		/// <summary>
 		/// Cleans all the adjacente square stack list
 		/// </summary>
-		public void Clear() {
-			// TODO implement here
+		public void Clear()
+        {
+            this._adjacentSquareStackList.Clear();
 		}
 
 		/// <summary>
 		/// Gets a list of equivalent square replaced in adjacent square stack
 		/// </summary>
 		/// <returns></returns>
-		public HashSet<LogicalSquare> GetEquivalentSquares() {
+		public List<LogicalSquare> GetEquivalentSquares() {
 			// TODO implement here
 			return null;
 		}
@@ -53,7 +54,7 @@ namespace smartTextureMap.Intelligence{
 		/// Gets a list of accepted square list from adjacente square stacks.
 		/// </summary>
 		/// <returns></returns>
-		public HashSet<LogicalSquare> GetAcceptedSquareList() {
+		public List<LogicalSquare> GetAcceptedSquareList() {
 			// TODO implement here
 			return null;
 		}

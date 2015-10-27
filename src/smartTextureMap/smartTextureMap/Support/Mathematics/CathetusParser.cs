@@ -65,17 +65,30 @@ namespace smartTextureMap.Support.Mathematics{
             {
                 case AngleStrategyEnum.AAAD:
 
-                    Cathetus AD = new Cathetus(this._mainSquare.PointA, this._mainSquare.PointD);
-                    Cathetus AA = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(AD));
+                    {
+                        Cathetus AD = new Cathetus(this._mainSquare.PointA, this._mainSquare.PointD);
+                        Cathetus AA = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(AD));
 
-                    return new AdjacentCatheti(AA, AD);
+                        return new AdjacentCatheti(AA, AD);
+                    }
 
                 case AngleStrategyEnum.CBCC:
 
-                    Cathetus CB = new Cathetus(this._mainSquare.PointC, this._mainSquare.PointB);
-                    Cathetus CC = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(CB));
+                    {
+                        Cathetus CB = new Cathetus(this._mainSquare.PointC, this._mainSquare.PointB);
+                        Cathetus CC = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(CB));
 
-                    return new AdjacentCatheti(CB, CC);
+                        return new AdjacentCatheti(CB, CC);
+                    }
+
+                case AngleStrategyEnum.CCAD:
+
+                    {
+                        Cathetus AD = new Cathetus(this._mainSquare.PointA, this._mainSquare.PointD);
+                        Cathetus CC = this.Cut(AC, AC.GetPerpendicularInterceptionPoint(AD));
+
+                        return new AdjacentCatheti(CC, AD);
+                    }
 
                 default:
                     throw new NotSupportedException("Angle strategy not supported");

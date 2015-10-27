@@ -5,6 +5,7 @@ namespace smartTextureMap.Support.Mathematics{
 	/// </summary>
 	public enum AngleStrategyEnum {
         AAAD,
-        CBCC
+        CBCC,
+        CCAD,
     }
 }
