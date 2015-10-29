@@ -61,7 +61,9 @@ namespace smartTextureMap.Support.Mathematics{
             #endregion
 
             double tangent = this._oposite.GetSize() / this._adjacent.GetSize();
-            double radianAngle = Math.Atan(tangent);
+            double radianAngle = 
+                Math.Atan(
+                    Math.Round(tangent, 0));
             double degreeAngle = radianAngle * 180 / Math.PI;
             return degreeAngle;
         }

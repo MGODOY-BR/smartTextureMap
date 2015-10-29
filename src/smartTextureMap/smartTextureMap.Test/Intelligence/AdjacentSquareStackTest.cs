@@ -17,13 +17,13 @@ namespace smartTextureMap.Test.Intelligence
             List<LogicalSquare> stubList = new List<LogicalSquare>()
             {
                 new LogicalSquare(
-                    new Point(291, 29), new Point(612, 49)),
+                    new Point(291, 29), new Point(612, 50)),
                 new LogicalSquare(
                     new Point(279, 50), new Point(640, 100)),
                 new LogicalSquare(
-                    new Point(248, 102), new Point(684, 179)),
+                    new Point(248, 100), new Point(684, 179)),
                 new LogicalSquare(
-                    new Point(201, 181), new Point(739, 279)),
+                    new Point(201, 179), new Point(739, 279)),
                 new LogicalSquare(
                     new Point(817, 38), new Point(892, 105)),       // <-- That square it's out of adjacency
             };

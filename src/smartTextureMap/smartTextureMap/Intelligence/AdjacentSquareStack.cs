@@ -40,6 +40,13 @@ namespace smartTextureMap.Intelligence{
             {
                 throw new ArgumentNullException("square");
             }
+            if (this._lastSquare != null)
+            {
+                if (!this._lastSquare.CheckIntersection(square))
+                {
+                    return false;
+                }
+            }
 
             #endregion
 
@@ -59,9 +66,11 @@ namespace smartTextureMap.Intelligence{
                 angleKey =
                     this.GetAngleKey(
                         adjacentCatheti.CalculateAngle());
+
+                Console.WriteLine(angleKey);
             }
 
-            if (angleKey == this._angleKey)
+            if (angleKey == this._angleKey || String.IsNullOrEmpty(this._angleKey))
             {
                 this._acceptedSquareList.Add(square);
                 accepted = true;
@@ -152,7 +161,7 @@ namespace smartTextureMap.Intelligence{
             }
             if (!(mainSquare.PointA.Y < adjacentSquare.PointA.Y))
             {
-                throw new ArgumentOutOfRangeException("The main square of main square should have been less than adjacente square");
+                throw new ArgumentOutOfRangeException("The main square should have been less than adjacent square");
             }
 
             #endregion
