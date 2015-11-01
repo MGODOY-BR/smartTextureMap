@@ -29,14 +29,40 @@ namespace smartTextureMap.Intelligence{
         /// Parses a square and tries fit it in a adjacente square parser
         /// </summary>
         /// <param name="square"></param>
-        public void Parse(LogicalSquare square) {
-			// TODO implement here
-		}
+        public void TryToFit(LogicalSquare square)
+        {
+            #region Entries validation
+            
+            if (square == null)
+            {
+                throw new ArgumentNullException("square");
+            }
 
-		/// <summary>
-		/// Cleans all the adjacente square stack list
-		/// </summary>
-		public void Clear()
+            #endregion
+
+            bool notFit = false;
+
+            foreach (var stackItem in this._adjacentSquareStackList)
+            {
+                notFit = stackItem.TryToCollect(square);
+
+                if(notFit)
+                {
+                    break;
+                }
+            }
+
+            if (!notFit)
+            {
+                AdjacentSquareStack newStack = new AdjacentSquareStack();
+                newStack.TryToCollect(square);
+            }
+        }
+
+        /// <summary>
+        /// Cleans all the adjacente square stack list
+        /// </summary>
+        public void Clear()
         {
             this._adjacentSquareStackList.Clear();
 		}
@@ -45,19 +71,56 @@ namespace smartTextureMap.Intelligence{
 		/// Gets a list of equivalent square replaced in adjacent square stack
 		/// </summary>
 		/// <returns></returns>
-		public List<LogicalSquare> GetEquivalentSquares() {
-			// TODO implement here
-			return null;
+		public List<LogicalSquare> GetEquivalentSquares()
+        {
+            List<LogicalSquare> logicalList = new List<LogicalSquare>();
+            foreach (var stackItem in this._adjacentSquareStackList)
+            {
+                #region Entries validation
+
+                if (stackItem == null)
+                {
+                    throw new ArgumentNullException("stackItem");
+                }
+                if (stackItem.GetEquivalent() == null)
+                {
+                    continue;
+                }
+
+                #endregion
+
+                logicalList.Add(stackItem.GetEquivalent());
+            }
+
+            return logicalList;
 		}
 
 		/// <summary>
-		/// Gets a list of accepted square list from adjacente square stacks.
+		/// Gets a list of accepted square list from adjacent square stacks.
 		/// </summary>
 		/// <returns></returns>
 		public List<LogicalSquare> GetAcceptedSquareList() {
-			// TODO implement here
-			return null;
-		}
+            List<LogicalSquare> logicalList = new List<LogicalSquare>();
+            foreach (var stackItem in this._adjacentSquareStackList)
+            {
+                #region Entries validation
 
-	}
+                if (stackItem == null)
+                {
+                    throw new ArgumentNullException("stackItem");
+                }
+                if (stackItem.GetList() == null)
+                {
+                    continue;
+                }
+
+                #endregion
+
+                logicalList.AddRange(stackItem.GetList());
+            }
+
+            return logicalList;
+        }
+
+    }
 }

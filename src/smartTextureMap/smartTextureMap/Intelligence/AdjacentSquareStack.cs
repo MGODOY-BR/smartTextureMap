@@ -18,12 +18,12 @@ namespace smartTextureMap.Intelligence{
 		private String _angleKey;
 
 		/// <summary>
-		/// It´s the last square analised by TryCollect
+		/// It´s the last square analised by TryToCollect
 		/// </summary>
 		private LogicalSquare _lastSquare;
 
 		/// <summary>
-		/// It's a list of squares accepted by TryCollect operation
+		/// It's a list of squares accepted by TryToCollect operation
 		/// </summary>
 		private List<LogicalSquare> _acceptedSquareList = new List<LogicalSquare>();
 
@@ -32,10 +32,10 @@ namespace smartTextureMap.Intelligence{
 		/// </summary>
 		/// <param name="square"></param>
 		/// <returns></returns>
-		public bool TryCollect(LogicalSquare square)
+		public bool TryToCollect(LogicalSquare square)
         {
             #region Entries validation
-            
+
             if (square == null)
             {
                 throw new ArgumentNullException("square");
@@ -66,11 +66,14 @@ namespace smartTextureMap.Intelligence{
                 angleKey =
                     this.GetAngleKey(
                         adjacentCatheti.CalculateAngle());
-
-                Console.WriteLine(angleKey);
             }
 
-            if (angleKey == this._angleKey || String.IsNullOrEmpty(this._angleKey))
+            Console.Write(angleKey);
+            Console.Write("\t");
+            Console.Write(this.CheckSimilarAngle(angleKey));
+            Console.WriteLine();
+
+            if (this.CheckSimilarAngle(angleKey) || string.IsNullOrEmpty(this._angleKey))
             {
                 this._acceptedSquareList.Add(square);
                 accepted = true;
@@ -189,7 +192,42 @@ namespace smartTextureMap.Intelligence{
         /// <returns></returns>
         private string GetAngleKey(double angle)
         {
-            return Math.Round(angle, 2).ToString();
+            return Math.Round(angle, 0).ToString();
         }
+
+        /// <summary>
+        /// Checks whether angle is similar to the current angle
+        /// </summary>
+        /// <param name="angleKey"></param>
+        /// <returns></returns>
+        private bool CheckSimilarAngle(string angleKey)
+        {
+            #region Entries validation
+
+            if (String.IsNullOrEmpty(this._angleKey) && String.IsNullOrEmpty(angleKey))
+            {
+                return true;
+            }
+            if (String.IsNullOrEmpty(this._angleKey))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(angleKey))
+            {
+                return false;
+            }
+            if (angleKey == this._angleKey)
+            {
+                return true;
+            }
+
+            #endregion
+
+            Interval angleKeyDouble = new Interval(Double.Parse(angleKey), 3D);
+            Interval currentAngleKeyDouble = new Interval(Double.Parse(this._angleKey), 3D);
+
+            return currentAngleKeyDouble.Equals(angleKeyDouble);
+        }
+
     }
 }

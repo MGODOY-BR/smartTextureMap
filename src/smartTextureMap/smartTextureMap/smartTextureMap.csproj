@@ -60,6 +60,7 @@
     <Compile Include="Support\Mathematics\AngleStrategyEnum.cs" />
     <Compile Include="Support\Mathematics\Cathetus.cs" />
     <Compile Include="Support\Mathematics\CathetusParser.cs" />
+    <Compile Include="Support\Mathematics\Interval.cs" />
     <Compile Include="Support\Picture.cs" />
     <Compile Include="Support\LogicalSquare.cs" />
     <Compile Include="Support\Point.cs" />

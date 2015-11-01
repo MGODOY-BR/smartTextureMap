@@ -31,10 +31,10 @@ namespace smartTextureMap.Intelligence{
 		}
 
 		/// <summary>
-		/// Parses a square  try fit it in a adjaente square parser
+		/// Parses a square and tries fit it in a adjacente square parser
 		/// </summary>
 		/// <param name="square"></param>
-		public void Parse(LogicalSquare square) {
+		public void TryToFit(LogicalSquare square) {
 			// TODO implement here
 		}
 
@@ -55,7 +55,7 @@ namespace smartTextureMap.Intelligence{
 		}
 
 		/// <summary>
-		/// Gets a list of accepted square list from adjacente square stacks.
+		/// Gets a list of accepted square list from adjacent square stacks.
 		/// </summary>
 		/// <returns></returns>
 		public HashSet<LogicalSquare> GetAcceptedSquareList() {

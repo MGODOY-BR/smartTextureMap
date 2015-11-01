@@ -17,14 +17,9 @@ namespace smartTextureMap.Intelligence{
 		}
 
 		/// <summary>
-		/// It´s the angle key which all the squares have in common in adjacence.
+		/// It´s the angle key which all the squares have in common in adjacency
 		/// </summary>
 		private String _angleKey;
-
-		/// <summary>
-		/// It´s a square to replace all the squares collected
-		/// </summary>
-		private LogicalSquare _equivalentSquare;
 
 		/// <summary>
 		/// It´s the last square analised by TryCollect
@@ -42,7 +37,7 @@ namespace smartTextureMap.Intelligence{
 		/// </summary>
 		/// <param name="square"></param>
 		/// <returns></returns>
-		public bool TryCollect(LogicalSquare square) {
+		public bool TryToCollect(LogicalSquare square) {
 			// TODO implement here
 			return False;
 		}

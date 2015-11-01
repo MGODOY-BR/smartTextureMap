@@ -21,7 +21,7 @@ namespace smartTextureMap.Test.Support.Mathematics
             LogicalSquare squareB =
                 new LogicalSquare(
                     new smartTextureMap.Support.Point(5, 11),
-                    new smartTextureMap.Support.Point(30, 11));
+                    new smartTextureMap.Support.Point(30, 30));
 
             #endregion
 

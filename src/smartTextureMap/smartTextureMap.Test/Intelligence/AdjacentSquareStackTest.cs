@@ -10,7 +10,7 @@ namespace smartTextureMap.Test.Intelligence
     public class AdjacentSquareStackTest
     {
         [TestMethod]
-        public void TryCollectTest()
+        public void TryToCollectTest()
         {
             #region Scenario setup
 
@@ -35,7 +35,7 @@ namespace smartTextureMap.Test.Intelligence
             AdjacentSquareStack adjacentSquareStack = new AdjacentSquareStack();
             foreach (var stub in stubList)
             {
-                adjacentSquareStack.TryCollect(stub);
+                adjacentSquareStack.TryToCollect(stub);
             }
 
             #endregion
