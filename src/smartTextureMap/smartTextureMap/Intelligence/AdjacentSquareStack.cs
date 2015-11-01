@@ -68,11 +68,6 @@ namespace smartTextureMap.Intelligence{
                         adjacentCatheti.CalculateAngle());
             }
 
-            Console.Write(angleKey);
-            Console.Write("\t");
-            Console.Write(this.CheckSimilarAngle(angleKey));
-            Console.WriteLine();
-
             if (this.CheckSimilarAngle(angleKey) || string.IsNullOrEmpty(this._angleKey))
             {
                 this._acceptedSquareList.Add(square);

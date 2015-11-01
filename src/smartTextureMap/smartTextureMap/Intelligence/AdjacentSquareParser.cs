@@ -56,6 +56,8 @@ namespace smartTextureMap.Intelligence{
             {
                 AdjacentSquareStack newStack = new AdjacentSquareStack();
                 newStack.TryToCollect(square);
+
+                this._adjacentSquareStackList.Add(newStack);
             }
         }
 
