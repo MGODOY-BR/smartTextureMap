@@ -1,4 +1,5 @@
 
+using smartTextureMap.Exceptions;
 using smartTextureMap.Support;
 using smartTextureMap.Support.Mathematics;
 using System;
@@ -46,6 +47,10 @@ namespace smartTextureMap.Intelligence{
                 {
                     return false;
                 }
+                //if (!this._lastSquare.CheckVerticalAdjacent(square))
+                //{
+                //    return false;
+                //}
             }
 
             #endregion
@@ -58,14 +63,21 @@ namespace smartTextureMap.Intelligence{
                 LogicalSquare adjacentSquare = square;
 
                 CathetusParser parser = new CathetusParser(mainSquare, adjacentSquare);
-                var adjacentCatheti =
-                    parser.GetAdjacentCatheti(
-                        this.GetAngleStrategyEnum(
-                            mainSquare, adjacentSquare));
 
-                angleKey =
-                    this.GetAngleKey(
-                        adjacentCatheti.CalculateAngle());
+                try
+                {
+                    var adjacentCatheti =
+                        parser.GetAdjacentCatheti(
+                            this.GetAngleStrategyEnum(mainSquare, adjacentSquare));
+
+                    angleKey =
+                        this.GetAngleKey(
+                            adjacentCatheti.CalculateAngle());
+                }
+                catch (InvalidCathetiException)
+                {
+                    return false;
+                }
             }
 
             if (this.CheckSimilarAngle(angleKey) || string.IsNullOrEmpty(this._angleKey))
@@ -157,10 +169,15 @@ namespace smartTextureMap.Intelligence{
             {
                 throw new ArgumentNullException("adjacentSquare");
             }
+            /*
             if (!(mainSquare.PointA.Y < adjacentSquare.PointA.Y))
             {
-                throw new ArgumentOutOfRangeException("The main square should have been less than adjacent square");
+                throw new ArgumentOutOfRangeException(
+                    "The main square should have been placed before than the adjacent one. " + 
+                    "MainSquare.PointA = " + mainSquare.PointA.ToString() + " " +
+                    "AdjacenteSquare.PointA = " + adjacentSquare.PointA.ToString());
             }
+            */
 
             #endregion
 

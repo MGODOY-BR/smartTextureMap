@@ -115,6 +115,10 @@ namespace smartTextureMap.Intelligence{
                 {
                     continue;
                 }
+                if (stackItem.GetList().Count < 2)
+                {
+                    continue;
+                }
 
                 #endregion
 

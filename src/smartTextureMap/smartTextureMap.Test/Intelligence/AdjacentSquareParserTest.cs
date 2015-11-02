@@ -58,7 +58,7 @@ namespace smartTextureMap.Test.Intelligence
             #region Validating the evidences
 
             Assert.AreEqual(3, evidenceEquivalentSquares.Count);
-            Assert.AreEqual(9, evidenceSquareList.Count);
+            Assert.AreEqual(8, evidenceSquareList.Count);
 
             #endregion
         }

@@ -1,4 +1,5 @@
 
+using smartTextureMap.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,20 +139,19 @@ namespace smartTextureMap.Support.Mathematics{
                 ((this._startPoint.X == this._endPoint.X) ||
                 (this._startPoint.Y == this._endPoint.Y))))
             {
-                throw new NotSupportedException(
-                    "Just perpendicular cathethi are suported.");
+                throw new InvalidCathetiException("Just perpendicular cathethi are suported.", this, other);
             }
             if (!
                 ((this._startPoint.Y >= other._startPoint.Y && this._endPoint.Y <= other._endPoint.Y) ||
                 (other._startPoint.Y >= this._startPoint.Y && other._endPoint.Y <= this._endPoint.Y)))
             {
-                throw new ArgumentOutOfRangeException("Point Y out of range");
+                throw new InvalidCathetiException("Point Y out of range", this, other);
             }
             if (!
                 ((this._startPoint.X >= other._startPoint.X && this._endPoint.X <= other._endPoint.X) ||
                 (other._startPoint.X >= this._startPoint.X && other._endPoint.X <= this._endPoint.X)))
             {
-                throw new ArgumentOutOfRangeException("Point X out of range");
+                throw new InvalidCathetiException("Point X out of range", this, other);
             }
 
             #endregion
@@ -199,6 +199,24 @@ namespace smartTextureMap.Support.Mathematics{
             #endregion
 
             throw new ArgumentOutOfRangeException("There no common point among the catheti");
+        }
+
+        public override string ToString()
+        {
+            #region Entries validation
+            
+            if (this._startPoint == null)
+            {
+                throw new ArgumentNullException("this._startPoint");
+            }
+            if (this._endPoint == null)
+            {
+                throw new ArgumentNullException("this._endPoint");
+            }
+
+            #endregion
+
+            return this._startPoint.ToString() + " - " + this._endPoint.ToString();
         }
     }
 }

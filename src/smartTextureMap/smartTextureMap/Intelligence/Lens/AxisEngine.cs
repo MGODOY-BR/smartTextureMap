@@ -537,6 +537,8 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
+            #region Obsolete code
+            /*
             var adjacentSquareList = new Dictionary<LogicalSquare, List<LogicalSquare>>();
 
             #region Relating all the adjacencies
@@ -616,12 +618,6 @@ namespace smartTextureMap.Intelligence.Lens{
                     foreach (var item in patternList.Keys)
                     {
                         // TODO: This line bellow proves it the group aren´t done correctly. Every single pattern had just one pair
-                        /*
-                        if (patternList[item].Count == 2)
-                        {
-                            return false;
-                        }
-                        */
                         if (patternList[item].Contains(other))
                         {
                             return true;
@@ -637,6 +633,26 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             #endregion
+            */
+
+            #endregion
+
+            AdjacentSquareParser parser = new AdjacentSquareParser();
+            foreach (var squareItem in squareList)
+            {
+                parser.TryToFit(squareItem);
+            }
+
+            // Removing all the echoes
+            var echoeList = parser.GetAcceptedSquareList();
+
+            int echoesDeleted =
+                squareList.RemoveAll(delegate (LogicalSquare square)
+                {
+                    return echoeList.Contains(square);
+                });
+
+            Console.WriteLine(echoesDeleted + " trapeze's echoes detected has been deleted");
         }
 
         /// <summary>
