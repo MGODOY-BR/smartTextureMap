@@ -133,23 +133,34 @@ namespace smartTextureMap.Support.Mathematics{
             {
                 return this._endPoint.Clone() as Point;
             }
+
+            Interval thisStartPointX = new Interval(this._startPoint.X, 5);
+            Interval thisStartPointY = new Interval(this._startPoint.Y, 5);
+            Interval thisEndPointX = new Interval(this._endPoint.X, 5);
+            Interval thisEndPointY = new Interval(this._endPoint.Y, 5);
+
+            Interval otherStartPointX = new Interval(other._startPoint.X, 5);
+            Interval otherStartPointY = new Interval(other._startPoint.Y, 5);
+            Interval otherEndPointX = new Interval(other._endPoint.X, 5);
+            Interval otherEndPointY = new Interval(other._endPoint.Y, 5);
+
             if (!
-                (((other._startPoint.X == other._endPoint.X) ||
-                (other._startPoint.Y == other._endPoint.Y)) &&
-                ((this._startPoint.X == this._endPoint.X) ||
-                (this._startPoint.Y == this._endPoint.Y))))
+                (((other._startPoint.LooksLikeByX(other._endPoint)) ||
+                (other._startPoint.LooksLikeByY(other._endPoint))) &&
+                ((this._startPoint.LooksLikeByX(this._endPoint)) ||
+                (this._startPoint.LooksLikeByY(this._endPoint)))))
             {
                 throw new InvalidCathetiException("Just perpendicular cathethi are suported.", this, other);
             }
             if (!
-                ((this._startPoint.Y >= other._startPoint.Y && this._endPoint.Y <= other._endPoint.Y) ||
-                (other._startPoint.Y >= this._startPoint.Y && other._endPoint.Y <= this._endPoint.Y)))
+                ((this._startPoint.Y >= otherStartPointY.GetMinValue() && this._endPoint.Y <= otherEndPointY.GetMaxValue()) ||
+                (other._startPoint.Y >= thisStartPointY.GetMinValue() && other._endPoint.Y <= thisEndPointY.GetMaxValue())))
             {
                 throw new InvalidCathetiException("Point Y out of range", this, other);
             }
             if (!
-                ((this._startPoint.X >= other._startPoint.X && this._endPoint.X <= other._endPoint.X) ||
-                (other._startPoint.X >= this._startPoint.X && other._endPoint.X <= this._endPoint.X)))
+                ((this._startPoint.X >= otherStartPointX.GetMinValue() && this._endPoint.X <= otherEndPointX.GetMaxValue()) ||
+                (other._startPoint.X >= thisStartPointX.GetMinValue() && other._endPoint.X <= thisEndPointX.GetMaxValue())))
             {
                 throw new InvalidCathetiException("Point X out of range", this, other);
             }
