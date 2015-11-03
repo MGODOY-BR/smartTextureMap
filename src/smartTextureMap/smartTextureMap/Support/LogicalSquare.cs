@@ -1,4 +1,5 @@
 
+using smartTextureMap.Support.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace smartTextureMap.Support{
 	/// <summary>
 	/// Represents a logical square contained inside of the shape, used to simplify the form of the shape
 	/// </summary>
-	public class LogicalSquare {
-
+	public class LogicalSquare : IComparable<LogicalSquare>
+    {
 		/// <summary>
 		/// It´s the calculated pointC
 		/// </summary>
@@ -279,11 +280,17 @@ namespace smartTextureMap.Support{
             // Checking common points
             bool commonPoint = false;
 
-            for (int x = square.PointA.X; x < square.PointB.X; x++)
+            Interval minX = new Interval(square.PointA.X, 5D);
+            Interval maxX = new Interval(square.PointB.X, 5D);
+            Interval minY = new Interval(square.PointA.Y, 5D);
+            Interval maxY = new Interval(square.PointB.Y, 5D);
+
+            for (double x = minX.GetMinValue(); x < maxX.GetMaxValue(); x++)
             {
-                for (int y = square.PointA.Y; y < square.PointB.Y; y++)
+                for (double y = minY.GetMinValue(); y < maxX.GetMaxValue(); y++)
                 {
-                    commonPoint |= this.CheckInside(new Point(x, y));
+                    commonPoint |= this.CheckInside(
+                        new Point((int)x, (int)y));
                 }
             }
 
@@ -511,6 +518,40 @@ namespace smartTextureMap.Support{
 
                 default:
                     throw new NotSupportedException();
+            }
+        }
+
+        public int CompareTo(LogicalSquare other)
+        {
+            #region Entries validation
+            
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            Interval thisIntervalX = new Interval(this.PointA.X, 5);
+            Interval thisIntervalY = new Interval(this.PointA.Y, 5);
+            Interval otherIntervalX = new Interval(other.PointA.X, 5);
+            Interval otherIntervalY = new Interval(other.PointA.Y, 5);
+
+            if (this.PointA.Y < other.PointA.Y)
+            {
+                return -1;
+            }
+            if (thisIntervalY.Equals(otherIntervalY))
+            {
+                return this.PointA.X.CompareTo(other.PointA.X);
+            }
+            if (thisIntervalY.Equals(otherIntervalY) && thisIntervalX.Equals(otherIntervalX))
+            {
+                return 0;
+            }
+            else
+            {
+                return this.PointA.Y.CompareTo(other.PointA.Y);
             }
         }
     }

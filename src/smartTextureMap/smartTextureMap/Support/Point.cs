@@ -1,4 +1,5 @@
 
+using smartTextureMap.Support.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,15 @@ namespace smartTextureMap.Support{
             }
 
             #endregion
+
+            /*
+            Interval thisIntervalX = new Interval(this.X, TOLERANCE);
+            Interval thisIntervalY = new Interval(this.Y, TOLERANCE);
+            Interval otherIntervalX = new Interval(other.X, TOLERANCE);
+            Interval otherIntervalY = new Interval(other.Y, TOLERANCE);
+
+            return thisIntervalX.Equals(otherIntervalX) && thisIntervalY.Equals(otherIntervalY);
+            */
 
             return this.X == other.X && this.Y == other.Y;
         }

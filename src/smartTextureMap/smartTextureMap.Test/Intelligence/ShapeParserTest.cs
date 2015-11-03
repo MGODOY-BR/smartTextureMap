@@ -43,8 +43,8 @@ namespace smartTextureMap.Test.Intelligence
 
                 #region Validating the evidences
 
-                //Assert.AreEqual(5, evidenceList.Count);
-                Assert.AreEqual(7, evidenceList.Count);     // <-- Indeed that´s 5, but I'm lefted some fake polygon for ease the use of another polygon different from square and rectangles
+                Assert.AreEqual(5, evidenceList.Count);
+                // Assert.AreEqual(7, evidenceList.Count);     // <-- Indeed that´s 5, but I'm lefted some fake polygon for ease the use of another polygon different from square and rectangles
 
                 #endregion
             }

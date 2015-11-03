@@ -66,8 +66,8 @@ namespace smartTextureMap.Support.Mathematics{
 
             #endregion
 
-            double minValue = this._value - this._tolerance;
-            double maxValue = this._value + this._tolerance;
+            double minValue = GetMinValue();
+            double maxValue = GetMaxValue();
 
             double minValueOther = other._value - other._tolerance;
             double maxValueOther = other._value + other._tolerance;
@@ -76,6 +76,24 @@ namespace smartTextureMap.Support.Mathematics{
             bool maxLimit = other._value <= maxValue || this._value <= maxValueOther;
 
             return minLimit && maxLimit;
+        }
+
+        /// <summary>
+        /// Gets the maximun value possible
+        /// </summary>
+        /// <returns></returns>
+        public double GetMaxValue()
+        {
+            return this._value + this._tolerance;
+        }
+
+        /// <summary>
+        /// Gets the lower value possible
+        /// </summary>
+        /// <returns></returns>
+        public double GetMinValue()
+        {
+            return this._value - this._tolerance;
         }
     }
 }
