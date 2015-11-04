@@ -230,17 +230,18 @@ namespace smartTextureMap.Support{
         /// Checks whether the collor represents a boundary collor
         /// </summary>
         /// <returns></returns>
-        private bool CheckBoundaryCollorRange(byte collorMode)
+        private bool CheckBoundaryCollorRange(byte colorMode)
         {
             #region Entries validation
 
-            if (collorMode == 0) // PNG empty spaces
+            if (colorMode == 0) // PNG empty spaces
             {
                 return false;
             }
 
             #endregion
-            return collorMode < 200;
+
+            return colorMode < 200;
         }
 
         /// <summary>

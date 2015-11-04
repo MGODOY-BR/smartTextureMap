@@ -102,6 +102,17 @@ namespace smartTextureMap.Intelligence{
 		/// </summary>
 		/// <returns></returns>
 		public List<LogicalSquare> GetAcceptedSquareList() {
+
+            // Filtering
+            var noFitSquareList = from item in this._adjacentSquareStackList
+                                  where item.GetList().Count <= 1
+                                  select item;
+
+            this._adjacentSquareStackList.RemoveAll(delegate (AdjacentSquareStack squareStack)
+            {
+                return noFitSquareList.Contains(squareStack);
+            });
+
             List<LogicalSquare> logicalList = new List<LogicalSquare>();
             foreach (var stackItem in this._adjacentSquareStackList)
             {
@@ -115,10 +126,12 @@ namespace smartTextureMap.Intelligence{
                 {
                     continue;
                 }
+                /*
                 if (stackItem.GetList().Count < 2)
                 {
                     continue;
                 }
+                */
 
                 #endregion
 
