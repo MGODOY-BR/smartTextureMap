@@ -218,7 +218,8 @@ namespace smartTextureMap.Intelligence.Lens{
                         y = this._startPoint.Y;
                         continue;
                     }
-                    else if (!this.CheckIntersection(newSquare, this._squareList))
+                    //else if (!this.CheckIntersection(newSquare, this._squareList))
+                    else if (!this.CheckContained(newSquare, this._squareList))
                     {
                         this._squareList.Add(newSquare);
                         this.DetectedSquare++;
@@ -231,7 +232,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
             }
 
-            this.refineSquares(this._squareList);
+            this.RefineSquares(this._squareList);
 
             this._eof = true;
         }
@@ -496,7 +497,7 @@ namespace smartTextureMap.Intelligence.Lens{
         }
 
         /// <summary>
-        /// Checks if the point is contained in a square in thes list
+        /// Checks whether the point is contained in a square in thes list
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -524,15 +525,109 @@ namespace smartTextureMap.Intelligence.Lens{
         }
 
         /// <summary>
+        /// Checks whether the point is contained in a square in thes list
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckContained(LogicalSquare square, List<LogicalSquare> squareList)
+        {
+            foreach (var squareItem in squareList)
+            {
+                if (square.CheckInside(squareItem))
+                {
+                    return true;
+                }
+
+                /*
+                Support.Point compareItem = 
+                    squareItem.PointA.GetSelfOrSimilar(square.PointA);
+
+                if (compareItem.Equals(squareItem.PointA))
+                {
+                    return true;
+                }
+                */
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Refines the square list, fixing the "trapeze echoes" and etc.
         /// </summary>
-        private void refineSquares(List<LogicalSquare> squareList)
+        private void RefineSquares(List<LogicalSquare> squareList)
         {
             #region Entries validation
             
             if (squareList == null)
             {
                 throw new ArgumentNullException("squareList");
+            }
+
+            #endregion
+
+            #region Consolidating points
+
+            foreach (var squareItemA in squareList)
+            {
+                foreach (var squareItemB in squareList)
+                {
+                    #region Same points
+
+                    squareItemB.PointA =
+                        squareItemA.PointA.GetSelfOrSimilar(
+                            squareItemB.PointA);
+                    squareItemB.PointB =
+                        squareItemA.PointB.GetSelfOrSimilar(
+                            squareItemB.PointB);
+                    squareItemB.PointC =
+                        squareItemA.PointC.GetSelfOrSimilar(
+                            squareItemB.PointC);
+                    squareItemB.PointD =
+                        squareItemA.PointD.GetSelfOrSimilar(
+                            squareItemB.PointD);
+
+                    #endregion
+
+                    #region Adjacencies
+
+                    if (squareItemA.PointA.LooksLikeByY(
+                        squareItemB.PointD))
+                    {
+                        squareItemB.PointD.Y = squareItemA.PointA.Y;
+                    }
+
+                    if (squareItemA.PointB.LooksLikeByY(
+                        squareItemB.PointC))
+                    {
+                        squareItemB.PointC.Y = squareItemA.PointB.Y;
+                    }
+
+                    if (squareItemA.PointD.LooksLikeByY(
+                        squareItemB.PointA))
+                    {
+                        squareItemB.PointA.Y = squareItemA.PointD.Y;
+                    }
+
+                    //if (squareItemA.PointA.LooksLikeByX(
+                    //    squareItemB.PointD))
+                    //{
+                    //    squareItemB.PointD.X = squareItemA.PointA.X;
+                    //}
+
+                    //if (squareItemA.PointD.LooksLikeByX(
+                    //    squareItemB.PointA))
+                    //{
+                    //    squareItemB.PointA.X = squareItemA.PointD.X;
+                    //}
+
+                    //if (squareItemA.PointB.LooksLikeByX(
+                    //    squareItemB.PointC))
+                    //{
+                    //    squareItemB.PointC.X = squareItemA.PointB.X;
+                    //}
+
+                    #endregion
+                }
             }
 
             #endregion
@@ -548,6 +643,17 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 parser.TryToFit(squareItem);
             }
+
+            #region Printing detected angles
+
+            /*
+            foreach (var stack in parser.AdjacentSquareStackList)
+            {
+                Console.WriteLine("AngleKey: " + stack.AngleKey + " quantity: " + stack.GetList().Count);
+            }
+            */
+
+            #endregion
 
             // Removing all the echoes
             var echoeList = parser.GetAcceptedSquareList();

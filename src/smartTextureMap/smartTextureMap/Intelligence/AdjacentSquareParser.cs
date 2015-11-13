@@ -16,11 +16,22 @@ namespace smartTextureMap.Intelligence{
 		/// </summary>
 		private List<AdjacentSquareStack> _adjacentSquareStackList = new List<AdjacentSquareStack>();
 
-		/// <summary>
-		/// Gets a list of adjacent square stack discovered.
-		/// </summary>
-		/// <returns></returns>
-		public List<AdjacentSquareStack> GetList()
+        /// <summary>
+        /// Gets the adjacent square stack list detected
+        /// </summary>
+        public List<AdjacentSquareStack> AdjacentSquareStackList
+        {
+            get
+            {
+                return _adjacentSquareStackList;
+            }
+        }
+
+        /// <summary>
+        /// Gets a list of adjacent square stack discovered.
+        /// </summary>
+        /// <returns></returns>
+        public List<AdjacentSquareStack> GetList()
         {
 			return this._adjacentSquareStackList;
 		}
@@ -103,16 +114,6 @@ namespace smartTextureMap.Intelligence{
 		/// <returns></returns>
 		public List<LogicalSquare> GetAcceptedSquareList() {
 
-            // Filtering
-            var noFitSquareList = from item in this._adjacentSquareStackList
-                                  where item.GetList().Count <= 1
-                                  select item;
-
-            this._adjacentSquareStackList.RemoveAll(delegate (AdjacentSquareStack squareStack)
-            {
-                return noFitSquareList.Contains(squareStack);
-            });
-
             List<LogicalSquare> logicalList = new List<LogicalSquare>();
             foreach (var stackItem in this._adjacentSquareStackList)
             {
@@ -126,12 +127,14 @@ namespace smartTextureMap.Intelligence{
                 {
                     continue;
                 }
-                /*
-                if (stackItem.GetList().Count < 2)
+                if (stackItem.AngleKey == null)
                 {
                     continue;
                 }
-                */
+                if (stackItem.GetList().Count < 3)
+                {
+                    continue;
+                }
 
                 #endregion
 

@@ -2,6 +2,7 @@
 using smartTextureMap.Support.Mathematics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace smartTextureMap.Support{
 	/// <summary>
 	/// Represents a logical square contained inside of the shape, used to simplify the form of the shape
 	/// </summary>
-	public class LogicalSquare : IComparable<LogicalSquare>
+	public class LogicalSquare : IComparable<LogicalSquare>, IEquatable<LogicalSquare>
     {
 		/// <summary>
 		/// It´s the calculated pointC
@@ -45,6 +46,10 @@ namespace smartTextureMap.Support{
             {
                 return _pointC;
             }
+            set
+            {
+                this._pointC = value;
+            }
         }
 
         /// <summary>
@@ -60,6 +65,10 @@ namespace smartTextureMap.Support{
             get
             {
                 return _pointD;
+            }
+            set
+            {
+                this._pointD = value;
             }
         }
 
@@ -77,6 +86,10 @@ namespace smartTextureMap.Support{
             {
                 return _pointA;
             }
+            set
+            {
+                this._pointA = value;
+            }
         }
 
         /// <summary>
@@ -92,6 +105,10 @@ namespace smartTextureMap.Support{
             get
             {
                 return _pointB;
+            }
+            set
+            {
+                this._pointB = value;
             }
         }
 
@@ -137,6 +154,27 @@ namespace smartTextureMap.Support{
                 point.X <= this._pointB.X &&
                 point.Y >= this._pointA.Y &&
                 point.Y <= this._pointB.Y;
+        }
+
+        /// <summary>
+        /// Verifies whether the point is inside of the logical square
+        /// </summary>
+        public Boolean CheckInside(LogicalSquare other)
+        {
+            #region Entries validation
+            
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            return
+                this.CheckInside(other.PointA) ||
+                this.CheckInside(other.PointB) ||
+                this.CheckInside(other.PointC) ||
+                this.CheckInside(other.PointD);
         }
 
         /// <summary>
@@ -287,7 +325,7 @@ namespace smartTextureMap.Support{
 
             for (double x = minX.GetMinValue(); x < maxX.GetMaxValue(); x++)
             {
-                for (double y = minY.GetMinValue(); y < maxX.GetMaxValue(); y++)
+                for (double y = minY.GetMinValue(); y < maxY.GetMaxValue(); y++)
                 {
                     commonPoint |= this.CheckInside(
                         new Point((int)x, (int)y));
@@ -295,7 +333,6 @@ namespace smartTextureMap.Support{
             }
 
             return commonPoint;
-
         }
 
         /// <summary>
@@ -553,6 +590,20 @@ namespace smartTextureMap.Support{
             {
                 return this.PointA.Y.CompareTo(other.PointA.Y);
             }
+        }
+
+        public bool Equals(LogicalSquare other)
+        {
+            #region Entries validation
+
+            if (other == null)
+            {
+                return false;
+            }
+
+            #endregion
+
+            return this.ToString() == other.ToString();
         }
     }
 }

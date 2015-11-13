@@ -74,7 +74,7 @@ namespace smartTextureMap.Support{
                     return (point1.X < point2.X) ? point1 : point2;
 
                 default:
-                    throw new NotSupportedException();
+                    throw new NotSupportedException("The specified order is not supported");
             }
         }
 
@@ -153,9 +153,15 @@ namespace smartTextureMap.Support{
             }
 
             #endregion
-
+            /*
             int minY = other.Y - TOLERANCE;
             int maxY = other.Y + TOLERANCE;
+            return (this.Y >= minY && this.Y <= maxY);
+            */
+
+            Interval interval = new Interval(other.Y, TOLERANCE);
+            int minY = (int)interval.GetMinValue();
+            int maxY = (int)interval.GetMaxValue();
             return (this.Y >= minY && this.Y <= maxY);
         }
 
@@ -175,9 +181,42 @@ namespace smartTextureMap.Support{
 
             #endregion
 
+            /*
             int minX = other.X - TOLERANCE;
             int maxX = other.X + TOLERANCE;
             return (this.X >= minX && this.X <= maxX);
+            */
+
+            Interval interval = new Interval(other.X, TOLERANCE);
+            int minX = (int)interval.GetMinValue();
+            int maxX = (int)interval.GetMaxValue();
+            return (this.X >= minX && this.X <= maxX);
+        }
+
+        /// <summary>
+        /// Returns the current instance whether the another is similar. Otherwise, returns the other.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public Point GetSelfOrSimilar(Point other)
+        {
+            #region Entries validation
+
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            if (this.LooksLike(other))
+            {
+                return this;
+            }
+            else
+            {
+                return other;
+            }
         }
 
         public object Clone()

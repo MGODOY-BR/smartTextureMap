@@ -4,6 +4,7 @@ using smartTextureMap.Support;
 using smartTextureMap.Support.Mathematics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -28,12 +29,23 @@ namespace smartTextureMap.Intelligence{
 		/// </summary>
 		private List<LogicalSquare> _acceptedSquareList = new List<LogicalSquare>();
 
-		/// <summary>
-		/// Tries to collect a square and returns a boolean indicating whether the square was accept or ignored.
-		/// </summary>
-		/// <param name="square"></param>
-		/// <returns></returns>
-		public bool TryToCollect(LogicalSquare square)
+        /// <summary>
+        /// Gets the angle key
+        /// </summary>
+        public string AngleKey
+        {
+            get
+            {
+                return _angleKey;
+            }
+        }
+
+        /// <summary>
+        /// Tries to collect a square and returns a boolean indicating whether the square was accept or ignored.
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        public bool TryToCollect(LogicalSquare square)
         {
             #region Entries validation
 
@@ -43,7 +55,11 @@ namespace smartTextureMap.Intelligence{
             }
             if (this._lastSquare != null)
             {
-                if (!this._lastSquare.CheckIntersection(square))
+                if (this._lastSquare.Equals(square))
+                {
+                    return false;
+                }
+                if (!(this._lastSquare.CheckIntersection(square) || square.CheckIntersection(this._lastSquare)))
                 {
                     return false;
                 }
@@ -194,7 +210,7 @@ namespace smartTextureMap.Intelligence{
                 return AngleStrategyEnum.CBCC;
             }
 
-            throw new NotSupportedException();
+            throw new InvalidCathetiException("There aren't strategy suitable for the squares " + mainSquare + " and " + adjacentSquare);
         }
 
         /// <summary>

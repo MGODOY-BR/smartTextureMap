@@ -209,7 +209,7 @@ namespace smartTextureMap.Support.Mathematics{
 
             #endregion
 
-            throw new ArgumentOutOfRangeException("There no common point among the catheti");
+            throw new InvalidCathetiException("There are no common point among the catheti");
         }
 
         public override string ToString()

@@ -95,5 +95,14 @@ namespace smartTextureMap.Support.Mathematics{
         {
             return this._value - this._tolerance;
         }
+
+        public override string ToString()
+        {
+            return String.Format(
+                "{0} >= {1} <= {2}", 
+                this.GetMinValue(), 
+                this._value, 
+                this.GetMaxValue());
+        }
     }
 }
