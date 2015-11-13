@@ -91,11 +91,7 @@ namespace smartTextureMap.Intelligence{
             {
                 #region Entries validation
 
-                if (stackItem == null)
-                {
-                    throw new ArgumentNullException("stackItem");
-                }
-                if (stackItem.GetEquivalent() == null)
+                if (!this.IsValid(stackItem))
                 {
                     continue;
                 }
@@ -119,19 +115,7 @@ namespace smartTextureMap.Intelligence{
             {
                 #region Entries validation
 
-                if (stackItem == null)
-                {
-                    throw new ArgumentNullException("stackItem");
-                }
-                if (stackItem.GetList() == null)
-                {
-                    continue;
-                }
-                if (stackItem.AngleKey == null)
-                {
-                    continue;
-                }
-                if (stackItem.GetList().Count < 3)
+                if (!this.IsValid(stackItem))
                 {
                     continue;
                 }
@@ -144,5 +128,31 @@ namespace smartTextureMap.Intelligence{
             return logicalList;
         }
 
+        /// <summary>
+        /// Checks whether a stack square is valid for trapeze echoes.
+        /// </summary>
+        /// <param name="stackItem"></param>
+        /// <returns></returns>
+        private Boolean IsValid(AdjacentSquareStack stackItem)
+        {
+            if (stackItem == null)
+            {
+                throw new ArgumentNullException("stackItem");
+            }
+            if (stackItem.GetList() == null)
+            {
+                return false;
+            }
+            if (stackItem.AngleKey == null)
+            {
+                return false;
+            }
+            if (stackItem.GetList().Count < 3)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
