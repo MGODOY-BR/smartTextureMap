@@ -119,23 +119,7 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            int minX = other.X - TOLERANCE;
-            int maxX = other.X + TOLERANCE;
-
-            bool result = true;
-
-            if (this.X >= minX && this.X <= maxX)
-            {
-                result &= true;
-            }
-            else
-            {
-                result &= false;
-            }
-
-            result &= LooksLikeByY(other);
-
-            return result;
+            return LooksLikeByX(other) && LooksLikeByY(other);
         }
 
         /// <summary>
