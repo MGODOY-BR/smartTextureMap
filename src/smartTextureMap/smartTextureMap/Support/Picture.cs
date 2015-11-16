@@ -169,6 +169,7 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
+            /*
             if (point.Y == 0)
             {
                 return false;
@@ -177,6 +178,7 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
+            */
 
             #endregion
 

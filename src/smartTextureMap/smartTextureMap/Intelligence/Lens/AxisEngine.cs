@@ -172,7 +172,7 @@ namespace smartTextureMap.Intelligence.Lens{
             this.DetectedSquare = 0;
             this._runProgressCounter.Reset();
 
-            int y = this._startPoint.Y;
+            int y = this._startPoint.Y - ShapeLen.SENSOR_DISTANCE;
 
             //for (int x = this._startPoint.X; x < this._image.Width; x+= ShapeLen.SENSOR_DISTANCE)
             int x = this._startPoint.X;
@@ -181,7 +181,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 y += ShapeLen.SENSOR_DISTANCE;
                 if (x == 0)
                 {
-                    x += ShapeLen.SENSOR_DISTANCE;
+                    // x += ShapeLen.SENSOR_DISTANCE;
                 }
 
                 #region Iterator control
@@ -350,13 +350,13 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
                 if (x == 0)
                 {
-                    x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
-                    continue;
+                    //x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
+                    //continue;
                 }
                 if (y == 0)
                 {
-                    y += ShapeLen.SENSOR_DISTANCE;
-                    continue;
+                    //y += ShapeLen.SENSOR_DISTANCE;
+                    //continue;
                 }
                 if (y >= this._image.Height)
                 {
