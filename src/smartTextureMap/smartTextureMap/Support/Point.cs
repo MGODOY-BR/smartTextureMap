@@ -9,7 +9,7 @@ namespace smartTextureMap.Support{
 	/// <summary>
 	/// Represents a cartesyan coordinate.
 	/// </summary>
-	public class Point : IEquatable<Point>, ICloneable {
+	public class Point : IEquatable<Point>, ICloneable, IComparable<Point> {
 
         /// <summary>
         /// It's the tolerance between the point recognize.
@@ -84,7 +84,7 @@ namespace smartTextureMap.Support{
             
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                return false;
             }
 
             #endregion
@@ -211,6 +211,27 @@ namespace smartTextureMap.Support{
         public override string ToString()
         {
             return String.Format("X = {0}, Y = {1}", this.X, this.Y);
+        }
+
+        public int CompareTo(Point other)
+        {
+            #region Entries validation
+
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+
+            #endregion
+
+            if (this.Y == other.Y)
+            {
+                return this.X.CompareTo(other.X);
+            }
+            else
+            {
+                return this.Y.CompareTo(other.Y);
+            }
         }
     }
 }

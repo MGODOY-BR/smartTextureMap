@@ -208,6 +208,7 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
+            /*
             else if (this._pointD.X * this._pointA.X < 20)
             {
                 return false;
@@ -216,6 +217,7 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
+            */
             else
             {
                 return true;

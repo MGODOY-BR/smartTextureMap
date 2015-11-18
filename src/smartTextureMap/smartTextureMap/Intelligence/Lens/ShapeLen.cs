@@ -67,11 +67,11 @@ namespace smartTextureMap.Intelligence.Lens{
             }
             if (x > this._image.Width)
             {
-                throw new ArgumentException("The axis X can't be higher then the width of image");
+                return false;
             }
             if (y > this._image.Height)
             {
-                throw new ArgumentException("The axis Y can't be higher then the height of image");
+                return false;
             }
             if (x < 0)
             {

@@ -172,18 +172,11 @@ namespace smartTextureMap.Intelligence.Lens{
             this.DetectedSquare = 0;
             this._runProgressCounter.Reset();
 
-            int y = this._startPoint.Y - ShapeLen.SENSOR_DISTANCE;
-
-            //for (int x = this._startPoint.X; x < this._image.Width; x+= ShapeLen.SENSOR_DISTANCE)
+            int y = this._startPoint.Y;
             int x = this._startPoint.X;
+
             while (x < this._image.Width)
             {
-                y += ShapeLen.SENSOR_DISTANCE;
-                if (x == 0)
-                {
-                    // x += ShapeLen.SENSOR_DISTANCE;
-                }
-
                 #region Iterator control
 
                 if (y >= this._image.Height)
@@ -206,7 +199,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 #endregion
 
                 //if (this._len.Read(x, y))
-                if(!this.CheckContained(x, y))
+                if (!this.CheckContained(x, y))
                 {
                     var newSquare =
                         this.ScanSquare(this._len, x, y);
@@ -230,9 +223,10 @@ namespace smartTextureMap.Intelligence.Lens{
                         y = newSquare.PointD.Y;
                     }
                 }
+                y += ShapeLen.SENSOR_DISTANCE;
             }
 
-            this.RefineSquares(this._squareList);
+            //this.RefineSquares(this._squareList);
 
             this._eof = true;
         }
@@ -312,7 +306,7 @@ namespace smartTextureMap.Intelligence.Lens{
         private LogicalSquare ScanSquare(ShapeLen len, int startX, int startY)
         {
             #region Entries validation
-            
+
             if (len == null)
             {
                 throw new ArgumentNullException("len");
@@ -326,11 +320,14 @@ namespace smartTextureMap.Intelligence.Lens{
             int y = startY;
             Support.Point pointA = null;
 
-            Support.Point lastRightBoundary = null;
+            // Support.Point lastRightBoundary = null;
+            PointManager pointManager = new PointManager();
 
             //for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
             int x = startX;
-            while (x < this._image.Width - 1)
+            int maxX = this._image.Width - 1;
+            int maxY = this._image.Height - 1;
+            while (x < maxX)
             {
                 if (pointA != null)
                 {
@@ -339,28 +336,19 @@ namespace smartTextureMap.Intelligence.Lens{
 
                 #region Square validation/creation logic
 
-                if (pointA != null && lastRightBoundary != null && len.CheckBottomBoundary())
+                var rightCorner = pointManager.GetRightCorner();
+
+                if (pointA != null && rightCorner != null && len.CheckBottomBoundary())
                 {
-                    return new LogicalSquare(pointA, lastRightBoundary);
+                    pointManager.Clear();
+                    return new LogicalSquare(pointA, rightCorner);
                 }
+
                 if (x < 0)
                 {
-                    // This isn't a polygon
-                    return null;
-                }
-                if (x == 0)
-                {
-                    //x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
-                    //continue;
-                }
-                if (y == 0)
-                {
-                    //y += ShapeLen.SENSOR_DISTANCE;
-                    //continue;
-                }
-                if (y >= this._image.Height)
-                {
-                    break;
+                    // Changes the direction
+                    x = startX;
+                    directionEnum = AxisDirectionEnum.Forward;
                 }
 
                 #endregion
@@ -391,9 +379,9 @@ namespace smartTextureMap.Intelligence.Lens{
                             case AxisDirectionEnum.Forward:
                                 if (len.CheckRightBoundary())
                                 {
-                                    lastRightBoundary = len.GetLastPosition();
+                                    pointManager.Register(len.GetLastPosition());
+                                    directionEnum = AxisDirectionEnum.Backward;
                                 }
-                                directionEnum = AxisDirectionEnum.Backward;
                                 break;
 
                             default:
@@ -413,17 +401,9 @@ namespace smartTextureMap.Intelligence.Lens{
                     lastDirectionEnum = directionEnum;
                 }
 
-                if (y >= this._image.Height)
+                if (y + 1 >= maxY && x + 1 >= maxX)
                 {
-                    if (x < this._image.Width)
-                    {
-                        x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum);
-                        y = startY;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
 

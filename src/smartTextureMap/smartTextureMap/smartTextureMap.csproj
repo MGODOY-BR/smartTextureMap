@@ -50,6 +50,7 @@
     <Compile Include="Intelligence\AdjacentSquareStack.cs" />
     <Compile Include="Intelligence\Lens\AxisDirectionEnum.cs" />
     <Compile Include="Intelligence\Lens\AxisEngine.cs" />
+    <Compile Include="Intelligence\Lens\PointManager.cs" />
     <Compile Include="Intelligence\Lens\Sensor.cs" />
     <Compile Include="Intelligence\Lens\ShapeLen.cs" />
     <Compile Include="Intelligence\ShapeParser.cs" />

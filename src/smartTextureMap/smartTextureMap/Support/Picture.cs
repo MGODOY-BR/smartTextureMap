@@ -161,24 +161,22 @@ namespace smartTextureMap.Support{
             {
                 throw new NotSupportedException("Just available for bitmap objects!");
             }
-            if (point.Y >= this._originalImage.Height)
+            if (point.Y > this._originalImage.Height)
             {
                 return false;
             }
-            if (point.X >= this._originalImage.Width)
+            if (point.X > this._originalImage.Width)
             {
                 return false;
             }
-            /*
-            if (point.Y == 0)
+            if (point.Y == this._originalImage.Height)
             {
-                return false;
+                return true;
             }
-            if (point.X == 0)
+            if (point.X == this._originalImage.Width)
             {
-                return false;
+                return true;
             }
-            */
 
             #endregion
 

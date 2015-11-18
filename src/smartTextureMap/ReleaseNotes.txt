@@ -1,0 +1,7 @@
+Correção do bug do shape {0, 0}
+
+Detecção de bug que atrapalha a detecção de trapézios - retângulos parasitas que surgem em inclinações pixeladas
+
+Descoberto salto entre quadrados que impede a detecção dos trapézios (talvez a acurácia  das cores ajude)
+
+Rever a detecção das cores para as fronteiras
