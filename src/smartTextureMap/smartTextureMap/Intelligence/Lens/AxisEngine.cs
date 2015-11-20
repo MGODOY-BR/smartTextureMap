@@ -223,7 +223,10 @@ namespace smartTextureMap.Intelligence.Lens{
                         y = newSquare.PointD.Y;
                     }
                 }
-                y += ShapeLen.SENSOR_DISTANCE;
+                else
+                {
+                    y += ShapeLen.SENSOR_DISTANCE;
+                }
             }
 
             //this.RefineSquares(this._squareList);
@@ -360,7 +363,7 @@ namespace smartTextureMap.Intelligence.Lens{
                     if (pointA == null)
                     {
                         pointA = len.GetLastPosition();
-                        startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
+                        // startX = pointA.X + ShapeLen.SENSOR_DISTANCE;
                         x += ShapeLen.SENSOR_DISTANCE;
                         y += ShapeLen.SENSOR_DISTANCE;
                     }
