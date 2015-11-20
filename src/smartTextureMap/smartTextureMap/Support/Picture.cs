@@ -1,4 +1,5 @@
 
+using smartTextureMap.Support.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -184,9 +185,10 @@ namespace smartTextureMap.Support{
             var pixel = bitmap.GetPixel(point.X, point.Y);
 
             if(
-                this.CheckBoundaryCollorRange(pixel.R) &&
-                this.CheckBoundaryCollorRange(pixel.G) &&
-                this.CheckBoundaryCollorRange(pixel.B)) // Comparing to the colors of lines
+                this.CheckBoundaryColorRange(
+                    pixel.R, 
+                    pixel.G, 
+                    pixel.B)) // Comparing to the colors of lines
             {
                 return true;
             }
@@ -227,10 +229,61 @@ namespace smartTextureMap.Support{
         }
 
         /// <summary>
-        /// Checks whether the collor represents a boundary collor
+        /// Checks whether the collor represents a boundary color
         /// </summary>
         /// <returns></returns>
-        private bool CheckBoundaryCollorRange(byte colorMode)
+        private bool CheckBoundaryColorRange(byte r, byte g, byte b)
+        {
+            #region Entries validation
+
+            if (r == 0 && g == 0 && b == 0) // PNG empty spaces
+            {
+                return false;
+            }
+
+            #endregion
+
+            return 
+                (r == g && g == b && r == b) && 
+                r < 170;
+
+            /*
+            int tolerance = 5;
+
+            List<Interval> acceptedIntervalList =
+                new List<Interval>()
+                {
+                    new Interval(20, tolerance),
+                    new Interval(34, tolerance),
+                    new Interval(67, tolerance),
+                    new Interval(88, tolerance),
+                    new Interval(98, tolerance),
+                    new Interval(114, tolerance),
+                    new Interval(123, tolerance),
+                    new Interval(139, tolerance),
+                };
+
+            foreach (Interval item in acceptedIntervalList)
+            {
+                if (r == g && g == b && b == r)
+                {
+                    if (item.IsValid(r))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+            */
+        }
+
+        /// <summary>
+        /// Checks whether the collor represents a boundary color
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Obsolete method", true)]
+        private bool CheckBoundaryColorRange(byte colorMode)
         {
             #region Entries validation
 

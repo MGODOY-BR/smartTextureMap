@@ -42,5 +42,15 @@ namespace smartTextureMap.Support.Mathematics{
 			return 0;
 		}
 
+		/// <summary>
+		/// Checks if the number is inner the interval.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public boolean IsValid(double value) {
+			// TODO implement here
+			return null;
+		}
+
 	}
 }

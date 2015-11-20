@@ -1,6 +1,6 @@
 smartTextureMap lab\EstacaoA_PrimeiroAndar.png
-rem smartTextureMap lab\EstacaoA_Terreo.png
-rem smartTextureMap lab\EstacaoA_Plataforma_Teto.png
-rem smartTextureMap lab\EstacaoA_Plataforma.png
+smartTextureMap lab\EstacaoA_Terreo.png
+smartTextureMap lab\EstacaoA_Plataforma_Teto.png
+smartTextureMap lab\EstacaoA_Plataforma.png
 
 pause

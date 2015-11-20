@@ -10,7 +10,6 @@ namespace smartTextureMap.Support.Mathematics{
 	/// </summary>
 	public class Interval : IComparable<Interval>, IEquatable<Interval>
     {
-
 		/// <summary>
 		/// It´s the value
 		/// </summary>
@@ -94,6 +93,16 @@ namespace smartTextureMap.Support.Mathematics{
         public double GetMinValue()
         {
             return this._value - this._tolerance;
+        }
+
+        /// <summary>
+        /// Checks if the number is inner the interval.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Boolean IsValid(double value)
+        {
+            return this.GetMinValue() <= value && this.GetMaxValue() >= value;
         }
 
         public override string ToString()
