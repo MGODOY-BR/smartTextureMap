@@ -245,7 +245,7 @@ namespace smartTextureMap.Support{
 
             return 
                 (r == g && g == b && r == b) && 
-                r < 170;
+                r <= 170;
 
             /*
             int tolerance = 5;
