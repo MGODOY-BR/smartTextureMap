@@ -184,11 +184,18 @@ namespace smartTextureMap.Support{
             Bitmap bitmap = (Bitmap)this._originalImage;
             var pixel = bitmap.GetPixel(point.X, point.Y);
 
-            if(
+            /*
+            if (
                 this.CheckBoundaryColorRange(
                     pixel.R, 
                     pixel.G, 
                     pixel.B)) // Comparing to the colors of lines
+            {
+                return true;
+            }
+            */
+            if (
+                this.CheckBoundaryColorRange(pixel))
             {
                 return true;
             }
@@ -226,6 +233,31 @@ namespace smartTextureMap.Support{
             {
                 throw new ApplicationException("Error to save [" + fileName + "]. Try to choice a diferent file from the original as destination.", ex);
             }
+        }
+
+        //static List<int> _color = new List<int>();
+
+        /// <summary>
+        /// Checks whether the collor represents a boundary color
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckBoundaryColorRange(Color color)
+        {
+            #region Entries validation
+
+            if (color == null)
+            {
+                throw new ArgumentNullException("color");
+            }
+            if (color == Color.Black)
+            {
+                return false;
+            }
+
+            #endregion
+
+            return
+                this.CheckBoundaryColorRange(color.R, color.G, color.B); // || color.A > 200;
         }
 
         /// <summary>
