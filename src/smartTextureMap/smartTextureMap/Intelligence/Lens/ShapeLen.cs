@@ -136,7 +136,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return this._currentSensor.Check() && !this._bellowSensor.Check();
+            return this._currentSensor.Check().IsBoundary && !this._bellowSensor.Check().IsBoundary;
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             // return (this._currentSensor.Check() && (!this.CheckNearRightSensor() || !this._leftSensor.Check()));
-            return this._currentSensor.Check() && !this._nextSensor.Check();
+            return this._currentSensor.Check().IsBoundary && !this._nextSensor.Check().IsBoundary;
             // return (this._currentSensor.Check() && (!this._nextSensor.Check() || !this._leftSensor.Check()));
         }
 
@@ -177,7 +177,7 @@ namespace smartTextureMap.Intelligence.Lens{
                     point.X + i,
                     point.Y);
 
-                if (!this._nextSensor.Check())
+                if (!this._nextSensor.Check().IsBoundary)
                 {
                     return false;
                 }
@@ -205,7 +205,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return this._currentSensor.Check() && !this._leftSensor.Check();
+            return this._currentSensor.Check().IsBoundary && !this._leftSensor.Check().IsBoundary;
         }
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             return
-                this._currentSensor.Check();
+                this._currentSensor.Check().IsBoundary;
         }
 
         /// <summary>

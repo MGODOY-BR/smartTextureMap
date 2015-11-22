@@ -146,7 +146,7 @@ namespace smartTextureMap.Support{
 		/// </summary>
 		/// <param name="point"></param>
 		/// <returns></returns>
-		public Boolean CheckBoundary(Point point)
+		public BoundaryResult CheckBoundary(Point point)
         {
             #region Entries validation
 
@@ -164,19 +164,19 @@ namespace smartTextureMap.Support{
             }
             if (point.Y > this._originalImage.Height)
             {
-                return false;
+                return new BoundaryResult(false, Color.Transparent);
             }
             if (point.X > this._originalImage.Width)
             {
-                return false;
+                return new BoundaryResult(false, Color.Transparent);
             }
             if (point.Y == this._originalImage.Height)
             {
-                return true;
+                return new BoundaryResult(true, Color.Transparent);
             }
             if (point.X == this._originalImage.Width)
             {
-                return true;
+                return new BoundaryResult(true, Color.Transparent);
             }
 
             #endregion
@@ -185,14 +185,7 @@ namespace smartTextureMap.Support{
 
             var pixel = bitmap.GetPixel(point.X, point.Y);
 
-            if (this.CheckBoundaryColorRange(pixel))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return this.CheckBoundaryColorRange(pixel);
         }
 
         /// <summary>
@@ -225,13 +218,11 @@ namespace smartTextureMap.Support{
             }
         }
 
-        //static List<int> _color = new List<int>();
-
         /// <summary>
         /// Checks whether the collor represents a boundary color
         /// </summary>
         /// <returns></returns>
-        private bool CheckBoundaryColorRange(Color color)
+        private BoundaryResult CheckBoundaryColorRange(Color color)
         {
             #region Entries validation
 
@@ -241,52 +232,19 @@ namespace smartTextureMap.Support{
             }
             if (color == Color.Black)
             {
-                return false;
+                return new BoundaryResult(false, color);
+            }
+            if (color.R == 0 && color.G == 0 && color.B == 0) // PNG empty spaces
+            {
+                return new BoundaryResult(false, color);
             }
 
             #endregion
 
             return
-                this.CheckBoundaryColorRange(color.R, color.G, color.B); // || color.A > 200;
-        }
-
-        /// <summary>
-        /// Checks whether the collor represents a boundary color
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckBoundaryColorRange(byte r, byte g, byte b)
-        {
-            #region Entries validation
-
-            if (r == 0 && g == 0 && b == 0) // PNG empty spaces
-            {
-                return false;
-            }
-
-            #endregion
-
-            return 
-                (r == g && g == b && r == b) && 
-                r <= 180;
-        }
-
-        /// <summary>
-        /// Checks whether the collor represents a boundary color
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("Obsolete method", true)]
-        private bool CheckBoundaryColorRange(byte colorMode)
-        {
-            #region Entries validation
-
-            if (colorMode == 0) // PNG empty spaces
-            {
-                return false;
-            }
-
-            #endregion
-
-            return colorMode < 200;
+                new BoundaryResult(
+                    (color.R == color.G && color.G == color.B && color.R == color.B) && color.R <= 180,
+                    color);
         }
 
         /// <summary>

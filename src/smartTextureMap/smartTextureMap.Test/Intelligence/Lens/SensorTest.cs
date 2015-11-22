@@ -63,7 +63,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
 
                 #region Validating the evidences
 
-                Assert.IsTrue(evidence);
+                Assert.IsTrue(evidence.IsBoundary);
 
                 #endregion
             }
@@ -93,7 +93,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
 
                 #region Validating the evidences
 
-                Assert.IsFalse(evidence);
+                Assert.IsFalse(evidence.IsBoundary);
 
                 #endregion
             }

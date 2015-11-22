@@ -55,7 +55,7 @@ namespace smartTextureMap.Test.Support
 
                 #region Running the tested operation
 
-                bool evidence = picture.CheckBoundary(new smartTextureMap.Support.Point(22, 22));
+                var evidence = picture.CheckBoundary(new smartTextureMap.Support.Point(22, 22));
 
                 #endregion
 
@@ -65,7 +65,7 @@ namespace smartTextureMap.Test.Support
 
                 #region Validating the evidences
 
-                Assert.IsTrue(evidence);
+                Assert.IsTrue(evidence.IsBoundary);
 
                 #endregion
             }
@@ -83,7 +83,7 @@ namespace smartTextureMap.Test.Support
 
                 #region Running the tested operation
 
-                bool evidency = picture.CheckBoundary(new smartTextureMap.Support.Point(5, 5));
+                var evidency = picture.CheckBoundary(new smartTextureMap.Support.Point(5, 5));
 
                 #endregion
 
@@ -93,7 +93,7 @@ namespace smartTextureMap.Test.Support
 
                 #region Validating the evidences
 
-                Assert.IsFalse(evidency);
+                Assert.IsFalse(evidency.IsBoundary);
 
                 #endregion
             }

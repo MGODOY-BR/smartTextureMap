@@ -47,7 +47,7 @@ namespace smartTextureMap.Support.Mathematics{
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public boolean IsValid(double value) {
+		public Boolean IsValid(double value) {
 			// TODO implement here
 			return null;
 		}

@@ -43,7 +43,7 @@ namespace smartTextureMap.Intelligence.Lens{
         /// Returns an sign about the identified point
         /// </summary>
         /// <returns></returns>
-        public Boolean Check()
+        public BoundaryResult Check()
         {
             #region Entries validation
             
