@@ -146,7 +146,7 @@ namespace smartTextureMap.Intelligence.Lens{
         public Boolean CheckRightBoundary()
         {
             #region Entries validation
-            
+
             if (this._currentSensor == null)
             {
                 throw new ArgumentNullException("this._currentSensor");
@@ -158,7 +158,32 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return (this._currentSensor.Check() && (!this._nextSensor.Check() || !this._leftSensor.Check()));
+            // return (this._currentSensor.Check() && (!this.CheckNearRightSensor() || !this._leftSensor.Check()));
+            return this._currentSensor.Check() && !this._nextSensor.Check();
+            // return (this._currentSensor.Check() && (!this._nextSensor.Check() || !this._leftSensor.Check()));
+        }
+
+        /// <summary>
+        /// Checks if the right sensor is checked, in a general sense
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckNearRightSensor()
+        {
+            var point = (Point)this._nextSensor.GetPoint().Clone();
+
+            for (int i = 0; i < 2; i++)
+            {
+                this._nextSensor.Update(
+                    point.X + i,
+                    point.Y);
+
+                if (!this._nextSensor.Check())
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -240,7 +265,7 @@ namespace smartTextureMap.Intelligence.Lens{
         }
 
         /// <summary>
-        /// Checks whether the sensor rules identifies a border
+        /// Checks whether the sensor rules identify a border
         /// </summary>
         /// <returns></returns>
         private Boolean CheckBorder()

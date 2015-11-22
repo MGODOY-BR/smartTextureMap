@@ -229,7 +229,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
             }
 
-            //this.RefineSquares(this._squareList);
+            this.RefineSquares(this._squareList);
 
             this._eof = true;
         }
@@ -647,6 +647,10 @@ namespace smartTextureMap.Intelligence.Lens{
                 });
 
             Console.WriteLine(echoesDeleted + " trapeze's echoes detected has been deleted");
+
+            // Replacing the echoes by the equivalent ones
+            squareList.AddRange(
+                parser.GetEquivalentSquares());
         }
 
         /// <summary>

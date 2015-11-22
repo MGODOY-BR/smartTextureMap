@@ -95,6 +95,10 @@ namespace smartTextureMap.Intelligence{
                 {
                     continue;
                 }
+                if (stackItem.GetEquivalent() == null)
+                {
+                    continue;
+                }
 
                 #endregion
 
@@ -147,7 +151,7 @@ namespace smartTextureMap.Intelligence{
             {
                 return false;
             }
-            if (stackItem.GetList().Count < 3)
+            if (stackItem.GetList().Count < AdjacentSquareStack.STACKSIZE_RELEVANT)
             {
                 return false;
             }

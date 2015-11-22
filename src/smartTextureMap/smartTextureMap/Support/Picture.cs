@@ -99,11 +99,11 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            SolidBrush drawBrush = new SolidBrush(Color.DarkBlue);
 
             // Create point for upper-left corner of drawing.
             float x = point.X;
-            float y = point.Y - font.SizeInPoints / 2;
+            float y = point.Y - (font.SizeInPoints / 2) + (font.SizeInPoints / 4);
 
             // Set format of string.
             StringFormat drawFormat = new StringFormat();
@@ -182,20 +182,10 @@ namespace smartTextureMap.Support{
             #endregion
 
             Bitmap bitmap = (Bitmap)this._originalImage;
+
             var pixel = bitmap.GetPixel(point.X, point.Y);
 
-            /*
-            if (
-                this.CheckBoundaryColorRange(
-                    pixel.R, 
-                    pixel.G, 
-                    pixel.B)) // Comparing to the colors of lines
-            {
-                return true;
-            }
-            */
-            if (
-                this.CheckBoundaryColorRange(pixel))
+            if (this.CheckBoundaryColorRange(pixel))
             {
                 return true;
             }
@@ -277,37 +267,7 @@ namespace smartTextureMap.Support{
 
             return 
                 (r == g && g == b && r == b) && 
-                r <= 170;
-
-            /*
-            int tolerance = 5;
-
-            List<Interval> acceptedIntervalList =
-                new List<Interval>()
-                {
-                    new Interval(20, tolerance),
-                    new Interval(34, tolerance),
-                    new Interval(67, tolerance),
-                    new Interval(88, tolerance),
-                    new Interval(98, tolerance),
-                    new Interval(114, tolerance),
-                    new Interval(123, tolerance),
-                    new Interval(139, tolerance),
-                };
-
-            foreach (Interval item in acceptedIntervalList)
-            {
-                if (r == g && g == b && b == r)
-                {
-                    if (item.IsValid(r))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-            */
+                r <= 180;
         }
 
         /// <summary>

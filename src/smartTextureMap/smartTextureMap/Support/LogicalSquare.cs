@@ -150,10 +150,8 @@ namespace smartTextureMap.Support{
             #endregion
 
             return
-                point.X >= this._pointA.X &&
-                point.X <= this._pointB.X &&
-                point.Y >= this._pointA.Y &&
-                point.Y <= this._pointB.Y;
+                point.X >= this._pointA.X && point.X <= this._pointB.X &&
+                point.Y >= this._pointA.Y && point.Y <= this._pointB.Y;
         }
 
         /// <summary>
@@ -320,19 +318,23 @@ namespace smartTextureMap.Support{
             // Checking common points
             bool commonPoint = false;
 
-            Interval minX = new Interval(square.PointA.X, 5D);
-            Interval maxX = new Interval(square.PointB.X, 5D);
-            Interval minY = new Interval(square.PointA.Y, 5D);
-            Interval maxY = new Interval(square.PointB.Y, 5D);
+            double minXA = new Interval(this.PointA.X, 5D).GetMinValue();
+            double maxXA = new Interval(this.PointA.X, 5D).GetMaxValue();
+            double minYA = new Interval(this.PointA.Y, 5D).GetMinValue();
+            double maxYA = new Interval(this.PointA.Y, 5D).GetMaxValue();
 
-            for (double x = minX.GetMinValue(); x < maxX.GetMaxValue(); x++)
-            {
-                for (double y = minY.GetMinValue(); y < maxY.GetMaxValue(); y++)
-                {
-                    commonPoint |= this.CheckInside(
-                        new Point((int)x, (int)y));
-                }
-            }
+            double minXB = new Interval(this.PointB.X, 5D).GetMinValue();
+            double maxXB = new Interval(this.PointB.X, 5D).GetMaxValue();
+            double minYB = new Interval(this.PointB.Y, 5D).GetMinValue();
+            double maxYB = new Interval(this.PointB.Y, 5D).GetMaxValue();
+
+            commonPoint =
+                (square.PointA.X >= minXA && square.PointA.X <= maxXA) &&
+                (square.PointA.Y >= minYA && square.PointA.Y <= maxYA);
+
+            commonPoint |=
+                (square.PointB.X >= minXB && square.PointB.X <= maxXB) &&
+                (square.PointB.Y >= minYB && square.PointB.Y <= maxYB);
 
             return commonPoint;
         }

@@ -128,11 +128,11 @@ namespace smartTextureMap.Support{
                 return null;
             }
 
-            FontFamily fontFamily = new FontFamily("Verdana");
+            FontFamily fontFamily = new FontFamily("Courier New");
             Font font = new Font(
                fontFamily,
                size,
-               FontStyle.Regular,
+               FontStyle.Underline | FontStyle.Bold,
                GraphicsUnit.Pixel);
 
             return font;

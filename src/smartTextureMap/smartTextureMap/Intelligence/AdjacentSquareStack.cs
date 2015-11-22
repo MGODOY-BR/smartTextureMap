@@ -14,6 +14,11 @@ namespace smartTextureMap.Intelligence{
 	/// </summary>
 	public class AdjacentSquareStack {
 
+        /// <summary>
+        /// It´s the relevant size of stack to be considered valid
+        /// </summary>
+        public const int STACKSIZE_RELEVANT = 4;
+
 		/// <summary>
 		/// It´s the angle key which all the squares have in common in adjacency.
 		/// </summary>
@@ -78,21 +83,17 @@ namespace smartTextureMap.Intelligence{
                 LogicalSquare mainSquare = this._lastSquare;
                 LogicalSquare adjacentSquare = square;
 
-                CathetusParser parser = new CathetusParser(mainSquare, adjacentSquare);
-
-                try
+                angleKey = GetAngleKey(mainSquare, adjacentSquare);
+                if (angleKey == null)
                 {
-                    var adjacentCatheti =
-                        parser.GetAdjacentCatheti(
-                            this.GetAngleStrategyEnum(mainSquare, adjacentSquare));
+                    // Trying the reverse
+                    angleKey = GetAngleKey(adjacentSquare, mainSquare);
 
-                    angleKey =
-                        this.GetAngleKey(
-                            adjacentCatheti.CalculateAngle());
-                }
-                catch (InvalidCathetiException)
-                {
-                    return false;
+                    // Quying...
+                    if (angleKey == null)
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -113,6 +114,33 @@ namespace smartTextureMap.Intelligence{
         }
 
         /// <summary>
+        /// Gets the angle key among the squares
+        /// </summary>
+        /// <param name="mainSquare"></param>
+        /// <param name="adjacentSquare"></param>
+        /// <returns></returns>
+        private string GetAngleKey(LogicalSquare mainSquare, LogicalSquare adjacentSquare)
+        {
+            try
+            {
+                CathetusParser parser =
+                    new CathetusParser(mainSquare, adjacentSquare);
+
+                var adjacentCatheti =
+                    parser.GetAdjacentCatheti(
+                        this.GetAngleStrategyEnum(mainSquare, adjacentSquare));
+
+                return
+                    this.GetAngleKey(
+                        adjacentCatheti.CalculateAngle());
+            }
+            catch (InvalidCathetiException)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Gets a equivalent logical square to replace all the logical squares collected
         /// </summary>
         /// <returns></returns>
@@ -120,7 +148,7 @@ namespace smartTextureMap.Intelligence{
         {
             #region Entries validation
             
-            if (this._acceptedSquareList.Count == 0)
+            if (this._acceptedSquareList.Count < STACKSIZE_RELEVANT)
             {
                 return null;
             }
