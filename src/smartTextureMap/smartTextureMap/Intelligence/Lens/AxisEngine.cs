@@ -539,8 +539,6 @@ namespace smartTextureMap.Intelligence.Lens{
         /// </summary>
         private void RefineSquares(List<LogicalSquare> squareList)
         {
-            return;
-
             #region Entries validation
             
             if (squareList == null)
