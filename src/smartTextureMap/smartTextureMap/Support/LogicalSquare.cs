@@ -191,9 +191,6 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentNullException("this._pointB");
             }
-
-            #endregion
-
             if (this._pointB.Y < this._pointA.Y)
             {
                 return false;
@@ -202,24 +199,22 @@ namespace smartTextureMap.Support{
             {
                 return false;
             }
-            else if ((this._pointB.X * this._pointB.Y) - (this._pointA.X * this._pointA.Y) < 20)
-            {
-                return false;
-            }
+
+            #endregion
+
             /*
-            else if (this._pointD.X * this._pointA.X < 20)
-            {
-                return false;
-            }
-            else if (this._pointD.Y * this._pointA.Y < 20)
+            Cathetus cathetusAC = new Cathetus(this._pointA, this._pointC);
+            Cathetus cathetusDB = new Cathetus(this._pointD, this._pointB);
+
+            if (this.CalculateHypotenuse(
+                cathetusAC.GetSize(), 
+                cathetusDB.GetSize()) < 20)
             {
                 return false;
             }
             */
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         /// <summary>
@@ -398,7 +393,7 @@ namespace smartTextureMap.Support{
         public int CalculateExternalHypotenuse(LogicalSquare square)
         {
             #region Entries validation
-            
+
             if (square == null)
             {
                 throw new ArgumentNullException("square");
@@ -446,9 +441,7 @@ namespace smartTextureMap.Support{
                 otherCathetus = square._pointC.X - square._pointA.X;
             }
 
-            return (int)Math.Round(
-                Math.Sqrt(
-                (selfCathetus * selfCathetus) + (otherCathetus * otherCathetus)));
+            return this.CalculateHypotenuse(selfCathetus, otherCathetus);
         }
 
         public override string ToString()
@@ -484,6 +477,16 @@ namespace smartTextureMap.Support{
                 this._pointC.Y,
                 this._pointD.X,
                 this._pointD.Y);
+        }
+
+        /// <summary>
+        /// Calculate the hypotenuse among the cathetus
+        /// </summary>
+        private int CalculateHypotenuse(double sizeCathetusA, double sizeCathetusB)
+        {
+            return (int)Math.Round(
+                Math.Sqrt(
+                (sizeCathetusA * sizeCathetusA) + (sizeCathetusB * sizeCathetusB)));
         }
 
         /// <summary>

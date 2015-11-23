@@ -158,32 +158,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            // return (this._currentSensor.Check() && (!this.CheckNearRightSensor() || !this._leftSensor.Check()));
             return this._currentSensor.Check().IsBoundary && !this._nextSensor.Check().IsBoundary;
-            // return (this._currentSensor.Check() && (!this._nextSensor.Check() || !this._leftSensor.Check()));
-        }
-
-        /// <summary>
-        /// Checks if the right sensor is checked, in a general sense
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckNearRightSensor()
-        {
-            var point = (Point)this._nextSensor.GetPoint().Clone();
-
-            for (int i = 0; i < 2; i++)
-            {
-                this._nextSensor.Update(
-                    point.X + i,
-                    point.Y);
-
-                if (!this._nextSensor.Check().IsBoundary)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         /// <summary>

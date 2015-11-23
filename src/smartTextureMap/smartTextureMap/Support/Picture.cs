@@ -230,11 +230,27 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentNullException("color");
             }
+            if (color == Color.White)
+            {
+                return new BoundaryResult(false, color);
+            }
             if (color == Color.Black)
             {
                 return new BoundaryResult(false, color);
             }
-            if (color.R == 0 && color.G == 0 && color.B == 0) // PNG empty spaces
+            if (!(color.R == color.G && color.G == color.B && color.R == color.B))
+            {
+                return new BoundaryResult(false, color);
+            }
+            if (color.R == 0) // && color.A == 0) // PNG empty spaces
+            {
+                return new BoundaryResult(false, color);
+            }
+            if (color.R == 229) // background
+            {
+                return new BoundaryResult(false, color);
+            }
+            if (color.R > 180) // background
             {
                 return new BoundaryResult(false, color);
             }
@@ -243,7 +259,8 @@ namespace smartTextureMap.Support{
 
             return
                 new BoundaryResult(
-                    (color.R == color.G && color.G == color.B && color.R == color.B) && color.R <= 180,
+                    // (color.R == color.G && color.G == color.B && color.R == color.B) && color.R <= 180,
+                    true,
                     color);
         }
 

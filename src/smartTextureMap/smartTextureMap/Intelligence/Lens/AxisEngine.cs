@@ -207,8 +207,9 @@ namespace smartTextureMap.Intelligence.Lens{
                     // There is nothing to do in column
                     if (newSquare == null || !newSquare.Validate())
                     {
-                        x += ShapeLen.SENSOR_DISTANCE;
-                        y = this._startPoint.Y;
+                        // x += ShapeLen.SENSOR_DISTANCE;
+                        // y = this._startPoint.Y;
+                        y += ShapeLen.SENSOR_DISTANCE;
                         continue;
                     }
                     //else if (!this.CheckIntersection(newSquare, this._squareList))
@@ -538,6 +539,8 @@ namespace smartTextureMap.Intelligence.Lens{
         /// </summary>
         private void RefineSquares(List<LogicalSquare> squareList)
         {
+            return;
+
             #region Entries validation
             
             if (squareList == null)
