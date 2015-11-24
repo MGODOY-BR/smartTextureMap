@@ -93,7 +93,7 @@ namespace smartTextureMap.Support
                         ProgressCounter._timer = new Timer(delegate (object state)
                         {
                             this.Refresh(_progressCounterList);
-                        }, null, 0, 1000); 
+                        }, null, 0, 65); 
                     }
                 }
             }
@@ -131,8 +131,16 @@ namespace smartTextureMap.Support
 
             String output = builder.ToString();
 
-            Console.Clear();
-            Console.WriteLine(output);
+            try
+            {
+                Console.Clear();
+                Console.WriteLine(output);
+            }
+            catch (IOException)
+            {
+                // Errors in this process can't be mess the natural flow of process
+            }
+
             foreach (var item in progressCounterList)
             {
                 item.Reset();

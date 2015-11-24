@@ -238,21 +238,27 @@ namespace smartTextureMap.Support{
             {
                 return new BoundaryResult(false, color);
             }
-            if (!(color.R == color.G && color.G == color.B && color.R == color.B))
+            if (this.IsGrayShade(color))
             {
-                return new BoundaryResult(false, color);
+                if (color.R == 0) // && color.A == 0) // PNG empty spaces
+                {
+                    return new BoundaryResult(false, color);
+                }
+                if (color.R == 229) // background
+                {
+                    return new BoundaryResult(false, color);
+                }
+                if (color.R > 180)
+                {
+                    return new BoundaryResult(false, color);
+                }
             }
-            if (color.R == 0) // && color.A == 0) // PNG empty spaces
+            else
             {
-                return new BoundaryResult(false, color);
-            }
-            if (color.R == 229) // background
-            {
-                return new BoundaryResult(false, color);
-            }
-            if (color.R > 180) // background
-            {
-                return new BoundaryResult(false, color);
+                if (color.GetBrightness() > 0.8)  // background
+                {
+                    return new BoundaryResult(false, color);
+                }
             }
 
             #endregion
@@ -261,6 +267,25 @@ namespace smartTextureMap.Support{
                 new BoundaryResult(
                     true,
                     color);
+        }
+
+        /// <summary>
+        /// Gets an indicator informing if the color is a grade of gray
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        private bool IsGrayShade(Color color)
+        {
+            #region Entries validation
+            
+            if (color == null)
+            {
+                throw new ArgumentNullException("color");
+            }
+
+            #endregion
+
+            return color.R == color.G && color.G == color.B && color.R == color.B;
         }
 
         /// <summary>
