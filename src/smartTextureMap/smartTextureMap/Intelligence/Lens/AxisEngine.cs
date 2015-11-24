@@ -238,7 +238,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             ProgressCounter.Stop();
 
-            Console.WriteLine("Waiting, refine squares...");
+            Console.WriteLine("Wait, refining squares... (this might it takes several minutes)");
 
             this.RefineSquares(this._squareList);
 
