@@ -39,9 +39,14 @@ namespace smartTextureMap.Intelligence.Lens{
 		private Picture _image;
 
         /// <summary>
-        /// It´s a progressCounter of Run operation.
+        /// It's a progressCounter of Run operation.
         /// </summary>
-        private ProgressCounter _runProgressCounter = new ProgressCounter();
+        private ProgressCounter _mainProgressCounter = new ProgressCounter();
+
+        /// <summary>
+        /// It's a auxiliar progressCounter
+        /// </summary>
+        private ProgressCounter _auxProgressCounter = new ProgressCounter();
 
         /// <summary>
         /// Returns the amount of squares detected in last execution of Run()
@@ -68,7 +73,7 @@ namespace smartTextureMap.Intelligence.Lens{
 
             this._len.Reset();
             this._squareList.Clear();
-            this._runProgressCounter.Reset();
+            this._mainProgressCounter.Reset();
             this._eof = false;
         }
 
@@ -170,7 +175,7 @@ namespace smartTextureMap.Intelligence.Lens{
             #endregion
 
             this.DetectedSquare = 0;
-            this._runProgressCounter.Reset();
+            this._mainProgressCounter.Reset();
 
             int y = this._startPoint.Y;
             int x = this._startPoint.X;
@@ -194,7 +199,8 @@ namespace smartTextureMap.Intelligence.Lens{
                     }
                 }
 
-                this._runProgressCounter.Update(x, this._image.Width);
+                this._mainProgressCounter.Update(x, this._image.Width);
+                this._auxProgressCounter.Update(y, this._image.Height);
 
                 #endregion
 
@@ -230,7 +236,13 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
             }
 
+            ProgressCounter.Stop();
+
+            Console.WriteLine("Waiting, refine squares...");
+
             this.RefineSquares(this._squareList);
+
+            Console.WriteLine("Squares has been refined");
 
             this._eof = true;
         }

@@ -259,7 +259,6 @@ namespace smartTextureMap.Support{
 
             return
                 new BoundaryResult(
-                    // (color.R == color.G && color.G == color.B && color.R == color.B) && color.R <= 180,
                     true,
                     color);
         }

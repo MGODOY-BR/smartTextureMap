@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace smartTextureMap.Support
@@ -13,16 +14,25 @@ namespace smartTextureMap.Support
     public class ProgressCounter
     {
         /// <summary>
-        /// It´s the last percentage identified
+        /// It's the buffer of text
         /// </summary>
-        private double _lastPercentage;
+        private string _buffer;
+
+        /// <summary>
+        /// It's the timer that controls the exibition of progress
+        /// </summary>
+        private static Timer _timer;
+
+        /// <summary>
+        /// It´s a list of instances
+        /// </summary>
+        private static List<ProgressCounter> _progressCounterList = new List<ProgressCounter>();
 
         /// <summary>
         /// Reset de progress counter
         /// </summary>
         public void Reset()
         {
-            this._lastPercentage = 0;
         }
 
         /// <summary>
@@ -41,19 +51,30 @@ namespace smartTextureMap.Support
 
             #endregion
 
+            ProgressCounter counter;
+
+            lock(_progressCounterList)
+            {
+                if (!_progressCounterList.Contains(this))
+                {
+                    _progressCounterList.Add(this);
+                    counter = this;
+                }
+                else
+                {
+                    counter =
+                        _progressCounterList.Find(delegate (ProgressCounter item)
+                        {
+                            return item == this;
+                        });
+                }
+            }
+
             double currentPercentage =
                 value / total * 100D;
 
-            if (currentPercentage == this._lastPercentage)
-            {
-                return;
-            }
-
-            this._lastPercentage = currentPercentage;
-
-            this.Print(currentPercentage);
+            counter.Print(currentPercentage);
         }
-
 
         /// <summary>
         /// Print the progress
@@ -62,10 +83,19 @@ namespace smartTextureMap.Support
         {
             try
             {
-                Console.Clear();
-                Console.WriteLine("Analysing...");
-                Console.WriteLine(
-                    currentPercentage.ToString() + "%");
+                this._buffer =
+                    currentPercentage.ToString("0.###") + "%";
+
+                lock(typeof(ProgressCounter))
+                {
+                    if (ProgressCounter._timer == null)
+                    {
+                        ProgressCounter._timer = new Timer(delegate (object state)
+                        {
+                            this.Refresh(_progressCounterList);
+                        }, null, 0, 1000); 
+                    }
+                }
             }
             catch (IOException)
             {
@@ -77,5 +107,53 @@ namespace smartTextureMap.Support
             }
         }
 
+        /// <summary>
+        /// Refresh the screen informations
+        /// </summary>
+        private void Refresh(List<ProgressCounter> progressCounterList)
+        {
+            #region Entries validation
+
+            if (progressCounterList.Count == 0)
+            {
+                return;
+            }
+
+            #endregion
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Processing... Please, wait...");
+
+            foreach (var item in progressCounterList)
+            {
+                builder.AppendLine(item._buffer);
+            }
+
+            String output = builder.ToString();
+
+            Console.Clear();
+            Console.WriteLine(output);
+            foreach (var item in progressCounterList)
+            {
+                item.Reset();
+            }
+        }
+
+        /// <summary>
+        /// Stop the refresh
+        /// </summary>
+        public static void Stop()
+        {
+            #region Entries validation
+
+            if (_timer == null)
+            {
+                throw new ArgumentNullException("_timer");
+            }
+
+            #endregion
+
+            _timer.Dispose();
+        }
     }
 }

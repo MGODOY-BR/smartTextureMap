@@ -1,0 +1,6 @@
+smartTextureMap lab\MapaDeAlimentacao.png
+smartTextureMap lab\EstacaoA_PrimeiroAndar.png
+smartTextureMap lab\EstacaoA_Terreo.png
+smartTextureMap lab\EstacaoA_Plataforma_Teto.png
+
+pause
