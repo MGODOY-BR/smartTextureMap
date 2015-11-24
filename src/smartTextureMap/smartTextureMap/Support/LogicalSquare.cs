@@ -270,68 +270,15 @@ namespace smartTextureMap.Support{
         public Boolean CheckIntersection(LogicalSquare square)
         {
             #region Entries validation
-            
+
             if (square == null)
             {
                 throw new ArgumentNullException("square");
             }
-            if (this._pointA == null)
-            {
-                throw new ArgumentNullException("this._pointA");
-            }
-            if (this._pointB == null)
-            {
-                throw new ArgumentNullException("this._pointB");
-            }
-            if (this._pointC == null)
-            {
-                throw new ArgumentNullException("this._pointC");
-            }
-            if (this._pointD == null)
-            {
-                throw new ArgumentNullException("this._pointD");
-            }
-            if (square.PointA == null)
-            {
-                throw new ArgumentNullException("square.PointA");
-            }
-            if (square.PointB == null)
-            {
-                throw new ArgumentNullException("square.PointB");
-            }
-            if (square.PointC == null)
-            {
-                throw new ArgumentNullException("square.PointC");
-            }
-            if (square.PointD == null)
-            {
-                throw new ArgumentNullException("square.PointD");
-            }
 
             #endregion
 
-            // Checking common points
-            bool commonPoint = false;
-
-            double minXA = new Interval(this.PointA.X, 5D).GetMinValue();
-            double maxXA = new Interval(this.PointA.X, 5D).GetMaxValue();
-            double minYA = new Interval(this.PointA.Y, 5D).GetMinValue();
-            double maxYA = new Interval(this.PointA.Y, 5D).GetMaxValue();
-
-            double minXB = new Interval(this.PointB.X, 5D).GetMinValue();
-            double maxXB = new Interval(this.PointB.X, 5D).GetMaxValue();
-            double minYB = new Interval(this.PointB.Y, 5D).GetMinValue();
-            double maxYB = new Interval(this.PointB.Y, 5D).GetMaxValue();
-
-            commonPoint =
-                (square.PointA.X >= minXA && square.PointA.X <= maxXA) &&
-                (square.PointA.Y >= minYA && square.PointA.Y <= maxYA);
-
-            commonPoint |=
-                (square.PointB.X >= minXB && square.PointB.X <= maxXB) &&
-                (square.PointB.Y >= minYB && square.PointB.Y <= maxYB);
-
-            return commonPoint;
+            return this.CheckInside(square) || square.CheckInside(this);
         }
 
         /// <summary>

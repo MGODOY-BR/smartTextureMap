@@ -204,7 +204,6 @@ namespace smartTextureMap.Intelligence.Lens{
 
                 #endregion
 
-                //if (this._len.Read(x, y))
                 if (!this.CheckContained(x, y))
                 {
                     var newSquare =
@@ -238,11 +237,18 @@ namespace smartTextureMap.Intelligence.Lens{
 
             ProgressCounter.Stop();
 
-            Console.WriteLine("Wait, refining squares... (this might it takes several minutes)");
+            try
+            {
+                Console.WriteLine("Wait, refining squares... (this might it takes several minutes)");
 
-            this.RefineSquares(this._squareList);
+                this.RefineSquares(this._squareList);
 
-            Console.WriteLine("Squares has been refined");
+                Console.WriteLine("Squares has been refined");
+            }
+            catch (IOException)
+            {
+                // Errors in this process can't be mess the natural flow of process
+            }
 
             this._eof = true;
         }
