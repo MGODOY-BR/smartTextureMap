@@ -636,7 +636,14 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #region Sorting the list
 
-            squareList.Sort();
+            try
+            {
+                squareList.Sort();
+            }
+            catch
+            {
+                // Errors in this operation can't mess the normal flow of work
+            }
 
             #endregion
 
