@@ -8,3 +8,5 @@ C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Release\smartTextureMap.pdb
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Release\smartTextureMap.Test.dll
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Release\smartTextureMap.Test.pdb
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Release\READ-ME.txt
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Release\ReleaseNotes.txt
