@@ -1,4 +1,5 @@
 
+using smartTextureMap.IO;
 using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
@@ -239,11 +240,11 @@ namespace smartTextureMap.Intelligence.Lens{
 
             try
             {
-                Console.WriteLine("Wait, refining squares... (this might it takes several minutes)");
+                OutputManager.WriteLine("Wait, refining squares... (this might it takes several minutes)");
 
                 this.RefineSquares(this._squareList);
 
-                Console.WriteLine("Squares has been refined");
+                OutputManager.WriteLine("Squares has been refined");
             }
             catch (IOException)
             {
@@ -650,7 +651,7 @@ namespace smartTextureMap.Intelligence.Lens{
             /*
             foreach (var stack in parser.AdjacentSquareStackList)
             {
-                Console.WriteLine("AngleKey: " + stack.AngleKey + " quantity: " + stack.GetList().Count);
+                OutputManager.WriteLine("AngleKey: " + stack.AngleKey + " quantity: " + stack.GetList().Count);
             }
             */
 
@@ -665,7 +666,7 @@ namespace smartTextureMap.Intelligence.Lens{
                     return echoeList.Contains(square);
                 });
 
-            Console.WriteLine(echoesDeleted + " trapeze's echoes detected has been deleted");
+            OutputManager.WriteLine(echoesDeleted + " trapeze's echoes detected has been deleted");
 
             // Replacing the echoes by the equivalent ones
             squareList.AddRange(

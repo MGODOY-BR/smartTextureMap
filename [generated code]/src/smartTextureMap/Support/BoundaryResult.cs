@@ -6,12 +6,12 @@ using System.Text;
 
 namespace smartTextureMap.Support{
 	/// <summary>
-	/// BoundaryResult
+	/// Represents a result of a boundary verification
 	/// </summary>
 	public class BoundaryResult {
 
 		/// <summary>
-		/// BoundaryResult
+		/// Represents a result of a boundary verification
 		/// </summary>
 		public BoundaryResult() {
 		}

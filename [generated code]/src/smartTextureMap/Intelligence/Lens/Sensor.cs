@@ -30,7 +30,7 @@ namespace smartTextureMap.Intelligence.Lens{
 		/// Returns an sign about the identfied point
 		/// </summary>
 		/// <returns></returns>
-		public Boolean Check() {
+		public BoundaryResult Check() {
 			// TODO implement here
 			return null;
 		}

@@ -30,7 +30,7 @@ namespace smartTextureMap.Support{
 		/// </summary>
 		/// <param name="point"></param>
 		/// <returns></returns>
-		public BoundaryResultOld CheckBoundary(Point point) {
+		public BoundaryResult CheckBoundary(Point point) {
 			// TODO implement here
 			return null;
 		}

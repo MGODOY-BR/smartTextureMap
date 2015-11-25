@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smartTextureMap.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -133,8 +134,8 @@ namespace smartTextureMap.Support
 
             try
             {
-                Console.Clear();
-                Console.WriteLine(output);
+                OutputManager.Clear();
+                OutputManager.WriteLine(output);
             }
             catch (IOException)
             {

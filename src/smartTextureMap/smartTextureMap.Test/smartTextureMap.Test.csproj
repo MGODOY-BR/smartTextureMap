@@ -73,6 +73,7 @@
     <Compile Include="Support\PictureTest.cs" />
     <Compile Include="Support\LogicalSquareTest.cs" />
     <Compile Include="Support\ShapeTest.cs" />
+    <Compile Include="Trace\TraceOutput.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resource1.resx">

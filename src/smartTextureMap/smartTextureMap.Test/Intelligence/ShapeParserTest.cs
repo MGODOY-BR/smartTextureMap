@@ -3,12 +3,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using smartTextureMap.Support;
 using smartTextureMap.Intelligence;
 using System.Collections.Generic;
+using smartTextureMap.IO;
+using smartTextureMap.Test.Trace;
 
 namespace smartTextureMap.Test.Intelligence
 {
     [TestClass]
     public class ShapeParserTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            OutputManager.SetOutPutWay(new TraceOutput());
+        }
+
         [TestMethod]
         public void DiscoverTest()
         {

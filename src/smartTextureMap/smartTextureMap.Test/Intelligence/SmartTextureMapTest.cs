@@ -1,12 +1,20 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using smartTextureMap.Intelligence;
+using smartTextureMap.IO;
+using smartTextureMap.Test.Trace;
 
 namespace smartTextureMap.Test.Intelligence
 {
     [TestClass]
     public class SmartTextureMapTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            OutputManager.SetOutPutWay(new TraceOutput());
+        }
+
         [TestMethod]
         public void GenerateTest()
         {

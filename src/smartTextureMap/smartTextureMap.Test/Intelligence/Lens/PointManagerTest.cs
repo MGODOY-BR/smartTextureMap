@@ -2,12 +2,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using smartTextureMap.Intelligence.Lens;
 using smartTextureMap.Support;
+using smartTextureMap.IO;
+using smartTextureMap.Test.Trace;
 
 namespace smartTextureMap.Test.Intelligence.Lens
 {
     [TestClass]
     public class PointManagerTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            OutputManager.SetOutPutWay(new TraceOutput());
+        }
+
         [TestMethod]
         public void GetRightCornerTest()
         {

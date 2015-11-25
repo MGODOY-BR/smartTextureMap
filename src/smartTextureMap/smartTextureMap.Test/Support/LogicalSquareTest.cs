@@ -1,12 +1,20 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using smartTextureMap.Support;
+using smartTextureMap.IO;
+using smartTextureMap.Test.Trace;
 
 namespace smartTextureMap.Test.Support
 {
     [TestClass]
     public class LogicalSquareTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            OutputManager.SetOutPutWay(new TraceOutput());
+        }
+
         [TestMethod]
         public void CheckInsideTest()
         {
@@ -453,7 +461,7 @@ namespace smartTextureMap.Test.Support
 
             #region Getting the evidences
 
-            Console.WriteLine(evidence);
+            OutputManager.WriteLine(evidence.ToString());
 
             #endregion
 
@@ -489,7 +497,7 @@ namespace smartTextureMap.Test.Support
 
             #region Getting the evidences
 
-            Console.WriteLine(evidence);
+            OutputManager.WriteLine(evidence.ToString());
 
             #endregion
 

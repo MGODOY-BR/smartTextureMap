@@ -1,12 +1,20 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using smartTextureMap.Support;
+using smartTextureMap.IO;
+using smartTextureMap.Test.Trace;
 
 namespace smartTextureMap.Test.Support
 {
     [TestClass]
     public class ShapeTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            OutputManager.SetOutPutWay(new TraceOutput());
+        }
+
         [TestMethod]
         public void MarkTest()
         {

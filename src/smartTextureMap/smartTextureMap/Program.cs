@@ -1,4 +1,6 @@
-﻿using smartTextureMap.Intelligence;
+﻿using smartTextureMap.CommandPrompt;
+using smartTextureMap.Intelligence;
+using smartTextureMap.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,12 +14,14 @@ namespace smartTextureMap
     {
         static void Main(string[] args)
         {
+            OutputManager.SetOutPutWay(new CommandPromptOutput());
+
             try
             {
                 if (args.Length == 1)
                 {
                     DateTime dateTime = DateTime.Now;
-                    Console.WriteLine("Wait, processing...");
+                    OutputManager.WriteLine("Wait, processing...");
 
                     string fileName = args[0];
                     string newFileName =
@@ -29,21 +33,21 @@ namespace smartTextureMap
                     smartTextureMap.Load(fileName);
                     smartTextureMap.Generate(newFileName);
 
-                    Console.WriteLine();
-                    Console.WriteLine("Discovered " + smartTextureMap.FormList.Count + " shapes");
-                    Console.WriteLine();
-                    Console.WriteLine("File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
+                    OutputManager.WriteLine();
+                    OutputManager.WriteLine("Discovered " + smartTextureMap.FormList.Count + " shapes");
+                    OutputManager.WriteLine();
+                    OutputManager.WriteLine("File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
                 }
             }
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
+                OutputManager.WriteLine(ex.Message);
                 if (ex.InnerException != null)
                 {
-                    Console.Write(" - " + ex.InnerException.Message);
+                    OutputManager.WriteLine(" ----> " + ex.InnerException.Message);
                 }
-                Console.WriteLine();
-                //Console.WriteLine(ex.ToString());
+                OutputManager.WriteLine();
+                //OutputManager.WriteLine(ex.ToString());
             }
         }
     }

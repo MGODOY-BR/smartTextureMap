@@ -1,0 +1,46 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace smartTextureMap.IO{
+	/// <summary>
+	/// Controls how the output is showing.
+	/// </summary>
+	public class OutputManager {
+
+		/// <summary>
+		/// Controls how the output is showing.
+		/// </summary>
+		public OutputManager() {
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private IOutput _output;
+
+		/// <param name="output"></param>
+		public static void SetOutPutWay(IOutput output) {
+			// TODO implement here
+		}
+
+		/// <summary>
+		/// Write something to user
+		/// </summary>
+		/// <param name="stringFormat"></param>
+		/// <param name="args"></param>
+		public static void WriteLine(String stringFormat, HashSet<object> args) {
+			// TODO implement here
+		}
+
+		/// <summary>
+		/// Cleans the user output
+		/// </summary>
+		public static void Clear() {
+			// TODO implement here
+		}
+
+	}
+}
