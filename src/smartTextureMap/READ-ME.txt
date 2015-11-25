@@ -15,5 +15,3 @@ fileName	-	When informed, generates a smart texture map from the original.
 	smartTextureMap test.png
 
 	Generates: test.smartMap.png
-
-no arguments -	Opens the graphic interface.
