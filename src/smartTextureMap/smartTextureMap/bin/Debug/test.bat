@@ -1,3 +1,7 @@
+smartTextureMap lab\MapaDeControladorDeTrafegoDino.png
+smartTextureMap lab\MapaDeCadeiraDePlastico.png
+smartTextureMap lab\MapaDeControladoresDeTrafegoCofersa.png
+smartTextureMap lab\MapaDeBilheteriaAntiga.png
 smartTextureMap lab\MapaDeAlimentacao.png
 smartTextureMap lab\EstacaoA_PrimeiroAndar.png
 smartTextureMap lab\EstacaoA_Terreo.png

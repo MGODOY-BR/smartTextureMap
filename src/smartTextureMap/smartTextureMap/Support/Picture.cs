@@ -244,10 +244,6 @@ namespace smartTextureMap.Support{
                 {
                     return new BoundaryResult(false, color);
                 }
-                if (color.R == 229) // background
-                {
-                    return new BoundaryResult(false, color);
-                }
                 if (color.R > 180)
                 {
                     return new BoundaryResult(false, color);
