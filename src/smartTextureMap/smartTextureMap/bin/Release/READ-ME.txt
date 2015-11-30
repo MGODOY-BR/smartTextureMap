@@ -1,6 +1,6 @@
 smartTextureMap - Version Alpha
 ----------------
-Maps the faces in texture map generated from Blender with letters to allow identify them in 3D image and agile the texture process.
+Maps the faces in texture map generated from Blender with letters to allows identify them in 3D image and agile the texture process.
 ----------------
 
 Copyright (c) 2015, Atelier do Sofware
@@ -25,7 +25,7 @@ smartTextureMap <<fileName>>
 
 List of Arguments
 -----------------
-fileName	-	Generates a smart texture map from the original.
+fileName	-	When informed, generates a smart texture map from the original.
 
 	Ex.:
 	smartTextureMap test.png
