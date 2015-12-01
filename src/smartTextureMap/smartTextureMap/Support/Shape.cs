@@ -57,7 +57,7 @@ namespace smartTextureMap.Support{
                     this._logicalSquare.PointA.X + (sizeX / 2) - fontSize / 2,
                     this._logicalSquare.PointA.Y + (sizeY / 2) - fontSize / 2);
 
-            this._image.Mark(letter.ToUpper().ToLower(), letterPoint, font);
+            this._image.Mark(letter, letterPoint, font);
 
             object showShapeDiscoveredConfig = ConfigurationManager.AppSettings["showShapeDiscovered"];
             if (showShapeDiscoveredConfig != null)

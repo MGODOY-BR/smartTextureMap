@@ -31,6 +31,11 @@ namespace smartTextureMap.Support{
         private Image _newImage;
 
         /// <summary>
+        /// It´s a random color control for mark letters
+        /// </summary>
+        private Random _randomColor = new Random();
+
+        /// <summary>
         /// Gets the width of image
         /// </summary>
         public int Width
@@ -99,7 +104,9 @@ namespace smartTextureMap.Support{
 
             #endregion
 
-            SolidBrush drawBrush = new SolidBrush(Color.DarkBlue);
+            SolidBrush drawBrush = 
+                new SolidBrush(
+                    this.GetColorToLetter());
 
             // Create point for upper-left corner of drawing.
             float x = point.X;
@@ -110,6 +117,32 @@ namespace smartTextureMap.Support{
 
             // Draw string to screen.
             this._graphics.DrawString(letter, font, drawBrush, x, y, drawFormat);
+        }
+
+        /// <summary>
+        /// Gets a random color to letter
+        /// </summary>
+        /// <returns></returns>
+        private Color GetColorToLetter()
+        {
+            int value = _randomColor.Next(0, 100);
+
+            if (value < 25)
+            {
+                return Color.DarkBlue;
+            }
+            else if (value >= 25 && value < 50)
+            {
+                return Color.Violet;
+            }
+            else if (value >= 50 && value < 75)
+            {
+                return Color.DarkGreen;
+            }
+            else
+            {
+                return Color.DeepPink;
+            }
         }
 
         /// <summary>

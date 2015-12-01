@@ -25,7 +25,39 @@ namespace smartTextureMap.Intelligence
         private Picture _originalImage;
 
         /// <summary>
-        /// Marks the form
+        /// It´s a list of allowd chars
+        /// </summary>
+        private static List<int> _allowedCharList = new List<int>();
+
+        /// <summary>
+        /// Feed the allowed chars
+        /// </summary>
+        private static void FeedAllowedChar()
+        {
+            #region Entries validation
+
+            if (_allowedCharList.Count == 0)
+            {
+                return;
+            }
+
+            #endregion
+
+            // Upper letter
+            for (int i = 65; i < 91; i++)
+            {
+                _allowedCharList.Add(i);
+            }
+
+            // Lower letter
+            for (int i = 97; i < 123; i++)
+            {
+                _allowedCharList.Add(i);
+            }
+        }
+
+        /// <summary>
+        /// Marks the forms
         /// </summary>
         /// <param name="shapeList">Mark all the forms</param>
         private void MarkAllTheForms(List<Shape> shapeList)
@@ -39,18 +71,20 @@ namespace smartTextureMap.Intelligence
 
             #endregion
 
-            int charCode = 97;
+            FeedAllowedChar();
+
+            int index = 0;
             foreach (var shape in shapeList)
             {
-                if (charCode == 123)
+                if (index > _allowedCharList.Count)
                 {
-                    charCode = 97;
+                    index = 0;
                 }
 
                 shape.Mark(
-                    char.ConvertFromUtf32(charCode));
+                    char.ConvertFromUtf32(index));
 
-                charCode++;
+                index++;
             }
         }
 

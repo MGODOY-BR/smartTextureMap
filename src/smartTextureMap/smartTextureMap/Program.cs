@@ -14,6 +14,11 @@ namespace smartTextureMap
     {
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                throw new ArgumentException("File name is missed.");
+            }
+
             OutputManager.SetOutPutWay(new CommandPromptOutput());
 
             try
