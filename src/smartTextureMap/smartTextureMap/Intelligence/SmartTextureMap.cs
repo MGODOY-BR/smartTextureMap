@@ -36,7 +36,7 @@ namespace smartTextureMap.Intelligence
         {
             #region Entries validation
 
-            if (_allowedCharList.Count == 0)
+            if (_allowedCharList.Count > 0)
             {
                 return;
             }
@@ -76,13 +76,14 @@ namespace smartTextureMap.Intelligence
             int index = 0;
             foreach (var shape in shapeList)
             {
-                if (index > _allowedCharList.Count)
+                if (index + 1 == _allowedCharList.Count)
                 {
                     index = 0;
                 }
 
                 shape.Mark(
-                    char.ConvertFromUtf32(index));
+                    char.ConvertFromUtf32(
+                        _allowedCharList[index]));
 
                 index++;
             }

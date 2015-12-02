@@ -36,13 +36,28 @@ namespace smartTextureMap.Support{
         private Random _randomColor = new Random();
 
         /// <summary>
+        /// It's the width of picture
+        /// </summary>
+        private int _width;
+
+        /// <summary>
+        /// It´s the height of picture
+        /// </summary>
+        private int _height;
+
+        /// <summary>
+        /// It´s a buffer of picture, where key it's a combination of x and y coordinates. 
+        /// </summary>
+        private Dictionary<String, Color> _buffer;
+
+        /// <summary>
         /// Gets the width of image
         /// </summary>
         public int Width
         {
             get
             {
-                return this._originalImage.Width;
+                return this._width;
             }
         }
 
@@ -53,7 +68,7 @@ namespace smartTextureMap.Support{
         {
             get
             {
-                return this._originalImage.Height;
+                return this._height;
             }
         }
 
@@ -68,12 +83,21 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentNullException("originalImage");
             }
+            if (!(originalImage is Bitmap))
+            {
+                throw new NotSupportedException("Just available for bitmap objects!");
+            }
 
             #endregion
 
             this._originalImage = originalImage;
             this._newImage = new Bitmap(originalImage);
             this._graphics = Graphics.FromImage(this._newImage);
+
+            this._width = this._originalImage.Width;
+            this._height = this._originalImage.Height;
+
+            this.LoadBuffer((Bitmap)this._originalImage);
         }
 
         /// <summary>
@@ -103,46 +127,18 @@ namespace smartTextureMap.Support{
             }
 
             #endregion
-
-            SolidBrush drawBrush = 
-                new SolidBrush(
-                    this.GetColorToLetter());
-
             // Create point for upper-left corner of drawing.
             float x = point.X;
             float y = point.Y - (font.SizeInPoints / 2) + (font.SizeInPoints / 4);
 
-            // Set format of string.
-            StringFormat drawFormat = new StringFormat();
-
             // Draw string to screen.
-            this._graphics.DrawString(letter, font, drawBrush, x, y, drawFormat);
-        }
-
-        /// <summary>
-        /// Gets a random color to letter
-        /// </summary>
-        /// <returns></returns>
-        private Color GetColorToLetter()
-        {
-            int value = _randomColor.Next(0, 100);
-
-            if (value < 25)
-            {
-                return Color.DarkBlue;
-            }
-            else if (value >= 25 && value < 50)
-            {
-                return Color.Violet;
-            }
-            else if (value >= 50 && value < 75)
-            {
-                return Color.DarkGreen;
-            }
-            else
-            {
-                return Color.DeepPink;
-            }
+            this._graphics.DrawString(
+                letter, 
+                font,
+                new SolidBrush(this.GetColorToLetter()), 
+                x, 
+                y, 
+                new StringFormat());
         }
 
         /// <summary>
@@ -170,8 +166,7 @@ namespace smartTextureMap.Support{
                 square.PointA.X,
                 square.PointA.Y,
                 square.PointC.X - square.PointA.X,
-                square.PointB.Y - square.PointC.Y); 
-                
+                square.PointB.Y - square.PointC.Y);                 
         }
 
 		/// <summary>
@@ -187,6 +182,7 @@ namespace smartTextureMap.Support{
             {
                 throw new ArgumentNullException("point");
             }
+            /*
             if (this._originalImage == null)
             {
                 throw new ArgumentNullException("this._originalImage");
@@ -195,28 +191,29 @@ namespace smartTextureMap.Support{
             {
                 throw new NotSupportedException("Just available for bitmap objects!");
             }
-            if (point.Y > this._originalImage.Height)
+            */
+            if (point.Y > this._height)
             {
                 return new BoundaryResult(false, Color.Transparent);
             }
-            if (point.X > this._originalImage.Width)
+            if (point.X > this._width)
             {
                 return new BoundaryResult(false, Color.Transparent);
             }
-            if (point.Y == this._originalImage.Height)
+            if (point.Y == this._height)
             {
                 return new BoundaryResult(true, Color.Transparent);
             }
-            if (point.X == this._originalImage.Width)
+            if (point.X == this._width)
             {
                 return new BoundaryResult(true, Color.Transparent);
             }
 
             #endregion
 
-            Bitmap bitmap = (Bitmap)this._originalImage;
-
-            var pixel = bitmap.GetPixel(point.X, point.Y);
+            var pixel =
+                this._buffer[
+                    this.FormatKey(point.X, point.Y)];
 
             return this.CheckBoundaryColorRange(pixel);
         }
@@ -249,6 +246,24 @@ namespace smartTextureMap.Support{
             {
                 throw new ApplicationException("Error to save [" + fileName + "]. Try to choice a diferent file from the original as destination.", ex);
             }
+        }
+
+        /// <summary>
+        /// Returns a propertion beetwen width and height.
+        /// </summary>
+        /// <returns></returns>
+        public float GetProportionRate()
+        {
+            #region Entries validation
+            
+            if (this._originalImage == null)
+            {
+                throw new ArgumentNullException("this._originalImage");
+            }
+
+            #endregion
+
+            return this._originalImage.Width / this._originalImage.Height;
         }
 
         /// <summary>
@@ -318,21 +333,76 @@ namespace smartTextureMap.Support{
         }
 
         /// <summary>
-        /// Returns a propertion beetwen width and height.
+        /// Gets a random color to letter
         /// </summary>
         /// <returns></returns>
-        public float GetProportionRate()
+        private Color GetColorToLetter()
+        {
+            int value = _randomColor.Next(0, 100);
+
+            if (value < 25)
+            {
+                return Color.DarkBlue;
+            }
+            else if (value >= 25 && value < 50)
+            {
+                return Color.Violet;
+            }
+            else if (value >= 50 && value < 75)
+            {
+                return Color.DarkGreen;
+            }
+            else
+            {
+                return Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// Load the buffer
+        /// </summary>
+        private void LoadBuffer(Bitmap image)
         {
             #region Entries validation
             
-            if (this._originalImage == null)
+            if (image == null)
             {
-                throw new ArgumentNullException("this._originalImage");
+                throw new ArgumentNullException("image");
             }
 
             #endregion
 
-            return this._originalImage.Width / this._originalImage.Height;
+            lock (this)
+            {
+                #region Entries validation
+
+                if (this._buffer != null)
+                {
+                    return;
+                }
+
+                #endregion
+
+                this._buffer = new Dictionary<string, Color>();
+
+                for (int y = 0; y < this._height; y++)
+                {
+                    for (int x = 0; x < this._width; x++)
+                    {
+                        this._buffer.Add(
+                            this.FormatKey(x, y),
+                            image.GetPixel(x, y));
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Formats the coordinates to use as keys.
+        /// </summary>
+        private string FormatKey(int x, int y)
+        {
+            return String.Format("{0}_{1}", x, y);
         }
 
         public void Dispose()
