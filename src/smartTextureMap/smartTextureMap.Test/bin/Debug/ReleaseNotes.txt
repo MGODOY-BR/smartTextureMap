@@ -1,0 +1,2 @@
+- Greater range of letters / colors using to identifying shapes
+- More velocity to analysis
