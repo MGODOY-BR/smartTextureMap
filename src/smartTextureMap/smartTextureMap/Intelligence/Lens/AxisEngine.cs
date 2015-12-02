@@ -213,12 +213,9 @@ namespace smartTextureMap.Intelligence.Lens{
                     // There is nothing to do in column
                     if (newSquare == null || !newSquare.Validate())
                     {
-                        // x += ShapeLen.SENSOR_DISTANCE;
-                        // y = this._startPoint.Y;
                         y += ShapeLen.SENSOR_DISTANCE;
                         continue;
                     }
-                    //else if (!this.CheckIntersection(newSquare, this._squareList))
                     else if (!this.CheckContained(newSquare, this._squareList))
                     {
                         this._squareList.Add(newSquare);
@@ -343,10 +340,8 @@ namespace smartTextureMap.Intelligence.Lens{
             int y = startY;
             Support.Point pointA = null;
 
-            // Support.Point lastRightBoundary = null;
             PointManager pointManager = new PointManager();
 
-            //for (int x = startX; x < this._image.Width - 1; x += (ShapeLen.SENSOR_DISTANCE * (int)directionEnum))
             int x = startX;
             int maxX = this._image.Width - 1;
             int maxY = this._image.Height - 1;
@@ -534,20 +529,10 @@ namespace smartTextureMap.Intelligence.Lens{
         {
             foreach (var squareItem in squareList)
             {
-                if (square.CheckInside(squareItem))
+                if (squareItem.CheckInside(square))
                 {
                     return true;
                 }
-
-                /*
-                Support.Point compareItem = 
-                    squareItem.PointA.GetSelfOrSimilar(square.PointA);
-
-                if (compareItem.Equals(squareItem.PointA))
-                {
-                    return true;
-                }
-                */
             }
 
             return false;
