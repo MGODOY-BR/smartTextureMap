@@ -213,7 +213,7 @@ namespace smartTextureMap.Intelligence.Lens{
                     // There is nothing to do in column
                     if (newSquare == null || !newSquare.Validate())
                     {
-                        y += ShapeLen.SENSOR_DISTANCE;
+                        y += GetNextBoundaryY(this._image, x, y);
                         continue;
                     }
                     else if (!this.CheckContained(newSquare, this._squareList))
@@ -229,7 +229,7 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
                 else
                 {
-                    y += ShapeLen.SENSOR_DISTANCE;
+                    y += GetNextBoundaryY(this._image, x, y);
                 }
             }
 
@@ -684,5 +684,45 @@ namespace smartTextureMap.Intelligence.Lens{
 
             return hypString.Substring(0, hypString.Length - 1) + newDigit;
         }
+
+        /// <summary>
+        /// Gets the next non-blank Y in a row
+        /// </summary>
+        private int GetNextBoundaryY(Picture image, int x, int y)
+        {
+            #region Entries validation
+
+            if (image == null)
+            {
+                throw new ArgumentNullException("image");
+            }
+
+            #endregion
+
+            int size = 0;
+            for (int i = y; i < image.Height; i += ShapeLen.SENSOR_DISTANCE)
+            {
+                if (!image.CheckBoundary(new Support.Point(x, i)).IsBoundary)
+                {
+                    size += ShapeLen.SENSOR_DISTANCE;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (size == 0)
+            {
+                size += ShapeLen.SENSOR_DISTANCE;
+            }
+            else if (size > ShapeLen.SENSOR_DISTANCE)
+            {
+                size -= ShapeLen.SENSOR_DISTANCE;
+            }
+
+            return size;
+        }
+
     }
 }
