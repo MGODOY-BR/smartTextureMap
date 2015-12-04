@@ -26,10 +26,15 @@ namespace smartTextureMap.Intelligence.Lens{
 		/// </summary>
 		private Sensor _nextSensor;
 
-		/// <summary>
-		/// It´s the sensor positioned bellow of the len.
-		/// </summary>
-		private Sensor _bellowSensor;
+        /// <summary>
+        /// It's the sensor positioned in most right of sensor
+        /// </summary>
+        private Sensor _everNextSensor;
+
+        /// <summary>
+        /// It´s the sensor positioned bellow of the len.
+        /// </summary>
+        private Sensor _bellowSensor;
 
         /// <summary>
         /// It´s the sensor of top
@@ -158,7 +163,17 @@ namespace smartTextureMap.Intelligence.Lens{
 
             #endregion
 
-            return this._currentSensor.Check().IsBoundary && !this._nextSensor.Check().IsBoundary;
+            var currentSensorCheck = this._currentSensor.Check();
+            var nextSensorCheck = this._nextSensor.Check();
+
+            if (currentSensorCheck.IsBoundary && nextSensorCheck.IsBoundary && !_everNextSensor.Check().IsBoundary)
+            {
+                return true;
+            }
+            else
+            {
+                return currentSensorCheck.IsBoundary && !nextSensorCheck.IsBoundary;
+            }
         }
 
         /// <summary>
@@ -224,6 +239,7 @@ namespace smartTextureMap.Intelligence.Lens{
             this._currentSensor.Update(x, y);
             this._bellowSensor.Update(x, y + SENSOR_DISTANCE);
             this._nextSensor.Update(x + SENSOR_DISTANCE, y);
+            this._everNextSensor.Update(x + SENSOR_DISTANCE * 2, y);
             this._leftSensor.Update(x - SENSOR_DISTANCE, y);
             this._topSensor.Update(x, y - SENSOR_DISTANCE);
 
@@ -275,6 +291,7 @@ namespace smartTextureMap.Intelligence.Lens{
             this._currentSensor = new Sensor(image);
             this._bellowSensor = new Sensor(image);
             this._nextSensor = new Sensor(image);
+            this._everNextSensor = new Sensor(image);
             this._topSensor = new Sensor(image);
             this._leftSensor = new Sensor(image);
 
