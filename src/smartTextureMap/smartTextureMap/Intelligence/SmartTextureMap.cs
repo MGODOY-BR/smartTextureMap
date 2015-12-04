@@ -103,7 +103,7 @@ namespace smartTextureMap.Intelligence
         /// <summary>
         /// Generates a smart texture map
         /// </summary>
-        /// <param name="fileName">It's the name of file to get the smart teture map</param>
+        /// <param name="fileName">It's the name of file to get the smart texture map</param>
         public void Generate(String fileName)
         {
             try

@@ -21,7 +21,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 Sintax
 ------
 
-smartTextureMap <<fileName>>
+smartTextureMap <<fileName>> [<<outputDirectory>>]
 
 List of Arguments
 -----------------
@@ -31,3 +31,5 @@ fileName	-	When informed, generates a smart texture map from the original.
 	smartTextureMap test.png
 
 	Generates: test.smartMap.png
+
+outputDirectory - OPTIONAL - When informed, generates the output file on the specified directory.

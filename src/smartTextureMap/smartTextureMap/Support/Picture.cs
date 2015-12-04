@@ -354,7 +354,7 @@ namespace smartTextureMap.Support{
             }
             else
             {
-                return Color.Black;
+                return Color.Crimson;
             }
         }
 
