@@ -13,17 +13,17 @@ namespace smartTextureMap.Forms{
     {
         public void Clear()
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public void WriteLine()
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public void WriteLine(string stringFormat, params object[] args)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }

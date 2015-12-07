@@ -6,3 +6,7 @@ C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.pdb
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\bin\Debug\READ-ME.txt
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\bin\Debug\ReleaseNotes.txt
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.Forms.PrincipalForm.resources
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.csproj.GenerateResource.Cache
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.Forms.Controls.TitleControl.resources
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap\obj\Debug\smartTextureMap.Properties.Resources.resources

@@ -1,1 +1,2 @@
 - It was included output directory argument
+- Introducing Graphic User Interface
