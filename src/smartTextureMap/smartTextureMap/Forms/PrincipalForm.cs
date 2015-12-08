@@ -220,7 +220,7 @@ namespace smartTextureMap.Forms
             else
             {
                 var uriPartList = uri.Split(char.Parse(@"\"));
-                return uriPartList[uriPartList.Length - 2] + @"\" + uriPartList[uriPartList.Length - 1];
+                return @"...\" + uriPartList[uriPartList.Length - 2] + @"\" + uriPartList[uriPartList.Length - 1];
             }
         }
 

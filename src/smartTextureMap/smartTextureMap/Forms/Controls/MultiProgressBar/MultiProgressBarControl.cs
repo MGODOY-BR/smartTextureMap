@@ -44,6 +44,8 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
                 SingleProgressBarControl progressBar = new SingleProgressBarControl();
                 progressBar.Display = item;
                 progressBar.Top = position;
+                progressBar.Width = this.Size.Width - 27;
+                progressBar.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                 this.panel1.Controls.Add(progressBar);
 
                 position += progressBar.Size.Height;
