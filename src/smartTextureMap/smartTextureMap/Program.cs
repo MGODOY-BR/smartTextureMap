@@ -87,7 +87,18 @@ namespace smartTextureMap
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += Form_ThreadException;
             Application.Run(new PrincipalForm());
+        }
+
+        /// <summary>
+        /// Handles the errors happens in GUI mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void Form_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.ToString(), e.Exception.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

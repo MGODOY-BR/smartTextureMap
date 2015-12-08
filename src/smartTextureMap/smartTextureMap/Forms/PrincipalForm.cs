@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,65 @@ namespace smartTextureMap.Forms
         /// </summary>
         private void RefreshTreeViewList(String sourceFolder, TreeNodeCollection nodes)
         {
-            throw new NotImplementedException();
+            #region Entries validation
+            
+            if (String.IsNullOrEmpty(sourceFolder))
+            {
+                throw new ArgumentNullException("sourceFolder");
+            }
+            if (nodes == null)
+            {
+                throw new ArgumentNullException("nodes");
+            }
+
+            #endregion
+
+            nodes.Clear();
+
+            var directoryList = Directory.GetDirectories(sourceFolder);
+            var directoryNodeList = ConvertNodeList(directoryList);
+
+            this.treeView1.Nodes.AddRange(directoryNodeList.ToArray());
+        }
+
+        /// <summary>
+        /// Converts the list to list of treenodes.
+        /// </summary>
+        private List<TreeNode> ConvertNodeList(string[] directoryList)
+        {
+            #region Entries validation
+                            
+            if (directoryList == null)
+            {
+                throw new ArgumentNullException("directoryList");
+            }
+
+            #endregion
+
+            List<TreeNode> returnList = new List<TreeNode>();
+
+            foreach (var directoryItem in directoryList)
+            {
+                try
+                {
+                    TreeNode treeNode = new TreeNode();
+                    treeNode.Tag = directoryItem;
+                    treeNode.Text = Path.GetFileName(directoryItem);
+
+                    treeNode.Nodes.AddRange(
+                        ConvertNodeList(
+                            Directory.GetDirectories(directoryItem)).ToArray());
+
+                    returnList.Add(treeNode);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    // Errors of this kind in this location cannot turns around the normal flow of algoritmn
+                    continue;
+                }
+           }
+
+            return returnList;
         }
     }
 }
