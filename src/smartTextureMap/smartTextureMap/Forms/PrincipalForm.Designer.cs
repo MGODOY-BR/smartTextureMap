@@ -34,16 +34,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtSourceFolder = new System.Windows.Forms.TextBox();
+            this.btnOpenFolder = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.btnRun = new System.Windows.Forms.Button();
-            this.titleControl1 = new smartTextureMap.Forms.Controls.TitleControl();
-            this.titleControl2 = new smartTextureMap.Forms.Controls.TitleControl();
-            this.titleControl3 = new smartTextureMap.Forms.Controls.TitleControl();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -56,9 +53,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 395);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 375);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(591, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(764, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -79,7 +76,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.16456F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.83544F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(591, 395);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(764, 375);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -88,7 +85,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(585, 45);
+            this.panel1.Size = new System.Drawing.Size(758, 43);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -96,16 +93,16 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.36387F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.63613F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 194F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel4, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 54);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 52);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(585, 338);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(758, 320);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // panel2
@@ -113,39 +110,23 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel2.Controls.Add(this.txtSourceFolder);
             this.panel2.Controls.Add(this.btnOpenFolder);
-            this.panel2.Controls.Add(this.titleControl1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(187, 332);
+            this.panel2.Size = new System.Drawing.Size(270, 314);
             this.panel2.TabIndex = 0;
             // 
-            // panel3
+            // txtSourceFolder
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.panel3.Controls.Add(this.treeView1);
-            this.panel3.Controls.Add(this.titleControl2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(196, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(191, 332);
-            this.panel3.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.panel4.Controls.Add(this.btnRun);
-            this.panel4.Controls.Add(this.titleControl3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(393, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(189, 332);
-            this.panel4.TabIndex = 2;
-            // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.Description = "Select a source folder";
-            this.folderBrowserDialog1.ShowNewFolderButton = false;
+            this.txtSourceFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSourceFolder.Location = new System.Drawing.Point(18, 91);
+            this.txtSourceFolder.Multiline = true;
+            this.txtSourceFolder.Name = "txtSourceFolder";
+            this.txtSourceFolder.Size = new System.Drawing.Size(240, 204);
+            this.txtSourceFolder.TabIndex = 2;
+            this.txtSourceFolder.TextChanged += new System.EventHandler(this.txtSourceFolder_TextChanged);
             // 
             // btnOpenFolder
             // 
@@ -157,21 +138,36 @@
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
-            // txtSourceFolder
+            // panel3
             // 
-            this.txtSourceFolder.Location = new System.Drawing.Point(18, 91);
-            this.txtSourceFolder.Multiline = true;
-            this.txtSourceFolder.Name = "txtSourceFolder";
-            this.txtSourceFolder.Size = new System.Drawing.Size(156, 221);
-            this.txtSourceFolder.TabIndex = 2;
-            this.txtSourceFolder.TextChanged += new System.EventHandler(this.txtSourceFolder_TextChanged);
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.panel3.Controls.Add(this.treeView1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(279, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(278, 314);
+            this.panel3.TabIndex = 1;
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(11, 61);
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeView1.CheckBoxes = true;
+            this.treeView1.Location = new System.Drawing.Point(11, 91);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(167, 251);
+            this.treeView1.Size = new System.Drawing.Size(255, 204);
             this.treeView1.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panel4.Controls.Add(this.btnRun);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(563, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(192, 314);
+            this.panel4.TabIndex = 2;
             // 
             // btnRun
             // 
@@ -183,44 +179,18 @@
             this.btnRun.Text = "Run!!";
             this.btnRun.UseVisualStyleBackColor = true;
             // 
-            // titleControl1
+            // folderBrowserDialog1
             // 
-            this.titleControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titleControl1.Icon = null;
-            this.titleControl1.Location = new System.Drawing.Point(0, 0);
-            this.titleControl1.Name = "titleControl1";
-            this.titleControl1.Size = new System.Drawing.Size(187, 41);
-            this.titleControl1.TabIndex = 0;
-            this.titleControl1.TitleText = "Select a source folder";
-            // 
-            // titleControl2
-            // 
-            this.titleControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titleControl2.Icon = null;
-            this.titleControl2.Location = new System.Drawing.Point(0, 0);
-            this.titleControl2.Name = "titleControl2";
-            this.titleControl2.Size = new System.Drawing.Size(191, 41);
-            this.titleControl2.TabIndex = 0;
-            this.titleControl2.TitleText = "Check textures to mark";
-            // 
-            // titleControl3
-            // 
-            this.titleControl3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titleControl3.Icon = null;
-            this.titleControl3.Location = new System.Drawing.Point(0, 0);
-            this.titleControl3.Name = "titleControl3";
-            this.titleControl3.Size = new System.Drawing.Size(189, 41);
-            this.titleControl3.TabIndex = 0;
-            this.titleControl3.TitleText = "Get ready to generate";
+            this.folderBrowserDialog1.Description = "Select a source folder";
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // PrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 417);
+            this.ClientSize = new System.Drawing.Size(764, 397);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "PrincipalForm";
             this.statusStrip1.ResumeLayout(false);

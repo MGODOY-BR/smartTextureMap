@@ -53,19 +53,22 @@ namespace smartTextureMap.Forms
             nodes.Clear();
 
             var directoryList = Directory.GetDirectories(sourceFolder);
-            var directoryNodeList = ConvertNodeList(directoryList);
+            var directoryNodeList = ConvertNodeList(directoryList, false);
 
+            this.treeView1.CheckBoxes = true;
+            this.treeView1.AfterCheck += TreeView1_AfterCheck;
             this.treeView1.Nodes.AddRange(directoryNodeList.ToArray());
+            this.treeView1.ExpandAll();
         }
 
         /// <summary>
         /// Converts the list to list of treenodes.
         /// </summary>
-        private List<TreeNode> ConvertNodeList(string[] directoryList)
+        private List<TreeNode> ConvertNodeList(string[] uriList, bool handleUriAsFiles)
         {
             #region Entries validation
                             
-            if (directoryList == null)
+            if (uriList == null)
             {
                 throw new ArgumentNullException("directoryList");
             }
@@ -74,19 +77,47 @@ namespace smartTextureMap.Forms
 
             List<TreeNode> returnList = new List<TreeNode>();
 
-            foreach (var directoryItem in directoryList)
+            foreach (var uriItem in uriList)
             {
                 try
                 {
                     TreeNode treeNode = new TreeNode();
-                    treeNode.Tag = directoryItem;
-                    treeNode.Text = Path.GetFileName(directoryItem);
+                    treeNode.Tag = uriItem;
+                    treeNode.Text = Path.GetFileName(uriItem);
 
-                    treeNode.Nodes.AddRange(
-                        ConvertNodeList(
-                            Directory.GetDirectories(directoryItem)).ToArray());
+                    // Adding files
+                    if (!handleUriAsFiles)
+                    {
+                        // Adding sub directories
+                        treeNode.Nodes.AddRange(
+                            ConvertNodeList(
+                                Directory.GetDirectories(uriItem), 
+                                false).ToArray());
+
+                        treeNode.Nodes.AddRange(
+                            ConvertNodeList(
+                                GetExceptSmartMap(
+                                    Directory.GetFiles(uriItem, "*.png")),
+                                true).ToArray());
+
+                        treeNode.Nodes.AddRange(
+                            ConvertNodeList(
+                                GetExceptSmartMap(
+                                    Directory.GetFiles(uriItem, "*.bmp")),
+                                true).ToArray());
+                    }
+                    // Handling files
+                    else
+                    {
+                        treeNode.Checked = true;
+                    }
 
                     returnList.Add(treeNode);
+                }
+                catch (IOException)
+                {
+                    // Errors of this kind in this location cannot turns around the normal flow of algoritmn
+                    continue;
                 }
                 catch (UnauthorizedAccessException)
                 {
@@ -97,5 +128,47 @@ namespace smartTextureMap.Forms
 
             return returnList;
         }
+
+        /// <summary>
+        /// Get a list informed, except for the smartMaps files.
+        /// </summary>
+        /// <param name="fileList"></param>
+        /// <returns></returns>
+        private string[] GetExceptSmartMap(string[] fileList)
+        {
+            #region Entries validation
+
+            if (fileList == null)
+            {
+                throw new ArgumentNullException("fileList");
+            }
+
+            #endregion
+
+            List<String> fileListTemp = new List<string>(fileList);
+            return fileListTemp.FindAll(delegate (String item)
+            {
+                return !item.Contains(".smartMap.");
+            }).ToArray();
+        }
+
+        /// <summary>
+        /// Handles the click on check boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TreeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Nodes.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var item in e.Node.Nodes)
+            {
+                ((TreeNode)item).Checked = e.Node.Checked;
+            }
+        }
+
     }
 }
