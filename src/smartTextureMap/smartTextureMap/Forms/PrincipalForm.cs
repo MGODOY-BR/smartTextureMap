@@ -170,5 +170,75 @@ namespace smartTextureMap.Forms
             }
         }
 
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            var selectedNodeList = 
+                GetSelectedNodesString(this.treeView1.Nodes);
+
+            this.multiProgressBarControl1.ItemList = selectedNodeList;
+            this.multiProgressBarControl1.DataBind();
+        }
+
+        /// <summary>
+        /// Gets the list of selected nodes
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <returns></returns>
+        private String[] GetSelectedNodesString(TreeNodeCollection nodes)
+        {
+            var selectedNodeList = this.GetSelectedNodes(nodes);
+
+            List<String> retunedList = new List<string>();
+
+            foreach (var item in selectedNodeList)
+            {
+                retunedList.Add(item.Text);
+            }
+
+            return retunedList.ToArray();
+        }
+
+        /// <summary>
+        /// Gets the list of selected nodes
+        /// </summary>
+        /// <param name="nodes"></param>
+        /// <returns></returns>
+        private List<TreeNode> GetSelectedNodes(TreeNodeCollection nodes)
+        {
+            #region Entries validation
+
+            if (nodes == null)
+            {
+                throw new ArgumentNullException("nodes");
+            }
+
+            #endregion
+
+            List<TreeNode> returnValueList = new List<TreeNode>();
+
+            foreach (var item in nodes)
+            {
+                TreeNode treeNode = (TreeNode)item;
+
+                #region Entries validation
+
+                if (treeNode.Nodes.Count > 0)
+                {
+                    returnValueList.AddRange(
+                        this.GetSelectedNodes(treeNode.Nodes));
+
+                    continue;
+                }
+
+                #endregion
+
+                if (treeNode.Checked)
+                {
+                    returnValueList.Add(treeNode);
+                }
+            }
+
+            return returnValueList;
+        }
     }
 }

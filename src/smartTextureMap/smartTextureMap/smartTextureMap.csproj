@@ -68,6 +68,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandPrompt\CommandPromptOutput.cs" />
+    <Compile Include="Forms\Controls\MultiProgressBar\MultiProgressBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\MultiProgressBar\MultiProgressBarControl.Designer.cs">
+      <DependentUpon>MultiProgressBarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\MultiProgressBar\SingleProgressBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\MultiProgressBar\SingleProgressBarControl.Designer.cs">
+      <DependentUpon>SingleProgressBarControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Controls\TitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +161,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Controls\MultiProgressBar\MultiProgressBarControl.resx">
+      <DependentUpon>MultiProgressBarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\MultiProgressBar\SingleProgressBarControl.resx">
+      <DependentUpon>SingleProgressBarControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\TitleControl.resx">
       <DependentUpon>TitleControl.cs</DependentUpon>
     </EmbeddedResource>
