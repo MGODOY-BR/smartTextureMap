@@ -36,19 +36,19 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(3, 20);
+            this.progressBar1.Location = new System.Drawing.Point(6, 16);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(177, 10);
+            this.progressBar1.Size = new System.Drawing.Size(158, 13);
             this.progressBar1.TabIndex = 1;
             // 
             // lblCaption
             // 
             this.lblCaption.AutoSize = true;
-            this.lblCaption.Location = new System.Drawing.Point(3, 4);
+            this.lblCaption.Location = new System.Drawing.Point(3, 0);
             this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(44, 13);
+            this.lblCaption.Size = new System.Drawing.Size(55, 13);
             this.lblCaption.TabIndex = 2;
-            this.lblCaption.Text = "Nothing";
+            this.lblCaption.Text = "Unkwown";
             // 
             // SingleProgressBarControl
             // 
@@ -58,7 +58,7 @@
             this.Controls.Add(this.lblCaption);
             this.Controls.Add(this.progressBar1);
             this.Name = "SingleProgressBarControl";
-            this.Size = new System.Drawing.Size(183, 38);
+            this.Size = new System.Drawing.Size(167, 32);
             this.ResumeLayout(false);
             this.PerformLayout();
 
