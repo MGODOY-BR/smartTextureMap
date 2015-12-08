@@ -192,10 +192,36 @@ namespace smartTextureMap.Forms
 
             foreach (var item in selectedNodeList)
             {
-                retunedList.Add(item.Text);
+                retunedList.Add(
+                    GetLastNames((String)item.Tag));
             }
 
             return retunedList.ToArray();
+        }
+
+        /// <summary>
+        /// Gets last names of file
+        /// </summary>
+        private string GetLastNames(string uri)
+        {
+            #region Entries validation
+            
+            if (String.IsNullOrEmpty(uri))
+            {
+                throw new ArgumentNullException("uri");
+            }
+
+            #endregion
+
+            if (uri.IndexOf(@"\") == -1)
+            {
+                return Path.GetFileName(uri);
+            }
+            else
+            {
+                var uriPartList = uri.Split(char.Parse(@"\"));
+                return uriPartList[uriPartList.Length - 2] + @"\" + uriPartList[uriPartList.Length - 1];
+            }
         }
 
         /// <summary>
