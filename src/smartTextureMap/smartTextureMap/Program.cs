@@ -32,12 +32,12 @@ namespace smartTextureMap
             }
             catch (Exception ex)
             {
-                OutputManager.WriteLine(contextMap, ex.Message);
+                OutputManager.WriteLine(null, contextMap, ex.Message);
                 if (ex.InnerException != null)
                 {
-                    OutputManager.WriteLine(contextMap, " ----> " + ex.InnerException.Message);
+                    OutputManager.WriteLine(null, contextMap, " ----> " + ex.InnerException.Message);
                 }
-                OutputManager.WriteLine(contextMap);
+                OutputManager.WriteLine(null, contextMap);
             }
         }
 
@@ -68,10 +68,10 @@ namespace smartTextureMap
             smartTextureMap.Load(fileName);
             smartTextureMap.Generate(NewFileUtil.GetNewFullName(fileName));
 
-            OutputManager.WriteLine(smartTextureMap.ContextMap);
-            OutputManager.WriteLine(smartTextureMap.ContextMap, "Discovered " + smartTextureMap.FormList.Count + " shapes");
-            OutputManager.WriteLine(smartTextureMap.ContextMap);
-            OutputManager.WriteLine(smartTextureMap.ContextMap, "File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
+            OutputManager.WriteLine(null, smartTextureMap.ContextMap);
+            OutputManager.WriteLine(null, smartTextureMap.ContextMap, "Discovered " + smartTextureMap.FormList.Count + " shapes");
+            OutputManager.WriteLine(null, smartTextureMap.ContextMap);
+            OutputManager.WriteLine(null, smartTextureMap.ContextMap, "File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
 
             return smartTextureMap.ContextMap;
         }

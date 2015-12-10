@@ -162,6 +162,7 @@
     <Content Include="ReleaseNotes.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\error.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\Controls\MultiProgressBar\MultiProgressBarControl.resx">

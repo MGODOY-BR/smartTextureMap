@@ -12,7 +12,7 @@ namespace smartTextureMap.Intelligence
     /// <summary>
     /// Represents a texture map intelligence.
     /// </summary>
-    public class SmartTextureMap
+    public class SmartTextureMap : IDisposable
     {
         /// <summary>
         /// It´s the context of transformation
@@ -178,6 +178,14 @@ namespace smartTextureMap.Intelligence
             #endregion
 
             this._originalImage = new Picture(Image.FromFile(fileName));
+        }
+
+        public void Dispose()
+        {
+            if (this._originalImage != null)
+            {
+                this._originalImage.Dispose();
+            }
         }
     }
 }

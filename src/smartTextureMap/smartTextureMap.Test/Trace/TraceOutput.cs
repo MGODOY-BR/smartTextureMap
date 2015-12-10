@@ -10,16 +10,16 @@ namespace smartTextureMap.Test.Trace
 {
     public class TraceOutput : IOutput
     {
-        public void Clear(ContextMap context)
+        public void Clear(object sender, ContextMap context)
         {
         }
 
-        public void WriteLine(ContextMap context)
+        public void WriteLine(object sender, ContextMap context)
         {
             System.Diagnostics.Trace.WriteLine("");
         }
 
-        public void WriteLine(ContextMap context, string stringFormat, params object[] args)
+        public void WriteLine(object sender, ContextMap context, string stringFormat, params object[] args)
         {
             if (args.Length == 0)
             {

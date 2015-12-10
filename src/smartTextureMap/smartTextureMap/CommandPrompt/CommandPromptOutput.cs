@@ -12,17 +12,17 @@ namespace smartTextureMap.CommandPrompt{
 	/// </summary>
 	public class CommandPromptOutput : IOutput {
 
-        public void Clear(ContextMap context)
+        public void Clear(object sender, ContextMap context)
         {
             Console.Clear();
         }
 
-        public void WriteLine(ContextMap context)
+        public void WriteLine(object sender, ContextMap context)
         {
             Console.WriteLine();
         }
 
-        public void WriteLine(ContextMap context, string stringFormat, params object[] args)
+        public void WriteLine(object sender, ContextMap context, string stringFormat, params object[] args)
         {
             if (args.Length == 0)
             {

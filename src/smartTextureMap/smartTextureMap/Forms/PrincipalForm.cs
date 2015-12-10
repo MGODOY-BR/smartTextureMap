@@ -176,7 +176,7 @@ namespace smartTextureMap.Forms
                 GetSelectedNodesString(this.treeView1.Nodes);
 
             this.multiProgressBarControl1.ItemList = selectedNodeList;
-            this.multiProgressBarControl1.DataBind();
+            this.multiProgressBarControl1.Run();
         }
 
         /// <summary>

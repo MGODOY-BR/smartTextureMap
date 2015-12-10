@@ -46,46 +46,107 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
         /// </summary>
         public void Run()
         {
+            this.pnlError.Visible = false;
+
             this.backgroundWorker1.RunWorkerAsync(this.FileName);
+            this.lblStatus.Text = "Waiting...";
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             String fileName = (String)e.Argument;
 
-            SmartTextureMap smartMap = new SmartTextureMap();
+            using (SmartTextureMap smartMap = new SmartTextureMap())
+            {
+                var formOutput = (FormOutput)OutputManager.GetOutputWay();
+                formOutput.RegisterOwner(smartMap.ContextMap, this);
 
-            var formOutput = (FormOutput)OutputManager.GetOutputWay();
-            formOutput.RegisterOwner(smartMap.ContextMap, this);
-
-            smartMap.Load(fileName);
-            smartMap.Generate(
-                NewFileUtil.GetNewFullName(fileName));
+                smartMap.Load(fileName);
+                smartMap.Generate(
+                    NewFileUtil.GetNewFullName(fileName));
+            }
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            this.lblStatus.Text = "RUNNING - " + e.ProgressPercentage + "%";
             this.progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                String message = GetErrorMessage(e.Error);
+
+                this.toolTip1.SetToolTip(iconError, message);
+                this.pnlError.Visible = true;
+            }
+            else
+            {
+                this.progressBar1.Value = 100;
+                this.ReportComplete();
+            }
+        }
+
+        /// <summary>
+        /// Returns an error message 
+        /// </summary>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        private string GetErrorMessage(Exception error)
+        {
+            #region Entries validation
+            
+            if (error == null)
+            {
+                throw new ArgumentNullException("error");
+            }
+
+            #endregion
+
+            if (error is OutOfMemoryException)
+            {
+                return "Memória insuficiente. Talvez o sistema esteja muito ocupado. Aguarde os processos desocuparem e tente novamente";
+            }
+            else
+            {
+                return error.Message;
+            }
+        }
+
+        private void btnReRun_Click(object sender, EventArgs e)
+        {
+            this.Run();
         }
 
         #region IReportProgress elements
 
         public void ReportProgress(double value)
         {
-            this.backgroundWorker1.ReportProgress((int)value);
+            try
+            {
+                this.backgroundWorker1.ReportProgress((int)value);
+            }
+            catch (InvalidOperationException)
+            {
+                // This kind of error can't stop the process.
+            }
         }
 
         public void ReportComplete()
         {
-            this.Visible = false;
+            try
+            {
+                this.Visible = false;
+            }
+            catch
+            {
+                // Erros in here can't throws exception
+            }
         }
 
         #endregion
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            this.progressBar1.Value = 100;
-            this.ReportComplete();
-        }
     }
 }

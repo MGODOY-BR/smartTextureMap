@@ -46,25 +46,25 @@ namespace smartTextureMap.IO{
 		/// <summary>
 		/// Write something to user
 		/// </summary>
-		public static void WriteLine(ContextMap contextMap, String stringFormat, params object[] args)
+		public static void WriteLine(object sender, ContextMap contextMap, String stringFormat, params object[] args)
         {
-            _output.WriteLine(contextMap, stringFormat, args);
+            _output.WriteLine(sender, contextMap, stringFormat, args);
 		}
 
         /// <summary>
         /// Jumps a line
         /// </summary>
-        public static void WriteLine(ContextMap contextMap)
+        public static void WriteLine(object sender, ContextMap contextMap)
         {
-            _output.WriteLine(contextMap);
+            _output.WriteLine(sender, contextMap);
         }
 
         /// <summary>
         /// Cleans the user output
         /// </summary>
-        public static void Clear(ContextMap contextMap)
+        public static void Clear(object sender, ContextMap contextMap)
         {
-            _output.Clear(contextMap);
+            _output.Clear(sender, contextMap);
 		}
     }
 }

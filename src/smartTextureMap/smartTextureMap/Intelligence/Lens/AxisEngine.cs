@@ -1,4 +1,5 @@
 
+using smartTextureMap.Forms;
 using smartTextureMap.IO;
 using smartTextureMap.Support;
 using System;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace smartTextureMap.Intelligence.Lens{
 	/// <summary>
@@ -102,8 +104,8 @@ namespace smartTextureMap.Intelligence.Lens{
             this._len = new ShapeLen(image);
 
             this._contextMap = contextMap;
-            this._mainProgressCounter = new ProgressCounter(this._contextMap);
-            this._auxProgressCounter = new ProgressCounter(this._contextMap);
+            this._mainProgressCounter = new ProgressCounter(this._contextMap, true);
+            this._auxProgressCounter = new ProgressCounter(this._contextMap, false);
         }
 
         /// <summary>
@@ -129,8 +131,8 @@ namespace smartTextureMap.Intelligence.Lens{
             this._len = new ShapeLen(image);
 
             this._contextMap = contextMap;
-            this._mainProgressCounter = new ProgressCounter(this._contextMap);
-            this._auxProgressCounter = new ProgressCounter(this._contextMap);
+            this._mainProgressCounter = new ProgressCounter(this._contextMap, true);
+            this._auxProgressCounter = new ProgressCounter(this._contextMap, false);
         }
 
         /// <summary>
@@ -193,6 +195,9 @@ namespace smartTextureMap.Intelligence.Lens{
 
             while (x < this._image.Width)
             {
+                this._mainProgressCounter.Update(x, this._image.Width);
+                this._auxProgressCounter.Update(y, this._image.Height);
+
                 #region Iterator control
 
                 if (y >= this._image.Height)
@@ -209,9 +214,6 @@ namespace smartTextureMap.Intelligence.Lens{
                         y = this._startPoint.Y;
                     }
                 }
-
-                this._mainProgressCounter.Update(x, this._image.Width);
-                this._auxProgressCounter.Update(y, this._image.Height);
 
                 #endregion
 
@@ -243,15 +245,16 @@ namespace smartTextureMap.Intelligence.Lens{
                 }
             }
 
-            ProgressCounter.Stop();
+            ProgressCounter.Stop(this._mainProgressCounter);
+            ProgressCounter.Stop(this._auxProgressCounter);
 
             try
             {
-                OutputManager.WriteLine(this._contextMap, "Wait, refining squares... (this might it takes several minutes)");
+                OutputManager.WriteLine(this, this._contextMap, "Wait, refining squares... (this might it takes several minutes)");
 
                 this.RefineSquares(this._squareList);
 
-                OutputManager.WriteLine(this._contextMap, "Squares has been refined");
+                OutputManager.WriteLine(this, this._contextMap, "Squares has been refined");
             }
             catch (IOException)
             {
@@ -672,7 +675,7 @@ namespace smartTextureMap.Intelligence.Lens{
                     return echoeList.Contains(square);
                 });
 
-            OutputManager.WriteLine(this._contextMap, echoesDeleted + " trapeze's echoes detected has been deleted");
+            OutputManager.WriteLine(this, this._contextMap, echoesDeleted + " trapeze's echoes detected has been deleted");
 
             // Replacing the echoes by the equivalent ones
             squareList.AddRange(

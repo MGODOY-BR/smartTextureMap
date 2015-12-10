@@ -415,6 +415,10 @@ namespace smartTextureMap.Support{
             {
                 this._newImage.Dispose();
             }
+            if (this._buffer != null)
+            {
+                this._buffer.Clear();
+            }
         }
     }
 }

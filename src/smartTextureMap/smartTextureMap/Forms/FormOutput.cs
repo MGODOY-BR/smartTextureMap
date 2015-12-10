@@ -3,6 +3,7 @@ using smartTextureMap.IO;
 using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,66 +23,76 @@ namespace smartTextureMap.Forms{
         /// <summary>
         /// Finds the percentage values in strings
         /// </summary>
-        private static Regex _regEx = new Regex(@"\d{1,}[\.|\,]{0,1}\d{0,}", RegexOptions.Compiled);
+        private static Regex _regEx = new Regex(@"(\d{1,}[\.|\,]{0,1}\d{0,})%", RegexOptions.Compiled);
 
         /// <summary>
         /// Sets the owner of output
         /// </summary>
         public void RegisterOwner(ContextMap owner, IReportProgress reportProgress)
         {
-            #region Entries validation
-
-            if (owner == null)
+            lock (this._reportProgressList)
             {
-                throw new ArgumentNullException("owner");
-            }
-            if (reportProgress == null)
-            {
-                throw new ArgumentNullException("reportProgress");
-            }
-            if (this._reportProgressList.ContainsKey(owner))
-            {
-                return;
-            }
+                #region Entries validation
 
-            #endregion
+                if (owner == null)
+                {
+                    throw new ArgumentNullException("owner");
+                }
+                if (reportProgress == null)
+                {
+                    throw new ArgumentNullException("reportProgress");
+                }
+                if (this._reportProgressList.ContainsKey(owner))
+                {
+                    return;
+                }
 
-            this._reportProgressList.Add(owner, reportProgress);
+                #endregion
+
+                this._reportProgressList.Add(owner, reportProgress);
+            }
         }
 
-        public void Clear(ContextMap contextMap)
+        public void Clear(object sender, ContextMap contextMap)
         {
             // throw new NotImplementedException();
         }
 
-        public void WriteLine(ContextMap contextMap)
+        public void WriteLine(object sender, ContextMap contextMap)
         {
             // throw new NotImplementedException();
         }
 
-        public void WriteLine(ContextMap contextMap, string stringFormat, params object[] args)
+        public void WriteLine(object sender, ContextMap contextMap, string stringFormat, params object[] args)
         {
-            #region Entries validation
-            
-            if (String.IsNullOrEmpty(stringFormat))
+            lock (contextMap)
             {
-                throw new ArgumentNullException("stringFormat");
-            }
-            if (!_regEx.IsMatch(stringFormat))
-            {
-                return;
-            }
+                #region Entries validation
 
-            #endregion
+                if (String.IsNullOrEmpty(stringFormat))
+                {
+                    throw new ArgumentNullException("stringFormat");
+                }
+                if (!_regEx.IsMatch(stringFormat))
+                {
+                    return;
+                }
+                ProgressCounter progressCounter = sender as ProgressCounter;
+                if (progressCounter == null)
+                {
+                    return;
+                }
+                if (!progressCounter.IsMainProgress)
+                {
+                    return;
+                }
 
-            Match match = _regEx.Match(stringFormat);
-            double value = double.Parse(match.Value);
+                #endregion
 
-            this._reportProgressList[contextMap].ReportProgress(value);
+                Match match = _regEx.Match(stringFormat);
+                double value = double.Parse(match.Groups[1].Value);
 
-            if (value == 100)
-            {
-                this.ReportCompleted(contextMap);
+                this._reportProgressList[contextMap].ReportProgress(value);
             }
         }
 
@@ -90,7 +101,11 @@ namespace smartTextureMap.Forms{
         /// </summary>
         public void ReportCompleted(ContextMap contextMap)
         {
-            this._reportProgressList[contextMap].ReportComplete();
+            lock (this._reportProgressList)
+            {
+                this._reportProgressList[contextMap].ReportComplete();
+                this._reportProgressList.Remove(contextMap);
+            }
         }
     }
 }

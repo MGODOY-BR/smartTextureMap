@@ -29,10 +29,15 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+        }
+
         /// <summary>
-        /// Updates the list
+        /// Updates the list and runs the processes
         /// </summary>
-        public void DataBind()
+        public void Run()
         {
             #region Entries validation
 

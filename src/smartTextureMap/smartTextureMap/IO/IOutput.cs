@@ -14,16 +14,16 @@ namespace smartTextureMap.IO{
 		/// <summary>
 		/// Writes something to user
 		/// </summary>
-		void WriteLine(ContextMap contextMap, String stringFormat, params object[] args);
+		void WriteLine(object sender, ContextMap contextMap, String stringFormat, params object[] args);
 
 		/// <summary>
 		/// Cleans the output user
 		/// </summary>
-		void Clear(ContextMap contextMap);
+		void Clear(object sender, ContextMap contextMap);
 
         /// <summary>
         /// Jumps a line
         /// </summary>
-        void WriteLine(ContextMap contextMap);
+        void WriteLine(object sender, ContextMap contextMap);
     }
 }

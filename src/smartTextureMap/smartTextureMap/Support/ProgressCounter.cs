@@ -30,6 +30,11 @@ namespace smartTextureMap.Support
         private static Timer _timer;
 
         /// <summary>
+        /// Determines if the progress counter is the main one.
+        /// </summary>
+        public bool IsMainProgress { get; private set; }
+
+        /// <summary>
         /// It´s a list of instances
         /// </summary>
         private static List<ProgressCounter> _progressCounterList = new List<ProgressCounter>();
@@ -37,10 +42,10 @@ namespace smartTextureMap.Support
         /// <summary>
         /// Creates an instance of object
         /// </summary>
-        /// <param name="contextMap"></param>
-        public ProgressCounter(ContextMap contextMap)
+        public ProgressCounter(ContextMap contextMap, bool isMainProgress)
         {
             this._contextMap = contextMap;
+            this.IsMainProgress = isMainProgress;
         }
 
         /// <summary>
@@ -107,7 +112,7 @@ namespace smartTextureMap.Support
                     {
                         ProgressCounter._timer = new Timer(delegate (object state)
                         {
-                            this.Refresh(_progressCounterList);
+                            ProgressCounter.Refresh(_progressCounterList);
                         }, null, 0, 65); 
                     }
                 }
@@ -125,7 +130,7 @@ namespace smartTextureMap.Support
         /// <summary>
         /// Refresh the screen informations
         /// </summary>
-        private void Refresh(List<ProgressCounter> progressCounterList)
+        private static void Refresh(List<ProgressCounter> progressCounterList)
         {
             #region Entries validation
 
@@ -136,36 +141,29 @@ namespace smartTextureMap.Support
 
             #endregion
 
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("Processing... Please, wait...");
-
-            foreach (var item in progressCounterList)
+            lock (progressCounterList)
             {
-                builder.AppendLine(item._buffer);
-            }
+                foreach (var progressCounter in progressCounterList)
+                {
+                    try
+                    {
+                        OutputManager.Clear(progressCounter, progressCounter._contextMap);
+                        OutputManager.WriteLine(progressCounter, progressCounter._contextMap, progressCounter._buffer);
+                    }
+                    catch (IOException)
+                    {
+                        // Errors in this process can't be mess the natural flow of process
+                    }
 
-            String output = builder.ToString();
-
-            try
-            {
-                OutputManager.Clear(this._contextMap);
-                OutputManager.WriteLine(this._contextMap, output);
-            }
-            catch (IOException)
-            {
-                // Errors in this process can't be mess the natural flow of process
-            }
-
-            foreach (var item in progressCounterList)
-            {
-                item.Reset();
+                    progressCounter.Reset();
+                }
             }
         }
 
         /// <summary>
-        /// Stop the refresh
+        /// Stop the refresh for current progress counter
         /// </summary>
-        public static void Stop()
+        public static void Stop(ProgressCounter progressCounter)
         {
             #region Entries validation
 
@@ -173,10 +171,22 @@ namespace smartTextureMap.Support
             {
                 throw new ArgumentNullException("_timer");
             }
+            if (progressCounter == null)
+            {
+                throw new ArgumentNullException("progressCounter");
+            }
 
             #endregion
 
-            _timer.Dispose();
+            lock (_progressCounterList)
+            {
+                _progressCounterList.Remove(progressCounter);
+
+                if (_progressCounterList.Count == 0)
+                {
+                    _timer.Dispose();
+                }
+            }
         }
     }
 }
