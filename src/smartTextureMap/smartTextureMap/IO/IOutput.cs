@@ -1,4 +1,5 @@
 
+using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +14,16 @@ namespace smartTextureMap.IO{
 		/// <summary>
 		/// Writes something to user
 		/// </summary>
-		/// <param name="stringFormat"></param>
-		/// <param name="args"></param>
-		void WriteLine(String stringFormat, params object[] args);
+		void WriteLine(ContextMap contextMap, String stringFormat, params object[] args);
 
 		/// <summary>
 		/// Cleans the output user
 		/// </summary>
-		void Clear();
+		void Clear(ContextMap contextMap);
 
         /// <summary>
         /// Jumps a line
         /// </summary>
-        void WriteLine();
+        void WriteLine(ContextMap contextMap);
     }
 }

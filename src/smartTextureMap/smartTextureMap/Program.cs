@@ -2,6 +2,7 @@
 using smartTextureMap.Forms;
 using smartTextureMap.Intelligence;
 using smartTextureMap.IO;
+using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,25 +18,26 @@ namespace smartTextureMap
         [STAThread]
         static void Main(string[] args)
         {
+            ContextMap contextMap = null;
             try
             {
                 if (args.Length == 0)
                 {
-                    LaunchGraphicUserInterface();
+                    contextMap = LaunchGraphicUserInterface();
                 }
                 else
                 {
-                    LaunchCommandPrompt(args);
+                    contextMap = LaunchCommandPrompt(args);
                 }
             }
             catch (Exception ex)
             {
-                OutputManager.WriteLine(ex.Message);
+                OutputManager.WriteLine(contextMap, ex.Message);
                 if (ex.InnerException != null)
                 {
-                    OutputManager.WriteLine(" ----> " + ex.InnerException.Message);
+                    OutputManager.WriteLine(contextMap, " ----> " + ex.InnerException.Message);
                 }
-                OutputManager.WriteLine();
+                OutputManager.WriteLine(contextMap);
             }
         }
 
@@ -43,7 +45,7 @@ namespace smartTextureMap
         /// Launchs command prompt
         /// </summary>
         /// <param name="args"></param>
-        private static void LaunchCommandPrompt(string[] args)
+        private static ContextMap LaunchCommandPrompt(string[] args)
         {
             OutputManager.SetOutPutWay(new CommandPromptOutput());
 
@@ -61,27 +63,23 @@ namespace smartTextureMap
             }
 
             DateTime dateTime = DateTime.Now;
-            OutputManager.WriteLine("Wait, processing...");
-
-            string newFileName =
-                Path.Combine(
-                    destination,
-                    Path.GetFileNameWithoutExtension(fileName) + ".smartMap" + Path.GetExtension(fileName));
 
             SmartTextureMap smartTextureMap = new SmartTextureMap();
             smartTextureMap.Load(fileName);
-            smartTextureMap.Generate(newFileName);
+            smartTextureMap.Generate(NewFileUtil.GetNewFullName(fileName));
 
-            OutputManager.WriteLine();
-            OutputManager.WriteLine("Discovered " + smartTextureMap.FormList.Count + " shapes");
-            OutputManager.WriteLine();
-            OutputManager.WriteLine("File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
+            OutputManager.WriteLine(smartTextureMap.ContextMap);
+            OutputManager.WriteLine(smartTextureMap.ContextMap, "Discovered " + smartTextureMap.FormList.Count + " shapes");
+            OutputManager.WriteLine(smartTextureMap.ContextMap);
+            OutputManager.WriteLine(smartTextureMap.ContextMap, "File was generated with success. It took " + DateTime.Now.Subtract(dateTime).ToString());
+
+            return smartTextureMap.ContextMap;
         }
 
         /// <summary>
         /// Lanuchs GUI
         /// </summary>
-        private static void LaunchGraphicUserInterface()
+        private static ContextMap LaunchGraphicUserInterface()
         {
             OutputManager.SetOutPutWay(new FormOutput());
 
@@ -89,6 +87,8 @@ namespace smartTextureMap
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Form_ThreadException;
             Application.Run(new PrincipalForm());
+
+            return new ContextMap();
         }
 
         /// <summary>

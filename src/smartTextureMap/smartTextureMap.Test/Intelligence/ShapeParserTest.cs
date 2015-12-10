@@ -28,7 +28,7 @@ namespace smartTextureMap.Test.Intelligence
 
                 #region Running the tested operation
 
-                ShapeParser parser = new ShapeParser();
+                ShapeParser parser = new ShapeParser(new ContextMap());
                 List<Shape> evidenceList = parser.Discover(new Point(0, 0), image);
 
                 #endregion

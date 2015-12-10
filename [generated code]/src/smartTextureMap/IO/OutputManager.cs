@@ -17,10 +17,13 @@ namespace smartTextureMap.IO{
 		}
 
 		/// <summary>
-		/// 
+		/// It's the output to user
 		/// </summary>
 		private IOutput _output;
 
+		/// <summary>
+		/// Sets the output way
+		/// </summary>
 		/// <param name="output"></param>
 		public static void SetOutPutWay(IOutput output) {
 			// TODO implement here
@@ -29,9 +32,10 @@ namespace smartTextureMap.IO{
 		/// <summary>
 		/// Write something to user
 		/// </summary>
+		/// <param name="contextMap"> </param>
 		/// <param name="stringFormat"></param>
 		/// <param name="args"></param>
-		public static void WriteLine(String stringFormat, HashSet<object> args) {
+		public static void WriteLine(ContextMap contextMap , String stringFormat, HashSet<object> args) {
 			// TODO implement here
 		}
 

@@ -27,7 +27,7 @@ namespace smartTextureMap.Test.Intelligence.Lens
             {
                 #region Running the tested operation
 
-                AxisEngine axisEngine = new AxisEngine(image);
+                AxisEngine axisEngine = new AxisEngine(new ContextMap(), image);
                 axisEngine.Run();
 
                 #endregion

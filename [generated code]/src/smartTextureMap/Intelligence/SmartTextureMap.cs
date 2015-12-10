@@ -27,6 +27,11 @@ namespace smartTextureMap.Intelligence{
 		private Picture _originalImage;
 
 		/// <summary>
+		/// It´s the context of transformation
+		/// </summary>
+		private ContextMap _contextMap;
+
+		/// <summary>
 		/// Marks the form
 		/// </summary>
 		/// <param name="forms">Mark all the forms</param>
@@ -38,7 +43,7 @@ namespace smartTextureMap.Intelligence{
 		/// Generates a smart texture map
 		/// </summary>
 		/// <summary>
-		/// @param fileName It's the name of file to get the smart teture map
+		/// @param fileName It's the name of file to get the smart texture map
 		/// </summary>
 		public void Generate(String fileName) {
 			// TODO implement here

@@ -37,6 +37,11 @@ namespace smartTextureMap.Intelligence.Lens{
 		private Picture _image;
 
 		/// <summary>
+		/// It´s the context of transformation
+		/// </summary>
+		private ContextMap _contextMap;
+
+		/// <summary>
 		/// Resets the position of len
 		/// </summary>
 		public void Reset() {
@@ -46,9 +51,10 @@ namespace smartTextureMap.Intelligence.Lens{
 		/// <summary>
 		/// Creates an instance of object
 		/// </summary>
+		/// <param name="contextMap"> </param>
 		/// <param name="startPoint"></param>
 		/// <param name="image"></param>
-		public void AxisEngine(Point startPoint, Picture image) {
+		public void AxisEngine(ContextMap contextMap , Point startPoint, Picture image) {
 			// TODO implement here
 		}
 

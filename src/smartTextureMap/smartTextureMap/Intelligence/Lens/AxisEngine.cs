@@ -15,6 +15,11 @@ namespace smartTextureMap.Intelligence.Lens{
 	public class AxisEngine {
 
         /// <summary>
+        /// It´s the context of transformation
+        /// </summary>
+        private ContextMap _contextMap;
+
+        /// <summary>
         /// Indica se a análise chegou ao fim do arquivo
         /// </summary>
         private Boolean _eof;
@@ -42,12 +47,12 @@ namespace smartTextureMap.Intelligence.Lens{
         /// <summary>
         /// It's a progressCounter of Run operation.
         /// </summary>
-        private ProgressCounter _mainProgressCounter = new ProgressCounter();
+        private ProgressCounter _mainProgressCounter;
 
         /// <summary>
         /// It's a auxiliar progressCounter
         /// </summary>
-        private ProgressCounter _auxProgressCounter = new ProgressCounter();
+        private ProgressCounter _auxProgressCounter;
 
         /// <summary>
         /// Returns the amount of squares detected in last execution of Run()
@@ -81,8 +86,7 @@ namespace smartTextureMap.Intelligence.Lens{
         /// <summary>
         /// Creates an instance of object
         /// </summary>
-        /// <param name="image"></param>
-        public AxisEngine(Picture image)
+        public AxisEngine(ContextMap contextMap, Picture image)
         {
             #region Entries validation
 
@@ -96,14 +100,16 @@ namespace smartTextureMap.Intelligence.Lens{
             this._startPoint = new Support.Point(0, 0);
             this._image = image;
             this._len = new ShapeLen(image);
+
+            this._contextMap = contextMap;
+            this._mainProgressCounter = new ProgressCounter(this._contextMap);
+            this._auxProgressCounter = new ProgressCounter(this._contextMap);
         }
 
         /// <summary>
         /// Creates an instance of object
         /// </summary>
-        /// <param name="startPoint"></param>
-        /// <param name="image"></param>
-        public AxisEngine(Support.Point startPoint, Picture image)
+        public AxisEngine(ContextMap contextMap, Support.Point startPoint, Picture image)
         {
             #region Entries validation
             
@@ -121,6 +127,10 @@ namespace smartTextureMap.Intelligence.Lens{
             this._startPoint = startPoint;
             this._image = image;
             this._len = new ShapeLen(image);
+
+            this._contextMap = contextMap;
+            this._mainProgressCounter = new ProgressCounter(this._contextMap);
+            this._auxProgressCounter = new ProgressCounter(this._contextMap);
         }
 
         /// <summary>
@@ -237,15 +247,19 @@ namespace smartTextureMap.Intelligence.Lens{
 
             try
             {
-                OutputManager.WriteLine("Wait, refining squares... (this might it takes several minutes)");
+                OutputManager.WriteLine(this._contextMap, "Wait, refining squares... (this might it takes several minutes)");
 
                 this.RefineSquares(this._squareList);
 
-                OutputManager.WriteLine("Squares has been refined");
+                OutputManager.WriteLine(this._contextMap, "Squares has been refined");
             }
             catch (IOException)
             {
                 // Errors in this process can't be mess the natural flow of process
+            }
+            finally
+            {
+                this._mainProgressCounter.Update(100, 100);
             }
 
             this._eof = true;
@@ -658,7 +672,7 @@ namespace smartTextureMap.Intelligence.Lens{
                     return echoeList.Contains(square);
                 });
 
-            OutputManager.WriteLine(echoesDeleted + " trapeze's echoes detected has been deleted");
+            OutputManager.WriteLine(this._contextMap, echoesDeleted + " trapeze's echoes detected has been deleted");
 
             // Replacing the echoes by the equivalent ones
             squareList.AddRange(

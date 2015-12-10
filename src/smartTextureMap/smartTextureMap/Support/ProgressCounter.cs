@@ -15,6 +15,11 @@ namespace smartTextureMap.Support
     public class ProgressCounter
     {
         /// <summary>
+        /// It´s the context of transformation
+        /// </summary>
+        private ContextMap _contextMap = new ContextMap();
+
+        /// <summary>
         /// It's the buffer of text
         /// </summary>
         private string _buffer;
@@ -28,6 +33,15 @@ namespace smartTextureMap.Support
         /// It´s a list of instances
         /// </summary>
         private static List<ProgressCounter> _progressCounterList = new List<ProgressCounter>();
+
+        /// <summary>
+        /// Creates an instance of object
+        /// </summary>
+        /// <param name="contextMap"></param>
+        public ProgressCounter(ContextMap contextMap)
+        {
+            this._contextMap = contextMap;
+        }
 
         /// <summary>
         /// Reset de progress counter
@@ -134,8 +148,8 @@ namespace smartTextureMap.Support
 
             try
             {
-                OutputManager.Clear();
-                OutputManager.WriteLine(output);
+                OutputManager.Clear(this._contextMap);
+                OutputManager.WriteLine(this._contextMap, output);
             }
             catch (IOException)
             {

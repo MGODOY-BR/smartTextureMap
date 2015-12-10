@@ -1,4 +1,5 @@
 ﻿using smartTextureMap.IO;
+using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,16 @@ namespace smartTextureMap.Test.Trace
 {
     public class TraceOutput : IOutput
     {
-        public void Clear()
+        public void Clear(ContextMap context)
         {
         }
 
-        public void WriteLine()
+        public void WriteLine(ContextMap context)
         {
             System.Diagnostics.Trace.WriteLine("");
         }
 
-        public void WriteLine(string stringFormat, params object[] args)
+        public void WriteLine(ContextMap context, string stringFormat, params object[] args)
         {
             if (args.Length == 0)
             {

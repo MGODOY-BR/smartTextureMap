@@ -15,6 +15,11 @@ namespace smartTextureMap.Intelligence
     public class SmartTextureMap
     {
         /// <summary>
+        /// It´s the context of transformation
+        /// </summary>
+        private ContextMap _contextMap = new ContextMap();
+
+        /// <summary>
         /// Joins all the forms detected from textured map
         /// </summary>
         private List<Shape> _formList;
@@ -101,6 +106,17 @@ namespace smartTextureMap.Intelligence
         }
 
         /// <summary>
+        /// Returns an instance of context map of transformations
+        /// </summary>
+        public ContextMap ContextMap
+        {
+            get
+            {
+                return _contextMap;
+            }
+        }
+
+        /// <summary>
         /// Generates a smart texture map
         /// </summary>
         /// <param name="fileName">It's the name of file to get the smart texture map</param>
@@ -109,7 +125,7 @@ namespace smartTextureMap.Intelligence
             try
             {
                 #region Entries validation
-                
+
                 if (String.IsNullOrEmpty(fileName))
                 {
                     throw new ArgumentNullException("fileName");
@@ -121,7 +137,8 @@ namespace smartTextureMap.Intelligence
 
                 #endregion
 
-                ShapeParser shapeParser = new ShapeParser();
+                ShapeParser shapeParser = new ShapeParser(this._contextMap);
+
                 this._formList =
                     shapeParser.Discover(
                         new Support.Point(0, 0),
@@ -130,6 +147,10 @@ namespace smartTextureMap.Intelligence
                 this.MarkAllTheForms(this._formList);
 
                 this._originalImage.SaveAs(fileName);
+            }
+            catch (ArgumentException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

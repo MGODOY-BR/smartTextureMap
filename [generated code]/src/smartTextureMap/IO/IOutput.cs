@@ -13,9 +13,10 @@ namespace smartTextureMap.IO{
 		/// <summary>
 		/// Writes something to user
 		/// </summary>
+		/// <param name="contextMap"> </param>
 		/// <param name="stringFormat"></param>
 		/// <param name="args"></param>
-		public void WriteLine(String stringFormat, HashSet<object> args);
+		public void WriteLine(ContextMap contextMap, String stringFormat, HashSet<object> args);
 
 		/// <summary>
 		/// Cleans the output user

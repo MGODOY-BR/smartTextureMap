@@ -1,5 +1,6 @@
 
 using smartTextureMap.IO;
+using smartTextureMap.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,17 @@ namespace smartTextureMap.CommandPrompt{
 	/// </summary>
 	public class CommandPromptOutput : IOutput {
 
-        public void Clear()
+        public void Clear(ContextMap context)
         {
             Console.Clear();
         }
 
-        public void WriteLine()
+        public void WriteLine(ContextMap context)
         {
             Console.WriteLine();
         }
 
-        public void WriteLine(string stringFormat, params object[] args)
+        public void WriteLine(ContextMap context, string stringFormat, params object[] args)
         {
             if (args.Length == 0)
             {

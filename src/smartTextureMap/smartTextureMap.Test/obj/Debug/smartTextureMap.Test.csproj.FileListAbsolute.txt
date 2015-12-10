@@ -1,3 +1,5 @@
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\READ-ME.txt
+C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\ReleaseNotes.txt
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\smartTextureMap.Test.dll.config
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\smartTextureMap.Test.dll
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\smartTextureMap.Test.pdb
@@ -8,5 +10,3 @@ C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Debug\smartTextureMap.Test.csproj.GenerateResource.Cache
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Debug\smartTextureMap.Test.dll
 C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\obj\Debug\smartTextureMap.Test.pdb
-C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\READ-ME.txt
-C:\Users\Marcelo\Documents\Repositório GIT\smartTextureMap\src\smartTextureMap\smartTextureMap.Test\bin\Debug\ReleaseNotes.txt

@@ -461,7 +461,7 @@ namespace smartTextureMap.Test.Support
 
             #region Getting the evidences
 
-            OutputManager.WriteLine(evidence.ToString());
+            OutputManager.WriteLine(new ContextMap(), evidence.ToString());
 
             #endregion
 
@@ -497,7 +497,7 @@ namespace smartTextureMap.Test.Support
 
             #region Getting the evidences
 
-            OutputManager.WriteLine(evidence.ToString());
+            OutputManager.WriteLine(new ContextMap(), evidence.ToString());
 
             #endregion
 

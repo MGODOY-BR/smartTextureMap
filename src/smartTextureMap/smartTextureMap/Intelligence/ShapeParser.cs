@@ -12,13 +12,27 @@ namespace smartTextureMap.Intelligence{
 	/// </summary>
 	public class ShapeParser {
 
-		/// <summary>
-		/// Begins the analasys
-		/// </summary>
-		/// <param name="startPoint"></param>
-		/// <param name="image"></param>
-		/// <returns></returns>
-		public List<Shape> Discover(Point startPoint, Picture image)
+        /// <summary>
+        /// It´s the context of transformation
+        /// </summary>
+        private ContextMap _contextMap;
+
+        /// <summary>
+        /// Creates an instance of object
+        /// </summary>
+        /// <param name="contextMap"></param>
+        public ShapeParser(ContextMap contextMap)
+        {
+            this._contextMap = contextMap;
+        }
+
+        /// <summary>
+        /// Begins the analasys
+        /// </summary>
+        /// <param name="startPoint"></param>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public List<Shape> Discover(Point startPoint, Picture image)
         {
             #region Entries validation
             
@@ -31,7 +45,7 @@ namespace smartTextureMap.Intelligence{
 
             List<Shape> retorno = new List<Shape>();
 
-            AxisEngine axisEngine = new AxisEngine(startPoint, image);
+            AxisEngine axisEngine = new AxisEngine(this._contextMap, startPoint, image);
             axisEngine.Run();
 
             foreach (var item in axisEngine.GetSquares())

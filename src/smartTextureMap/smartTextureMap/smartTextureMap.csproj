@@ -87,6 +87,7 @@
       <DependentUpon>TitleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormOutput.cs" />
+    <Compile Include="Forms\IReportProgress.cs" />
     <Compile Include="Forms\PrincipalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +105,7 @@
     <Compile Include="Intelligence\SmartTextureMap.cs" />
     <Compile Include="Exceptions\InvalidCathetiException.cs" />
     <Compile Include="IO\IOutput.cs" />
+    <Compile Include="IO\NewFileUtil.cs" />
     <Compile Include="IO\OutputManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Support\BoundaryResult.cs" />
+    <Compile Include="Support\ContextMap.cs" />
     <Compile Include="Support\Reading.cs" />
     <Compile Include="Support\Mathematics\AdjacentCatheti.cs" />
     <Compile Include="Support\Mathematics\AngleStrategyEnum.cs" />
