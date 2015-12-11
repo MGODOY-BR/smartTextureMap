@@ -32,6 +32,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSourceFolder = new System.Windows.Forms.Panel();
             this.titleControl4 = new smartTextureMap.Forms.Controls.TitleControl();
@@ -46,8 +47,11 @@
             this.titleControl6 = new smartTextureMap.Forms.Controls.TitleControl();
             this.btnRun = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.pnlSourceFolder.SuspendLayout();
             this.pnlTreeView.SuspendLayout();
@@ -73,26 +77,38 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.16456F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.83544F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(903, 386);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblVersion);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(897, 44);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::smartTextureMap.Properties.Resources.logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(494, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel2
             // 
@@ -125,12 +141,12 @@
             // 
             // titleControl4
             // 
-            this.titleControl4.Icon = null;
+            this.titleControl4.Icon = global::smartTextureMap.Properties.Resources.Step1;
             this.titleControl4.Location = new System.Drawing.Point(18, 13);
             this.titleControl4.Name = "titleControl4";
             this.titleControl4.Size = new System.Drawing.Size(238, 41);
             this.titleControl4.TabIndex = 3;
-            this.titleControl4.TitleText = "None Title";
+            this.titleControl4.TitleText = "Select where the textures are";
             // 
             // txtSourceFolder
             // 
@@ -167,12 +183,12 @@
             // 
             // titleControl5
             // 
-            this.titleControl5.Icon = null;
+            this.titleControl5.Icon = global::smartTextureMap.Properties.Resources.Step2;
             this.titleControl5.Location = new System.Drawing.Point(11, 13);
             this.titleControl5.Name = "titleControl5";
             this.titleControl5.Size = new System.Drawing.Size(238, 41);
             this.titleControl5.TabIndex = 2;
-            this.titleControl5.TitleText = "None Title";
+            this.titleControl5.TitleText = "Check the texture which you want to mark";
             // 
             // treeView1
             // 
@@ -203,9 +219,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRunningResult.Controls.Add(this.multiProgressBarControl1);
-            this.pnlRunningResult.Location = new System.Drawing.Point(15, 97);
+            this.pnlRunningResult.Location = new System.Drawing.Point(15, 127);
             this.pnlRunningResult.Name = "pnlRunningResult";
-            this.pnlRunningResult.Size = new System.Drawing.Size(263, 208);
+            this.pnlRunningResult.Size = new System.Drawing.Size(263, 178);
             this.pnlRunningResult.TabIndex = 3;
             this.pnlRunningResult.Visible = false;
             // 
@@ -217,22 +233,23 @@
             this.multiProgressBarControl1.ItemList = new string[0];
             this.multiProgressBarControl1.Location = new System.Drawing.Point(0, 0);
             this.multiProgressBarControl1.Name = "multiProgressBarControl1";
-            this.multiProgressBarControl1.Size = new System.Drawing.Size(263, 208);
+            this.multiProgressBarControl1.Size = new System.Drawing.Size(263, 178);
             this.multiProgressBarControl1.TabIndex = 2;
             // 
             // titleControl6
             // 
-            this.titleControl6.Icon = null;
+            this.titleControl6.Icon = global::smartTextureMap.Properties.Resources.Step3;
             this.titleControl6.Location = new System.Drawing.Point(15, 13);
             this.titleControl6.Name = "titleControl6";
-            this.titleControl6.Size = new System.Drawing.Size(238, 41);
+            this.titleControl6.Size = new System.Drawing.Size(251, 72);
             this.titleControl6.TabIndex = 2;
-            this.titleControl6.TitleText = "None Title";
+            this.titleControl6.TitleText = "Run! After, localize in the same folder of original texture for smartMap versions" +
+    "";
             // 
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(15, 61);
+            this.btnRun.Location = new System.Drawing.Point(15, 91);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(65, 30);
             this.btnRun.TabIndex = 1;
@@ -245,6 +262,15 @@
             this.folderBrowserDialog1.Description = "Select a source folder";
             this.folderBrowserDialog1.ShowNewFolderButton = false;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(7, 0);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(51, 13);
+            this.lblVersion.TabIndex = 2;
+            this.lblVersion.Text = "Indefined";
+            // 
             // PrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,6 +282,9 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.pnlSourceFolder.ResumeLayout(false);
             this.pnlSourceFolder.PerformLayout();
@@ -290,5 +319,7 @@
         private Controls.TitleControl titleControl6;
         private Controls.MultiProgressBar.MultiProgressBarControl multiProgressBarControl1;
         private System.Windows.Forms.Panel pnlRunningResult;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

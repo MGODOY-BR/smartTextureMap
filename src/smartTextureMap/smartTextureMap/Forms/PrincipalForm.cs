@@ -227,6 +227,8 @@ namespace smartTextureMap.Forms
                 this.txtSourceFolder.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             }
 
+            this.lblVersion.Text = this.GetType().Assembly.GetName().Version.ToString() + "(Alpha)";
+
             this.RefreshForm();
         }
 

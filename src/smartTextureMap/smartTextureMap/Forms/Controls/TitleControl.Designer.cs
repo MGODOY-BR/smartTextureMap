@@ -44,6 +44,7 @@
             // 
             // label
             // 
+            this.label.BackColor = System.Drawing.Color.Transparent;
             this.label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.Location = new System.Drawing.Point(40, 0);

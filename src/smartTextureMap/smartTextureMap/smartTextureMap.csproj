@@ -162,6 +162,10 @@
     <Content Include="ReleaseNotes.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\Step3.png" />
+    <None Include="Resources\Step2.png" />
+    <None Include="Resources\Step1.png" />
     <None Include="Resources\error.png" />
   </ItemGroup>
   <ItemGroup>
