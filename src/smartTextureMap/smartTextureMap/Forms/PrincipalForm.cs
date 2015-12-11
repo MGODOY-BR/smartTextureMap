@@ -1,4 +1,5 @@
-﻿using System;
+﻿using smartTextureMap.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,20 +19,6 @@ namespace smartTextureMap.Forms
             InitializeComponent();
         }
 
-        private void btnOpenFolder_Click(object sender, EventArgs e)
-        {
-            this.folderBrowserDialog1.ShowDialog();
-            if (this.folderBrowserDialog1.SelectedPath != null)
-            {
-                this.txtSourceFolder.Text = this.folderBrowserDialog1.SelectedPath;
-            }
-        }
-
-        private void txtSourceFolder_TextChanged(object sender, EventArgs e)
-        {
-            RefreshTreeViewList(this.txtSourceFolder.Text, this.treeView1.Nodes);
-        }
-
         /// <summary>
         /// Refresh the tree view list
         /// </summary>
@@ -49,6 +36,8 @@ namespace smartTextureMap.Forms
             }
 
             #endregion
+
+            this.ShowRunningResult(false);
 
             nodes.Clear();
 
@@ -153,30 +142,12 @@ namespace smartTextureMap.Forms
         }
 
         /// <summary>
-        /// Handles the click on check boxes
+        /// Shows the runnnig result
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TreeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        private void ShowRunningResult(bool visibility)
         {
-            if (e.Node.Nodes.Count == 0)
-            {
-                return;
-            }
-
-            foreach (var item in e.Node.Nodes)
-            {
-                ((TreeNode)item).Checked = e.Node.Checked;
-            }
-        }
-
-        private void btnRun_Click(object sender, EventArgs e)
-        {
-            var selectedNodeList = 
-                GetSelectedNodesString(this.treeView1.Nodes);
-
-            this.multiProgressBarControl1.ItemList = selectedNodeList;
-            this.multiProgressBarControl1.Run();
+            this.pnlRunningResult.Visible = visibility;
+            this.btnRun.Enabled = !this.pnlRunningResult.Visible;
         }
 
         /// <summary>
@@ -240,5 +211,185 @@ namespace smartTextureMap.Forms
 
             return returnValueList;
         }
+
+        /// <summary>
+        /// Loads settings
+        /// </summary>
+        private void LoadSettings()
+        {
+            if (!String.IsNullOrEmpty(Settings.Default.lastSourceFolder))
+            {
+                this.txtSourceFolder.Text = Settings.Default.lastSourceFolder;
+                this.folderBrowserDialog1.SelectedPath = this.txtSourceFolder.Text.Trim();
+            }
+            else
+            {
+                this.txtSourceFolder.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            }
+
+            this.RefreshForm();
+        }
+
+        /// <summary>
+        /// Refreshes the form
+        /// </summary>
+        private void RefreshForm()
+        {
+            if (!Directory.Exists(this.txtSourceFolder.Text))
+            {
+                return;
+            }
+
+            try
+            {
+                this.Interrupt();
+
+                this.RefreshTreeViewList(this.txtSourceFolder.Text, this.treeView1.Nodes);
+
+                this.folderBrowserDialog1.SelectedPath = this.txtSourceFolder.Text.Trim();
+                Settings.Default.lastSourceFolder = this.txtSourceFolder.Text.Trim();
+                Settings.Default.Save();
+            }
+            finally
+            {
+                this.Resume();
+            }
+        }
+
+        /// <summary>
+        /// Interrupts the user interface
+        /// </summary>
+        private void Interrupt()
+        {
+            this.EnableForm(false);
+        }
+
+        /// <summary>
+        /// Resumes the user interface
+        /// </summary>
+        private void Resume()
+        {
+            this.EnableForm(true);
+        }
+
+        /// <summary>
+        /// Enables / disables form
+        /// </summary>
+        /// <param name="enabled"></param>
+        private void EnableForm(bool enabled)
+        {
+            if (enabled)
+            {
+                this.Cursor = Cursors.Default;
+            }
+            else
+            {
+                this.Cursor = Cursors.WaitCursor;
+            }
+
+            this.pnlSourceFolder.Enabled = enabled;
+            this.pnlTreeView.Enabled = enabled;
+            this.pnlRunning.Enabled = enabled;
+        }
+
+        #region Events
+
+        /// <summary>
+        /// Loads the form
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            this.LoadSettings();
+
+            this.multiProgressBarControl1.AllRunningCompleted += MultiProgressBarControl1_AllRunningCompleted;
+        }
+
+        /// <summary>
+        /// Occurs when all the progress has completed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MultiProgressBarControl1_AllRunningCompleted(object sender, EventArgs e)
+        {
+            this.btnRun.Enabled = true;
+            this.pnlTreeView.Enabled = true;
+            this.pnlSourceFolder.Enabled = true;
+        }
+
+        /// <summary>
+        /// Handles the click on check boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TreeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Nodes.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var item in e.Node.Nodes)
+            {
+                ((TreeNode)item).Checked = e.Node.Checked;
+            }
+        }
+
+        /// <summary>
+        /// Executes texture mapping
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            var selectedNodeList = 
+                GetSelectedNodesString(this.treeView1.Nodes);
+
+            if (selectedNodeList.Length == 0)
+            {
+                MessageBox.Show("None file to analyse.", "Nothing to do...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ShowRunningResult(false);
+                return;
+            }
+
+            this.ShowRunningResult(true);
+
+            this.multiProgressBarControl1.ItemList = selectedNodeList;
+            this.multiProgressBarControl1.Run();
+
+            this.btnRun.Enabled = false;
+            this.pnlTreeView.Enabled = false;
+            this.pnlSourceFolder.Enabled = false;
+
+        }
+
+        /// <summary>
+        /// Open folders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            this.folderBrowserDialog1.ShowDialog();
+            if (this.folderBrowserDialog1.SelectedPath != null)
+            {
+                this.txtSourceFolder.Text = this.folderBrowserDialog1.SelectedPath;
+                this.RefreshForm();
+            }
+        }
+
+        /// <summary>
+        /// Ocurrs when the user leaves the focus of source folder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtSourceFolder_Leave(object sender, EventArgs e)
+        {
+            this.RefreshForm();
+        }
+
+        #endregion
     }
 }

@@ -33,24 +33,26 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlSourceFolder = new System.Windows.Forms.Panel();
+            this.titleControl4 = new smartTextureMap.Forms.Controls.TitleControl();
             this.txtSourceFolder = new System.Windows.Forms.TextBox();
             this.btnOpenFolder = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnRun = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.titleControl4 = new smartTextureMap.Forms.Controls.TitleControl();
+            this.pnlTreeView = new System.Windows.Forms.Panel();
             this.titleControl5 = new smartTextureMap.Forms.Controls.TitleControl();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.pnlRunning = new System.Windows.Forms.Panel();
+            this.pnlRunningResult = new System.Windows.Forms.Panel();
             this.multiProgressBarControl1 = new smartTextureMap.Forms.Controls.MultiProgressBar.MultiProgressBarControl();
             this.titleControl6 = new smartTextureMap.Forms.Controls.TitleControl();
+            this.btnRun = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.pnlSourceFolder.SuspendLayout();
+            this.pnlTreeView.SuspendLayout();
+            this.pnlRunning.SuspendLayout();
+            this.pnlRunningResult.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -98,9 +100,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel4, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.pnlSourceFolder, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.pnlTreeView, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.pnlRunning, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 53);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -109,17 +111,26 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(897, 330);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // panel2
+            // pnlSourceFolder
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel2.Controls.Add(this.titleControl4);
-            this.panel2.Controls.Add(this.txtSourceFolder);
-            this.panel2.Controls.Add(this.btnOpenFolder);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(293, 324);
-            this.panel2.TabIndex = 0;
+            this.pnlSourceFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.pnlSourceFolder.Controls.Add(this.titleControl4);
+            this.pnlSourceFolder.Controls.Add(this.txtSourceFolder);
+            this.pnlSourceFolder.Controls.Add(this.btnOpenFolder);
+            this.pnlSourceFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSourceFolder.Location = new System.Drawing.Point(3, 3);
+            this.pnlSourceFolder.Name = "pnlSourceFolder";
+            this.pnlSourceFolder.Size = new System.Drawing.Size(293, 324);
+            this.pnlSourceFolder.TabIndex = 0;
+            // 
+            // titleControl4
+            // 
+            this.titleControl4.Icon = null;
+            this.titleControl4.Location = new System.Drawing.Point(18, 13);
+            this.titleControl4.Name = "titleControl4";
+            this.titleControl4.Size = new System.Drawing.Size(238, 41);
+            this.titleControl4.TabIndex = 3;
+            this.titleControl4.TitleText = "None Title";
             // 
             // txtSourceFolder
             // 
@@ -131,11 +142,11 @@
             this.txtSourceFolder.Name = "txtSourceFolder";
             this.txtSourceFolder.Size = new System.Drawing.Size(263, 214);
             this.txtSourceFolder.TabIndex = 2;
-            this.txtSourceFolder.TextChanged += new System.EventHandler(this.txtSourceFolder_TextChanged);
+            this.txtSourceFolder.Leave += new System.EventHandler(this.txtSourceFolder_Leave);
             // 
             // btnOpenFolder
             // 
-            this.btnOpenFolder.Location = new System.Drawing.Point(18, 61);
+            this.btnOpenFolder.Location = new System.Drawing.Point(18, 60);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(37, 24);
             this.btnOpenFolder.TabIndex = 1;
@@ -143,16 +154,25 @@
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
-            // panel3
+            // pnlTreeView
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.panel3.Controls.Add(this.titleControl5);
-            this.panel3.Controls.Add(this.treeView1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(302, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(293, 324);
-            this.panel3.TabIndex = 1;
+            this.pnlTreeView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.pnlTreeView.Controls.Add(this.titleControl5);
+            this.pnlTreeView.Controls.Add(this.treeView1);
+            this.pnlTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTreeView.Location = new System.Drawing.Point(302, 3);
+            this.pnlTreeView.Name = "pnlTreeView";
+            this.pnlTreeView.Size = new System.Drawing.Size(293, 324);
+            this.pnlTreeView.TabIndex = 1;
+            // 
+            // titleControl5
+            // 
+            this.titleControl5.Icon = null;
+            this.titleControl5.Location = new System.Drawing.Point(11, 13);
+            this.titleControl5.Name = "titleControl5";
+            this.titleControl5.Size = new System.Drawing.Size(238, 41);
+            this.titleControl5.TabIndex = 2;
+            this.titleControl5.TitleText = "None Title";
             // 
             // treeView1
             // 
@@ -165,22 +185,54 @@
             this.treeView1.Size = new System.Drawing.Size(270, 214);
             this.treeView1.TabIndex = 1;
             // 
-            // panel4
+            // pnlRunning
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.panel4.Controls.Add(this.multiProgressBarControl1);
-            this.panel4.Controls.Add(this.titleControl6);
-            this.panel4.Controls.Add(this.btnRun);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(601, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(293, 324);
-            this.panel4.TabIndex = 2;
+            this.pnlRunning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pnlRunning.Controls.Add(this.pnlRunningResult);
+            this.pnlRunning.Controls.Add(this.titleControl6);
+            this.pnlRunning.Controls.Add(this.btnRun);
+            this.pnlRunning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRunning.Location = new System.Drawing.Point(601, 3);
+            this.pnlRunning.Name = "pnlRunning";
+            this.pnlRunning.Size = new System.Drawing.Size(293, 324);
+            this.pnlRunning.TabIndex = 2;
+            // 
+            // pnlRunningResult
+            // 
+            this.pnlRunningResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlRunningResult.Controls.Add(this.multiProgressBarControl1);
+            this.pnlRunningResult.Location = new System.Drawing.Point(15, 97);
+            this.pnlRunningResult.Name = "pnlRunningResult";
+            this.pnlRunningResult.Size = new System.Drawing.Size(263, 208);
+            this.pnlRunningResult.TabIndex = 3;
+            this.pnlRunningResult.Visible = false;
+            // 
+            // multiProgressBarControl1
+            // 
+            this.multiProgressBarControl1.AutoScroll = true;
+            this.multiProgressBarControl1.BackColor = System.Drawing.Color.White;
+            this.multiProgressBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multiProgressBarControl1.ItemList = new string[0];
+            this.multiProgressBarControl1.Location = new System.Drawing.Point(0, 0);
+            this.multiProgressBarControl1.Name = "multiProgressBarControl1";
+            this.multiProgressBarControl1.Size = new System.Drawing.Size(263, 208);
+            this.multiProgressBarControl1.TabIndex = 2;
+            // 
+            // titleControl6
+            // 
+            this.titleControl6.Icon = null;
+            this.titleControl6.Location = new System.Drawing.Point(15, 13);
+            this.titleControl6.Name = "titleControl6";
+            this.titleControl6.Size = new System.Drawing.Size(238, 41);
+            this.titleControl6.TabIndex = 2;
+            this.titleControl6.TitleText = "None Title";
             // 
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(30, 61);
+            this.btnRun.Location = new System.Drawing.Point(15, 61);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(65, 30);
             this.btnRun.TabIndex = 1;
@@ -192,45 +244,6 @@
             // 
             this.folderBrowserDialog1.Description = "Select a source folder";
             this.folderBrowserDialog1.ShowNewFolderButton = false;
-            // 
-            // titleControl4
-            // 
-            this.titleControl4.Icon = null;
-            this.titleControl4.Location = new System.Drawing.Point(18, 13);
-            this.titleControl4.Name = "titleControl4";
-            this.titleControl4.Size = new System.Drawing.Size(238, 41);
-            this.titleControl4.TabIndex = 3;
-            this.titleControl4.TitleText = "None Title";
-            // 
-            // titleControl5
-            // 
-            this.titleControl5.Icon = null;
-            this.titleControl5.Location = new System.Drawing.Point(11, 13);
-            this.titleControl5.Name = "titleControl5";
-            this.titleControl5.Size = new System.Drawing.Size(238, 41);
-            this.titleControl5.TabIndex = 2;
-            this.titleControl5.TitleText = "None Title";
-            // 
-            // multiProgressBarControl1
-            // 
-            this.multiProgressBarControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.multiProgressBarControl1.BackColor = System.Drawing.Color.White;
-            this.multiProgressBarControl1.ItemList = new string[0];
-            this.multiProgressBarControl1.Location = new System.Drawing.Point(30, 106);
-            this.multiProgressBarControl1.Name = "multiProgressBarControl1";
-            this.multiProgressBarControl1.Size = new System.Drawing.Size(241, 156);
-            this.multiProgressBarControl1.TabIndex = 2;
-            // 
-            // titleControl6
-            // 
-            this.titleControl6.Icon = null;
-            this.titleControl6.Location = new System.Drawing.Point(15, 13);
-            this.titleControl6.Name = "titleControl6";
-            this.titleControl6.Size = new System.Drawing.Size(238, 41);
-            this.titleControl6.TabIndex = 2;
-            this.titleControl6.TitleText = "None Title";
             // 
             // PrincipalForm
             // 
@@ -244,10 +257,11 @@
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.pnlSourceFolder.ResumeLayout(false);
+            this.pnlSourceFolder.PerformLayout();
+            this.pnlTreeView.ResumeLayout(false);
+            this.pnlRunning.ResumeLayout(false);
+            this.pnlRunningResult.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,9 +274,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlSourceFolder;
+        private System.Windows.Forms.Panel pnlTreeView;
+        private System.Windows.Forms.Panel pnlRunning;
         private Controls.TitleControl titleControl1;
         private Controls.TitleControl titleControl2;
         private Controls.TitleControl titleControl3;
@@ -275,5 +289,6 @@
         private Controls.TitleControl titleControl5;
         private Controls.TitleControl titleControl6;
         private Controls.MultiProgressBar.MultiProgressBarControl multiProgressBarControl1;
+        private System.Windows.Forms.Panel pnlRunningResult;
     }
 }

@@ -22,5 +22,17 @@ namespace smartTextureMap.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastSourceFolder {
+            get {
+                return ((string)(this["lastSourceFolder"]));
+            }
+            set {
+                this["lastSourceFolder"] = value;
+            }
+        }
     }
 }

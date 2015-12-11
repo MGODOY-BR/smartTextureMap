@@ -15,6 +15,11 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
     public partial class MultiProgressBarControl : UserControl
     {
         /// <summary>
+        /// Occurs when all the progress bar conclude thair processing 
+        /// </summary>
+        public event EventHandler<EventArgs> AllRunningCompleted;
+
+        /// <summary>
         /// It´s a list of pending progress bar to finish to process
         /// </summary>
         private List<SingleProgressBarControl> _pending = new List<SingleProgressBarControl>();
@@ -103,6 +108,29 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
             {
                 return progressBar.Visible == false;
             });
+
+            // Handling the progress
+            bool concluded = true;
+            foreach (Control control in this.panel1.Controls)
+            {
+                SingleProgressBarControl progressBar = control as SingleProgressBarControl;
+
+                #region Entries validation
+
+                if (progressBar == null)
+                {
+                    continue;
+                }
+
+                #endregion
+
+                concluded &= progressBar.IsCompleted;
+            }
+
+            if (concluded)
+            {
+                this.OnAllRunningCompleted();
+            }
         }
 
         /// <summary>
@@ -128,6 +156,23 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
                 var uriPartList = uri.Split(char.Parse(@"\"));
                 return @"...\" + uriPartList[uriPartList.Length - 2] + @"\" + uriPartList[uriPartList.Length - 1];
             }
+        }
+
+        /// <summary>
+        /// Throw the event
+        /// </summary>
+        private void OnAllRunningCompleted()
+        {
+            #region Entries validation
+
+            if (AllRunningCompleted == null)
+            {
+                return;
+            }
+
+            #endregion
+
+            this.AllRunningCompleted(this, EventArgs.Empty);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

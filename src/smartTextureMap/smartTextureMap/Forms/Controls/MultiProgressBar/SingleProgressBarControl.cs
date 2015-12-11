@@ -17,6 +17,11 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
     public partial class SingleProgressBarControl : UserControl, IReportProgress
     {
         /// <summary>
+        /// Returns an indicator informing if the progress bar process concluded the processing. 
+        /// </summary>
+        public bool IsCompleted { get; private set; }
+
+        /// <summary>
         /// It´s the fileName
         /// </summary>
         public String FileName { get; set; }
@@ -143,6 +148,10 @@ namespace smartTextureMap.Forms.Controls.MultiProgressBar
             catch
             {
                 // Erros in here can't throws exception
+            }
+            finally
+            {
+                this.IsCompleted = true;
             }
         }
 
