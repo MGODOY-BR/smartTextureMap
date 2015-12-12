@@ -32,6 +32,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSourceFolder = new System.Windows.Forms.Panel();
@@ -47,7 +48,6 @@
             this.titleControl6 = new smartTextureMap.Forms.Controls.TitleControl();
             this.btnRun = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -99,6 +99,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(897, 44);
             this.panel1.TabIndex = 0;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(7, 0);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(51, 13);
+            this.lblVersion.TabIndex = 2;
+            this.lblVersion.Text = "Indefined";
             // 
             // pictureBox1
             // 
@@ -243,8 +252,8 @@
             this.titleControl6.Name = "titleControl6";
             this.titleControl6.Size = new System.Drawing.Size(251, 72);
             this.titleControl6.TabIndex = 2;
-            this.titleControl6.TitleText = "Run! After, localize in the same folder of original texture for smartMap versions" +
-    "";
+            this.titleControl6.TitleText = "Run! After that, localize in the same folder of original texture for smartMap ver" +
+    "sions";
             // 
             // btnRun
             // 
@@ -261,15 +270,6 @@
             // 
             this.folderBrowserDialog1.Description = "Select a source folder";
             this.folderBrowserDialog1.ShowNewFolderButton = false;
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(7, 0);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(51, 13);
-            this.lblVersion.TabIndex = 2;
-            this.lblVersion.Text = "Indefined";
             // 
             // PrincipalForm
             // 

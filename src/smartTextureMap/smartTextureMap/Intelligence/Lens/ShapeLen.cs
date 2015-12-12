@@ -32,6 +32,11 @@ namespace smartTextureMap.Intelligence.Lens{
         private Sensor _everNextSensor;
 
         /// <summary>
+        /// It's the sensor positioned in most left of sensor
+        /// </summary>
+        private Sensor _everPreviousSensor;
+
+        /// <summary>
         /// It´s the sensor positioned bellow of the len.
         /// </summary>
         private Sensor _bellowSensor;
@@ -160,6 +165,10 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._nextSensor");
             }
+            if (this._everNextSensor == null)
+            {
+                throw new ArgumentNullException("this._everNextSensor");
+            }
 
             #endregion
 
@@ -192,10 +201,24 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._leftSensor");
             }
+            if (this._everPreviousSensor == null)
+            {
+                throw new ArgumentNullException("this._everPreviousSensor");
+            }
 
             #endregion
 
-            return this._currentSensor.Check().IsBoundary && !this._leftSensor.Check().IsBoundary;
+            var currentSensorCheck = this._currentSensor.Check();
+            var leftSensorCheck = this._leftSensor.Check();
+
+            if (currentSensorCheck.IsBoundary && leftSensorCheck.IsBoundary && !_everPreviousSensor.Check().IsBoundary)
+            {
+                return true;
+            }
+            else
+            {
+                return currentSensorCheck.IsBoundary && !leftSensorCheck.IsBoundary;
+            }
         }
 
         /// <summary>
@@ -233,6 +256,14 @@ namespace smartTextureMap.Intelligence.Lens{
             {
                 throw new ArgumentNullException("this._leftSensor");
             }
+            if (this._everPreviousSensor == null)
+            {
+                throw new ArgumentNullException("this._everPreviousSensor");
+            }
+            if (this._everNextSensor == null)
+            {
+                throw new ArgumentNullException("this._everNextSensor");
+            }
 
             #endregion
 
@@ -240,6 +271,7 @@ namespace smartTextureMap.Intelligence.Lens{
             this._bellowSensor.Update(x, y + SENSOR_DISTANCE);
             this._nextSensor.Update(x + SENSOR_DISTANCE, y);
             this._everNextSensor.Update(x + SENSOR_DISTANCE * 2, y);
+            this._everPreviousSensor.Update(x - SENSOR_DISTANCE * 2, y);
             this._leftSensor.Update(x - SENSOR_DISTANCE, y);
             this._topSensor.Update(x, y - SENSOR_DISTANCE);
 
@@ -292,6 +324,7 @@ namespace smartTextureMap.Intelligence.Lens{
             this._bellowSensor = new Sensor(image);
             this._nextSensor = new Sensor(image);
             this._everNextSensor = new Sensor(image);
+            this._everPreviousSensor = new Sensor(image);
             this._topSensor = new Sensor(image);
             this._leftSensor = new Sensor(image);
 
