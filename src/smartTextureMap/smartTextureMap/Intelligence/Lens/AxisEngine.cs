@@ -544,9 +544,18 @@ namespace smartTextureMap.Intelligence.Lens{
         /// <returns></returns>
         private bool CheckContained(LogicalSquare square, List<LogicalSquare> squareList)
         {
-            foreach (var squareItem in squareList)
+            #region Entries validation
+
+            if (squareList == null)
             {
-                if (squareItem.CheckInside(square))
+                throw new ArgumentNullException("squareList");
+            }
+
+            #endregion
+
+            foreach (var item in squareList)
+            {
+                if (item.CheckInside(square))
                 {
                     return true;
                 }

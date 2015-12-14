@@ -252,8 +252,8 @@
             this.titleControl6.Name = "titleControl6";
             this.titleControl6.Size = new System.Drawing.Size(251, 72);
             this.titleControl6.TabIndex = 2;
-            this.titleControl6.TitleText = "Run! After that, localize in the same folder of original texture for smartMap ver" +
-    "sions";
+            this.titleControl6.TitleText = "Play! After that, localize in the same folder of original texture for smartMap ve" +
+    "rsions";
             // 
             // btnRun
             // 
@@ -262,7 +262,7 @@
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(65, 30);
             this.btnRun.TabIndex = 1;
-            this.btnRun.Text = "Run!!";
+            this.btnRun.Text = "Play!!";
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 

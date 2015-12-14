@@ -115,20 +115,20 @@ namespace smartTextureMap.Support{
         /// <summary>
         /// Verifies whether the point is inside of the logical square
         /// </summary>
-        /// <param name="point"></param>
+        /// <param name="other"></param>
         /// <returns></returns>
         /// <remarks>
         /// Coordinates of points:
         /// A       C
         /// D       B
         /// </remarks>
-        public Boolean CheckInside(Point point)
+        public Boolean CheckInside(Point other)
         {
             #region Entries validation
 
-            if (point == null)
+            if (other == null)
             {
-                throw new ArgumentNullException("point");
+                throw new ArgumentNullException("other");
             }
             if (this._pointA == null)
             {
@@ -150,8 +150,8 @@ namespace smartTextureMap.Support{
             #endregion
 
             return
-                point.X >= this._pointA.X && point.X <= this._pointB.X &&
-                point.Y >= this._pointA.Y && point.Y <= this._pointB.Y;
+                other.X >= this._pointA.X && other.X <= this._pointB.X &&
+                other.Y >= this._pointA.Y && other.Y <= this._pointB.Y;
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace smartTextureMap.Support{
             
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                return false;
             }
 
             #endregion
