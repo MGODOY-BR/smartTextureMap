@@ -14,6 +14,24 @@ namespace smartTextureMap.CommandPrompt{
 
         public void Clear(object sender, ContextMap context)
         {
+            #region Entries validation
+
+            if (sender == null)
+            {
+                throw new ArgumentNullException("sender");
+            }
+            ProgressCounter progressCounter = sender as ProgressCounter;
+            if (progressCounter == null)
+            {
+                return;
+            }
+            if (!progressCounter.IsMainProgress)
+            {
+                return;
+            }
+
+            #endregion
+
             Console.Clear();
         }
 

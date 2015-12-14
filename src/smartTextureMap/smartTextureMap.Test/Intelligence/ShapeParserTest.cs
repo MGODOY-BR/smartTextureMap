@@ -35,18 +35,6 @@ namespace smartTextureMap.Test.Intelligence
 
                 #region Getting the evidences
 
-                String[] letterArray = new String[7] { "a", "b", "c", "d", "e", "f", "g" };
-
-                for (int i = 0; i < letterArray.Length; i++)
-                {
-                    var item = evidenceList[i];
-
-                    item.Mark(letterArray[i]);
-                }
-
-                // Print image
-                // image.SaveAs("Teste.png");
-
                 #endregion
 
                 #region Validating the evidences

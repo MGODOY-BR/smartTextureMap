@@ -71,7 +71,7 @@ namespace smartTextureMap.Forms{
 
                 if (String.IsNullOrEmpty(stringFormat))
                 {
-                    throw new ArgumentNullException("stringFormat");
+                    return;
                 }
                 if (!_regEx.IsMatch(stringFormat))
                 {

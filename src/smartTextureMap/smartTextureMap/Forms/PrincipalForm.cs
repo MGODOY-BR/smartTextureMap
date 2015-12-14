@@ -307,6 +307,17 @@ namespace smartTextureMap.Forms
             this.LoadSettings();
 
             this.multiProgressBarControl1.AllRunningCompleted += MultiProgressBarControl1_AllRunningCompleted;
+            this.FormClosed += PrincipalForm_FormClosed;
+        }
+
+        /// <summary>
+        /// Occurs when the form has closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PrincipalForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         /// <summary>

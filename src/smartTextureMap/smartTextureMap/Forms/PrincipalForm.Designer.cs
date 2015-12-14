@@ -150,28 +150,29 @@
             // 
             // titleControl4
             // 
+            this.titleControl4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titleControl4.Icon = global::smartTextureMap.Properties.Resources.Step1;
-            this.titleControl4.Location = new System.Drawing.Point(18, 13);
+            this.titleControl4.Location = new System.Drawing.Point(7, 13);
             this.titleControl4.Name = "titleControl4";
-            this.titleControl4.Size = new System.Drawing.Size(238, 41);
+            this.titleControl4.Size = new System.Drawing.Size(274, 41);
             this.titleControl4.TabIndex = 3;
             this.titleControl4.TitleText = "Select where the textures are";
             // 
             // txtSourceFolder
             // 
-            this.txtSourceFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSourceFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSourceFolder.Location = new System.Drawing.Point(18, 91);
+            this.txtSourceFolder.Location = new System.Drawing.Point(7, 91);
             this.txtSourceFolder.Multiline = true;
             this.txtSourceFolder.Name = "txtSourceFolder";
-            this.txtSourceFolder.Size = new System.Drawing.Size(263, 214);
+            this.txtSourceFolder.Size = new System.Drawing.Size(274, 74);
             this.txtSourceFolder.TabIndex = 2;
             this.txtSourceFolder.Leave += new System.EventHandler(this.txtSourceFolder_Leave);
             // 
             // btnOpenFolder
             // 
-            this.btnOpenFolder.Location = new System.Drawing.Point(18, 60);
+            this.btnOpenFolder.Location = new System.Drawing.Point(7, 61);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(37, 24);
             this.btnOpenFolder.TabIndex = 1;
@@ -192,10 +193,12 @@
             // 
             // titleControl5
             // 
+            this.titleControl5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titleControl5.Icon = global::smartTextureMap.Properties.Resources.Step2;
             this.titleControl5.Location = new System.Drawing.Point(11, 13);
             this.titleControl5.Name = "titleControl5";
-            this.titleControl5.Size = new System.Drawing.Size(238, 41);
+            this.titleControl5.Size = new System.Drawing.Size(270, 41);
             this.titleControl5.TabIndex = 2;
             this.titleControl5.TitleText = "Check the texture which you want to mark";
             // 
@@ -247,10 +250,12 @@
             // 
             // titleControl6
             // 
+            this.titleControl6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titleControl6.Icon = global::smartTextureMap.Properties.Resources.Step3;
             this.titleControl6.Location = new System.Drawing.Point(15, 13);
             this.titleControl6.Name = "titleControl6";
-            this.titleControl6.Size = new System.Drawing.Size(251, 72);
+            this.titleControl6.Size = new System.Drawing.Size(263, 72);
             this.titleControl6.TabIndex = 2;
             this.titleControl6.TitleText = "Play! After that, localize in the same folder of original texture for smartMap ve" +
     "rsions";
